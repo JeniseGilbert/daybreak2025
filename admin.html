@@ -2,190 +2,319 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Panel - Day Break Orders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 16px;
       background: #f9f9f9;
-      padding: 20px;
     }
+
     h1 {
-      text-align: center;
       color: #ffa726;
+      text-align: center;
+      font-size: 1.5rem;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
-      background: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      background: white;
+      font-size: 0.95rem;
+      margin-top: 10px;
     }
+
     th, td {
       padding: 12px;
       border: 1px solid #ddd;
-      font-size: 0.9em;
-      text-align: center;
+      vertical-align: middle;
     }
+
     th {
-      background-color: #ffa726;
+      background: #ffa726;
       color: white;
+      text-align: left;
     }
-    .approved {
-      background-color: #d8ffd4;
+
+    .btn-group {
+      display: flex;
+      gap: 6px;
     }
-    .rejected {
+
+    .btn {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .approve-btn { background: #00D632; color: white; }
+    .reject-btn { background: #000; color: white; }
+
+    img.thumb {
+      max-width: 60px;
+      max-height: 60px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .rejected-row {
       background-color: #ffe5e5;
     }
-    button {
-      padding: 6px 12px;
-      font-size: 0.85em;
-      cursor: pointer;
-      margin: 0 2px;
+
+    .approved-row {
+      background-color: #d8ffd4;
     }
-    #loginForm {
-      max-width: 400px;
-      margin: 100px auto;
-      padding: 20px;
-      background: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      text-align: center;
+
+    #toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #323232;
+      color: white;
+      padding: 12px 20px;
       border-radius: 8px;
+      display: none;
+      z-index: 9999;
+      font-size: 0.95rem;
     }
-    #loginForm input {
-      padding: 10px;
-      margin: 10px 0;
-      width: 90%;
-      font-size: 1em;
-    }
-    #loginForm button {
-      padding: 10px 20px;
-      background-color: #ffa726;
+
+    #toast button {
+      margin-left: 20px;
+      background: #ffa726;
       color: white;
       border: none;
-      font-size: 1em;
+      border-radius: 6px;
+      padding: 6px 12px;
       cursor: pointer;
+    }
+
+    #imageModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #imageModal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
+    #imageModalClose {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Login */
+    #loginOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,1);
+      z-index: 10000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #loginBox {
+      background: white;
+      padding: 30px 24px;
+      border-radius: 12px;
+      text-align: center;
+      width: 100%;
+      max-width: 320px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #loginBox input {
+      padding: 12px;
+      font-size: 1em;
+      width: 96%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+      margin-bottom: 16px;
+    }
+
+    #loginBox button {
+      margin-top: 12px;
+      background: #ffa726;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #loginError {
+      color: red;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <div id="loginForm">
-    <h2>Admin Login</h2>
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="password" id="password" placeholder="Password" required />
-    <button onclick="login()">Login</button>
-    <p id="loginError" style="color:red;"></p>
+
+<!-- Login -->
+<div id="loginOverlay">
+  <div id="loginBox">
+    <h2 style="color:#ffa726;">Admin Login</h2>
+    <input type="password" id="adminPass" placeholder="Enter Password" />
+    <button id="adminLoginBtn" onclick="checkPassword()">Login</button>
+    <p id="loginError"></p>
   </div>
+</div>
 
-  <div id="adminPanel" style="display:none;">
-    <h1>Day Break Orders - Admin Panel</h1>
-    <table id="ordersTable">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>Method</th>
-          <th>Txn ID</th>
-          <th>Total</th>
-          <th>Image</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
+<h1>Admin Panel</h1>
+<table id="orderTable">
+  <thead>
+    <tr>
+      <th>Pickup Name</th>
+      <th>Payment Tag/Name</th>
+      <th>Phone</th>
+      <th>Method</th>
+      <th>Transaction</th>
+      <th>Total</th>
+      <th>Screenshot</th>
+      <th>Code</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-    import { getFirestore, collection, getDocs, updateDoc, doc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+<!-- Toast Notification -->
+<div id="toast">Approved <span id="toastCode"></span><button onclick="undoLastApproval()">Undo</button></div>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAZmCwF7YxHdyTeiDy7EG7V_WOqWfBAJws",
-      authDomain: "daybreak-mobile-order.firebaseapp.com",
-      projectId: "daybreak-mobile-order",
-      storageBucket: "daybreak-mobile-order.appspot.com",
-      messagingSenderId: "48983436290",
-      appId: "1:48983436290:web:d4b38137532ae2071a8b1b",
-      measurementId: "G-NBZBY1D8CY"
-    };
+<!-- Screenshot Modal -->
+<div id="imageModal" onclick="closeModal()">
+  <div id="imageModalClose">&times;</div>
+  <img id="modalImage" src="" alt="Payment Screenshot" />
+</div>
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const auth = getAuth(app);
+<script>
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxlnXGbiMrdC1MHY0vPlFHpxQuWGn4OOmjJGst38B9nvHRG8JRRI71oupJM3Xp8xfF9/exec';
+  const ADMIN_PASSWORD = '14';
+  const PASSKEY = 'd@yBr3ak_#2025$secure'; // 🔒 protect backend
+  let lastApprovedCode = "";
 
-    const allowedEmails = ["jenisegilbert@ymail.com"]; // <- replace with your actual admin email
-
-    function login() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          // handled in onAuthStateChanged
-        })
-        .catch((error) => {
-          document.getElementById("loginError").innerText = "Login failed. Check your credentials.";
-        });
+  function checkPassword() {
+    const input = document.getElementById("adminPass").value.trim();
+    if (input === ADMIN_PASSWORD) {
+      document.getElementById("loginOverlay").style.display = "none";
+      fetchOrders();
+      setInterval(fetchOrders, 8000);
+    } else {
+      document.getElementById("loginError").textContent = "Incorrect password.";
     }
+  }
 
-    const tableBody = document.querySelector("#ordersTable tbody");
+  document.getElementById("adminPass").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") checkPassword();
+  });
 
-    async function fetchOrders() {
-      const snapshot = await getDocs(collection(db, "orders"));
-      tableBody.innerHTML = "";
+  async function fetchOrders() {
+    const res = await fetch(SHEET_URL);
+    const data = await res.json();
+    const tbody = document.querySelector('#orderTable tbody');
+    tbody.innerHTML = '';
 
-      snapshot.forEach(docSnap => {
-        const data = docSnap.data();
-        const row = document.createElement("tr");
-        row.className = data.approved ? "approved" : data.rejected ? "rejected" : "";
+    data.forEach(order => {
+      if (!order.confirmCode?.startsWith("DB-")) return;
+      if (order.approved === "Approved") return;
 
-        row.innerHTML = `
-          <td>${data.pickupName || "-"}</td>
-          <td>${data.phone || "-"}</td>
-          <td>${data.paymentMethod || "-"}</td>
-          <td>${data.transactionId || "-"}</td>
-          <td>${data.grandTotal || "-"}</td>
-          <td><a href="${data.imageUrl}" target="_blank"><img src="${data.imageUrl}" alt="proof" width="50" height="50" /></a></td>
-          <td>${data.approved || data.rejected || "Pending"}</td>
-          <td>
-            <button onclick="approveOrder('${docSnap.id}')">Approve</button>
-            <button onclick="rejectOrder('${docSnap.id}')">Reject</button>
-            <button onclick="undoOrder('${docSnap.id}')">Undo</button>
-          </td>
-        `;
-        tableBody.appendChild(row);
-      });
-    }
+      const tr = document.createElement("tr");
+      if (order.rejected === "Rejected") tr.classList.add("rejected-row");
+      if (order.approved === "Approved") tr.classList.add("approved-row");
 
-    window.approveOrder = async (id) => {
-      await updateDoc(doc(db, "orders", id), { approved: "Approved", rejected: "" });
-      fetchOrders();
-    };
-
-    window.rejectOrder = async (id) => {
-      await updateDoc(doc(db, "orders", id), { rejected: "Rejected", approved: "" });
-      fetchOrders();
-    };
-
-    window.undoOrder = async (id) => {
-      await updateDoc(doc(db, "orders", id), { approved: "", rejected: "" });
-      fetchOrders();
-    };
-
-    onAuthStateChanged(auth, (user) => {
-      if (user && allowedEmails.includes(user.email)) {
-        document.getElementById("loginForm").style.display = "none";
-        document.getElementById("adminPanel").style.display = "block";
-        fetchOrders();
-      } else {
-        auth.signOut();
-        document.getElementById("loginError").innerText = "Access denied: unauthorized email.";
-        document.getElementById("loginForm").style.display = "block";
-        document.getElementById("adminPanel").style.display = "none";
-      }
+      tr.innerHTML = `
+        <td>${order.pickupName}</td>
+        <td>${order.paymentName}</td>
+        <td>${order.phone}</td>
+        <td>${order.method}</td>
+        <td>${order.txnId || ""}</td>
+        <td>${order.amount || "$0.00"}</td>
+        <td>${order.imageUrl 
+          ? `<img src="${order.imageUrl}" class="thumb" onclick="previewImage('${order.imageUrl}')">`
+          : "N/A"}</td>
+        <td>${order.confirmCode}</td>
+        <td>
+          <div class="btn-group">
+            <button class="btn approve-btn" onclick="approveOrder('${order.confirmCode}')">✔</button>
+            <button class="btn reject-btn" onclick="rejectOrder('${order.confirmCode}')">✖</button>
+          </div>
+        </td>
+      `;
+      tbody.appendChild(tr);
     });
-  </script>
+  }
+
+  async function approveOrder(code) {
+    lastApprovedCode = code;
+    await fetch(`${SHEET_URL}?approve=${encodeURIComponent(code)}&passKey=${PASSKEY}`);
+    showToast(code);
+    fetchOrders();
+  }
+
+  async function rejectOrder(code) {
+    const confirmReject = confirm(`Are you sure you want to reject ${code}?`);
+    if (!confirmReject) return;
+    await fetch(`${SHEET_URL}?reject=${encodeURIComponent(code)}&passKey=${PASSKEY}`);
+    fetchOrders();
+  }
+
+  async function undoLastApproval() {
+    if (!lastApprovedCode) return;
+    await fetch(`${SHEET_URL}?undoApprove=${encodeURIComponent(lastApprovedCode)}&passKey=${PASSKEY}`);
+    lastApprovedCode = "";
+    fetchOrders();
+    document.getElementById("toast").style.display = "none";
+  }
+
+  function showToast(code) {
+    document.getElementById("toastCode").textContent = code;
+    const toast = document.getElementById("toast");
+    toast.style.display = "flex";
+    setTimeout(() => {
+      if (toast.style.display === "flex") toast.style.display = "none";
+    }, 8000);
+  }
+
+  function previewImage(url) {
+    const modal = document.getElementById("imageModal");
+    const img = document.getElementById("modalImage");
+    img.src = url;
+    modal.style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+  }
+</script>
+
 </body>
 </html>
