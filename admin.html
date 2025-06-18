@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - Day Break Orders</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #ffa726;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      font-size: 0.9em;
+      text-align: center;
+    }
+    th {
+      background-color: #ffa726;
+      color: white;
+    }
+    .approved {
+      background-color: #d8ffd4;
+    }
+    .rejected {
+      background-color: #ffe5e5;
+    }
+    button {
+      padding: 6px 12px;
+      font-size: 0.85em;
+      cursor: pointer;
+      margin: 0 2px;
+    }
+    #loginForm {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      border-radius: 8px;
+    }
+    #loginForm input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 90%;
+      font-size: 1em;
+    }
+    #loginForm button {
+      padding: 10px 20px;
+      background-color: #ffa726;
+      color: white;
+      border: none;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="loginForm">
+    <h2>Admin Login</h2>
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button onclick="login()">Login</button>
+    <p id="loginError" style="color:red;"></p>
+  </div>
+
+  <div id="adminPanel" style="display:none;">
+    <h1>Day Break Orders - Admin Panel</h1>
+    <table id="ordersTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Method</th>
+          <th>Txn ID</th>
+          <th>Total</th>
+          <th>Image</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getFirestore, collection, getDocs, updateDoc, doc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAZmCwF7YxHdyTeiDy7EG7V_WOqWfBAJws",
+      authDomain: "daybreak-mobile-order.firebaseapp.com",
+      projectId: "daybreak-mobile-order",
+      storageBucket: "daybreak-mobile-order.appspot.com",
+      messagingSenderId: "48983436290",
+      appId: "1:48983436290:web:d4b38137532ae2071a8b1b",
+      measurementId: "G-NBZBY1D8CY"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          document.getElementById("loginForm").style.display = "none";
+          document.getElementById("adminPanel").style.display = "block";
+          fetchOrders();
+        })
+        .catch((error) => {
+          document.getElementById("loginError").innerText = "Login failed. Check your credentials.";
+        });
+    }
+
+    const tableBody = document.querySelector("#ordersTable tbody");
+
+    async function fetchOrders() {
+      const snapshot = await getDocs(collection(db, "orders"));
+      tableBody.innerHTML = "";
+
+      snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        const row = document.createElement("tr");
+        row.className = data.approved ? "approved" : data.rejected ? "rejected" : "";
+
+        row.innerHTML = `
+          <td>${data.pickupName || "-"}</td>
+          <td>${data.phone || "-"}</td>
+          <td>${data.paymentMethod || "-"}</td>
+          <td>${data.transactionId || "-"}</td>
+          <td>${data.grandTotal || "-"}</td>
+          <td><a href="${data.imageUrl}" target="_blank"><img src="${data.imageUrl}" alt="proof" width="50" height="50" /></a></td>
+          <td>${data.approved || data.rejected || "Pending"}</td>
+          <td>
+            <button onclick="approveOrder('${docSnap.id}')">Approve</button>
+            <button onclick="rejectOrder('${docSnap.id}')">Reject</button>
+            <button onclick="undoOrder('${docSnap.id}')">Undo</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    window.approveOrder = async (id) => {
+      await updateDoc(doc(db, "orders", id), { approved: "Approved", rejected: "" });
+      fetchOrders();
+    };
+
+    window.rejectOrder = async (id) => {
+      await updateDoc(doc(db, "orders", id), { rejected: "Rejected", approved: "" });
+      fetchOrders();
+    };
+
+    window.undoOrder = async (id) => {
+      await updateDoc(doc(db, "orders", id), { approved: "", rejected: "" });
+      fetchOrders();
+    };
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+        fetchOrders();
+      } else {
+        document.getElementById("loginForm").style.display = "block";
+        document.getElementById("adminPanel").style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
