@@ -1,0 +1,248 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kitchen Display - Day Break</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background: #ffa726;
+      padding: 16px;
+      text-align: center;
+      width: 100%;
+    }
+
+    h1 {
+      margin: 0;
+      color: white;
+    }
+
+    .columns {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .column {
+      flex: 1;
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      min-height: 500px;
+      overflow-y: auto;
+    }
+
+    .column h2 {
+      text-align: center;
+    }
+
+    .order-card {
+      background: #fff3e0;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .order-card.prepping {
+      background: #e3f2fd;
+    }
+
+    .order-card.ready {
+      background: #e8f5e9;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍳 Kitchen Display - Day Break</h1>
+  </header>
+
+  <div class="columns">
+    <div class="column" id="newColumn">
+      <h2>New</h2>
+    </div>
+    <div class="column" id="preppingColumn">
+      <h2>Prepping</h2>
+    </div>
+    <div class="column" id="readyColumn">
+      <h2>Ready</h2>
+    </div>
+  </div>
+  <audio id="notifSound" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/sounds/mixkit-alert-quick-chime-766.wav" preload="auto"></audio>
+
+
+
+
+<script>
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbxlnXGbiMrdC1MHY0vPlFHpxQuWGn4OOmjJGst38B9nvHRG8JRRI71oupJM3Xp8xfF9/exec?kitchen=true";
+  const PASSKEY = "d@yBr3ak_#2025$secure";
+
+  let orderData = [];
+  let previousOrderIds = new Set();
+
+  async function fetchOrders() {
+    try {
+      const res = await fetch(SHEET_URL);
+      const data = await res.json();
+      const newOrders = data.orders || [];
+
+      const newIds = newOrders.map(o => o.id);
+      const newIncoming = newIds.filter(id => !previousOrderIds.has(id));
+      if (newIncoming.length > 0) {
+        document.getElementById("notifSound").play();
+      }
+
+      orderData = newOrders;
+      previousOrderIds = new Set(newIds);
+
+      renderOrders();
+    } catch (err) {
+      console.error("Failed to fetch orders:", err);
+    }
+  }
+
+  function formatItemList(items) {
+    return items.map(item => {
+      // Breakfast Combo with Juice
+      if (item.includes("Breakfast Combo with Juice")) {
+        const qtyMatch = item.match(/x(\d+)/);
+        const qty = qtyMatch ? qtyMatch[1] : "1";
+        const qtyDisplay = `<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> `;
+        const juiceMatch = item.match(/Juice – (\w+)/);
+        const juiceFlavor = juiceMatch ? juiceMatch[1] : "Juice";
+
+        if (item.includes("No:")) {
+          const [main, exclusions] = item.split("(No:");
+          const removedItems = exclusions.replace(")", "").split(",").map(x => x.trim());
+          return `
+            ${qtyDisplay}<strong>Breakfast Combo with ${juiceFlavor}</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 0.9em; color:#c00;">No: ${removedItems.join(", ")}</span>
+          `;
+        }
+
+        return `${qtyDisplay}<strong>Breakfast Combo with ${juiceFlavor}</strong>`;
+      }
+
+      // Regular Breakfast Plate
+      if (item.includes("Breakfast Plate")) {
+        const qtyMatch = item.match(/x(\d+)/);
+        const qty = qtyMatch ? qtyMatch[1] : "1";
+        const qtyDisplay = `<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> `;
+
+        if (item.includes("No:")) {
+          const [main, exclusions] = item.split("(No:");
+          const removedItems = exclusions.replace(")", "").split(",").map(x => x.trim());
+          return `
+            ${qtyDisplay}<strong>Breakfast Plate</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 0.9em; color:#c00;">No: ${removedItems.join(", ")}</span>
+          `;
+        }
+
+        return `${qtyDisplay}<strong>Breakfast Plate</strong>`;
+      }
+
+      // Fish Plate
+      if (item.includes("Fish Plate")) {
+        const qty = item.match(/x(\d+)/)?.[1] || "1";
+        return `<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>Fish Plate</strong>`;
+      }
+
+      // BBQ Chicken Plate
+      if (item.includes("BBQ Chicken Plate")) {
+        const qty = item.match(/x(\d+)/)?.[1] || "1";
+        return `<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>BBQ Chicken Plate</strong>`;
+      }
+
+      // Local Juice
+      if (item.includes("Local Juice")) {
+        const match = item.match(/Local Juice - (\w+) x(\d+)/);
+        if (match) {
+          const flavor = match[1];
+          const qty = match[2];
+          return `<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>${flavor} Juice</strong>`;
+        }
+      }
+
+      // Fallback
+      return `<strong>${item}</strong>`;
+    }).join("<br>");
+  }
+
+  function renderOrders() {
+    const newCol = document.getElementById("newColumn");
+    const preppingCol = document.getElementById("preppingColumn");
+    const readyCol = document.getElementById("readyColumn");
+
+    newCol.innerHTML = "<h2>New</h2>";
+    preppingCol.innerHTML = "<h2>Prepping</h2>";
+    readyCol.innerHTML = "<h2>Ready</h2>";
+
+    let readyCount = 0;
+
+    orderData.forEach(order => {
+      order.status = order.kitchenStatus || "new";
+      if (order.status === "sent") return;
+
+      const card = document.createElement("div");
+      card.className = "order-card";
+      const formattedItems = formatItemList(order.items);
+
+      card.innerHTML = `<strong>${order.name}</strong><br>${formattedItems}`;
+      card.dataset.id = order.id;
+      card.dataset.status = order.status;
+
+      if (order.status === "prepping") {
+        card.classList.add("prepping");
+        preppingCol.appendChild(card);
+      } else if (order.status === "ready") {
+        card.classList.add("ready");
+        if (readyCount < 5) {
+          readyCol.appendChild(card);
+          readyCount++;
+        }
+      } else {
+        newCol.appendChild(card);
+      }
+
+      card.addEventListener("click", async () => {
+        let newStatus = null;
+        if (order.status === "new") newStatus = "prepping";
+        else if (order.status === "prepping") newStatus = "ready";
+        else if (order.status === "ready") newStatus = "sent";
+        else return;
+
+        try {
+          await fetch(`${SHEET_URL.replace('?kitchen=true', '')}?setStatus=${newStatus}&id=${order.id}&passKey=${encodeURIComponent(PASSKEY)}`);
+          setTimeout(fetchOrders, 1000);
+        } catch (err) {
+          console.error("Failed to update status:", err);
+        }
+      });
+    });
+  }
+
+  setInterval(fetchOrders, 3000);
+  fetchOrders();
+</script>
+
+</body>
+</html>
