@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day Break - Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: url('https://imgur.com/AXQQvYy.jpg') no-repeat center bottom fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; }
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 20px;
+      padding: 40px 20px;
+      max-width: 90%;
+      transition: opacity 0.5s ease;
+    }
+
+    img.logo {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #ffeb3b;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      background-color: #00e676;
+      color: #000;
+      font-weight: bold;
+      font-size: 1em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #00c853;
+    }
+    
+    @media screen and (max-width: 480px) {
+    img.logo {
+      height: 170px;
+    }
+  }
+  </style>
+</head>
+<body>
+  <div class="overlay" id="welcomeBox">
+    <img src="https://imgur.com/YPspZxy.png" alt="Day Break Logo" class="logo" />
+    <h1>Skip the Line</h1>
+    <p>Order ahead and pick up your food fast. No wait. No hassle. Just vibes.</p>
+    <button class="btn" onclick="startTransition()">Order Now</button>
+  </div>
+
+  <script>
+    function startTransition() {
+      document.body.style.animation = 'fadeOut 0.8s forwards';
+      setTimeout(() => {
+        window.location.href = 'menu.html';
+      }, 800);
+    }
+  </script>
+</body>
+</html>
