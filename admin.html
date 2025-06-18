@@ -116,14 +116,14 @@
     const db = getFirestore(app);
     const auth = getAuth(app);
 
+    const allowedEmails = ["jenisegilbert@ymail.com"]; // <- replace with your actual admin email
+
     function login() {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-          document.getElementById("loginForm").style.display = "none";
-          document.getElementById("adminPanel").style.display = "block";
-          fetchOrders();
+          // handled in onAuthStateChanged
         })
         .catch((error) => {
           document.getElementById("loginError").innerText = "Login failed. Check your credentials.";
@@ -175,11 +175,13 @@
     };
 
     onAuthStateChanged(auth, (user) => {
-      if (user) {
+      if (user && allowedEmails.includes(user.email)) {
         document.getElementById("loginForm").style.display = "none";
         document.getElementById("adminPanel").style.display = "block";
         fetchOrders();
       } else {
+        auth.signOut();
+        document.getElementById("loginError").innerText = "Access denied: unauthorized email.";
         document.getElementById("loginForm").style.display = "block";
         document.getElementById("adminPanel").style.display = "none";
       }
