@@ -217,25 +217,34 @@
 </div>
 
 <script>
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxlnXGbiMrdC1MHY0vPlFHpxQuWGn4OOmjJGst38B9nvHRG8JRRI71oupJM3Xp8xfF9/exec';
-  const ADMIN_PASSWORD = '14';
-  const PASSKEY = 'd@yBr3ak_#2025$secure'; // 🔒 protect backend
-  let lastApprovedCode = "";
+ 
+const AUTH_URL = "https://script.google.com/macros/s/AKfycbzYSJfwAmwHJgkQKpl4fBSNte0PfoT3ztYwbuG4stPOJiS8zjy3QNilr3jLv_EjkXf-lA/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbxlnXGbiMrdC1MHY0vPlFHpxQuWGn4OOmjJGst38B9nvHRG8JRRI71oupJM3Xp8xfF9/exec";
+const PASSKEY = "d@yBr3ak_#2025$secure";
+let lastApprovedCode = "";
 
-  function checkPassword() {
-    const input = document.getElementById("adminPass").value.trim();
-    if (input === ADMIN_PASSWORD) {
-      document.getElementById("loginOverlay").style.display = "none";
-      fetchOrders();
-      setInterval(fetchOrders, 8000);
-    } else {
-      document.getElementById("loginError").textContent = "Incorrect password.";
-    }
-  }
+async function checkPassword() {
+  const input = document.getElementById("adminPass").value.trim();
 
-  document.getElementById("adminPass").addEventListener("keydown", function(e) {
-    if (e.key === "Enter") checkPassword();
+  const res = await fetch(AUTH_URL, {
+    method: "POST",
+    body: new URLSearchParams({ password: input })
   });
+
+  const result = await res.json();
+  if (result.authorized) {
+    document.getElementById("loginOverlay").style.display = "none";
+    fetchOrders();
+    setInterval(fetchOrders, 8000);
+  } else {
+    document.getElementById("loginError").textContent = "Incorrect password.";
+  }
+}
+
+document.getElementById("adminPass").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") checkPassword();
+});
+
 
   async function fetchOrders() {
     const res = await fetch(SHEET_URL);
@@ -245,11 +254,13 @@
 
     data.forEach(order => {
       if (!order.confirmCode?.startsWith("DB-")) return;
-      if (order.approved === "Approved") return;
 
       const tr = document.createElement("tr");
+
       if (order.rejected === "Rejected") tr.classList.add("rejected-row");
       if (order.approved === "Approved") tr.classList.add("approved-row");
+
+      if (order.approved === "Approved") return; // Don't show already approved orders
 
       tr.innerHTML = `
         <td>${order.pickupName}</td>
@@ -275,7 +286,7 @@
 
   async function approveOrder(code) {
     lastApprovedCode = code;
-    await fetch(`${SHEET_URL}?approve=${encodeURIComponent(code)}&passKey=${PASSKEY}`);
+    await fetch(`${SHEET_URL}?approve=${encodeURIComponent(code)}`);
     showToast(code);
     fetchOrders();
   }
@@ -283,13 +294,13 @@
   async function rejectOrder(code) {
     const confirmReject = confirm(`Are you sure you want to reject ${code}?`);
     if (!confirmReject) return;
-    await fetch(`${SHEET_URL}?reject=${encodeURIComponent(code)}&passKey=${PASSKEY}`);
+    await fetch(`${SHEET_URL}?reject=${encodeURIComponent(code)}`);
     fetchOrders();
   }
 
   async function undoLastApproval() {
     if (!lastApprovedCode) return;
-    await fetch(`${SHEET_URL}?undoApprove=${encodeURIComponent(lastApprovedCode)}&passKey=${PASSKEY}`);
+    await fetch(`${SHEET_URL}?undoApprove=${encodeURIComponent(lastApprovedCode)}`);
     lastApprovedCode = "";
     fetchOrders();
     document.getElementById("toast").style.display = "none";
