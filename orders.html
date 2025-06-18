@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View Order - Day Break</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+  /* Consistent box-sizing across all elements */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding-top: 220px; /* space for fixed header */
+      padding-bottom: 120px; /* space for fixed footer + cart/floating elements */
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+
+   header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #ffa726;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;    /* vertically center image */
+  justify-content: center; /* horizontally center image */
+  z-index: 999;
+}
+
+header img {
+  height: 100px;
+}
+
+
+
+    h1 {
+      color: #ffa726;
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+
+    .input-box {
+      padding: 12px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #00D632;
+      color: black;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .order-details {
+      margin-top: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: none;
+      text-align: left;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .order-details p {
+      margin: 10px 0;
+    }
+
+    .error {
+      color: red;
+      margin-top: 15px;
+    }
+
+    .screenshot-img {
+      max-width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    font-size: 0.9em;
+    z-index: 998;
+  }
+
+  footer a {
+    flex: 1;
+    text-decoration: none;
+    color: #444;
+    text-align: center;
+  }
+
+  footer a div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  footer img {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 4px;
+  }
+
+  @media screen and (max-width: 480px) {
+    header img {
+      height: 60px;
+    }
+  }
+
+    /* Fullscreen Loader */
+    #searchLoader {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #searchLoader .spinner {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #ffa726;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+    <img src="https://imgur.com/YPspZxy.png" alt="Day Break Logo" style="height: 110px;" />
+</header>
+
+<h1>View Your Order</h1>
+<p>Enter your confirmation number:</p>
+<input type="text" id="confirmCodeInput" class="input-box" placeholder="e.g. DB-594218" />
+<br>
+<button onclick="fetchOrder()" class="btn">View Order</button>
+
+<div class="error" id="errorMsg"></div>
+
+<div class="order-details" id="orderDetails">
+  <h2>Order Details</h2>
+  <p><strong>Pickup Name:</strong> <span id="pickupName"></span></p>
+  <p><strong>Payment tag/name:</strong> <span id="paymentName"></span></p>
+  <p><strong>Phone:</strong> <span id="phone"></span></p>
+  <p><strong>Payment Method:</strong> <span id="method"></span></p>
+  <p><strong>Transaction ID:</strong> <span id="txnId"></span></p>
+  <p><strong>Items:</strong> <span id="cart"></span></p>
+  <p><strong>Total Paid:</strong> <span id="amount"></span></p>
+  <p><strong>Confirmation #:</strong> <span id="confirmCode"></span></p>
+  <p><strong>Screenshot:</strong></p>
+  <img id="screenshotImg" class="screenshot-img" src="#" alt="Payment Screenshot" />
+</div>
+
+<!-- Loader Overlay -->
+<div id="searchLoader">
+  <div style="text-align:center; color:white;">
+    <div class="spinner"></div>
+    <p style="font-size:1.2em;">Searching for your order...</p>
+  </div>
+</div>
+
+<footer>
+  <a href="menu.html"><img src="https://img.icons8.com/?size=100&id=G736SmolvT3J&format=png&color=000000" alt="Menu"><br>Menu</a>
+  <a href="cart.html"><img src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=000000" alt="Cart"><br>Cart</a>
+  <a href="orders.html"><img src="https://img.icons8.com/?size=100&id=MU6RngCQ3iWG&format=png&color=000000" alt="Orders"><br>Orders</a>
+</footer>
+
+<script>
+  const VIEW_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyJPvqQmWSnSmBi1vj3d-i57ZrcutqqBYaWMBlz7ybrtWG068vmiY7ssUFEtDzuaM8FaA/exec";
+
+  async function fetchOrder() {
+    const code = document.getElementById("confirmCodeInput").value.trim();
+    const errorMsg = document.getElementById("errorMsg");
+    const details = document.getElementById("orderDetails");
+    const loader = document.getElementById("searchLoader");
+
+    errorMsg.textContent = "";
+    details.style.display = "none";
+
+    if (!code) {
+      errorMsg.textContent = "Please enter a confirmation number.";
+      return;
+    }
+
+    loader.style.display = "flex";
+
+    try {
+      const response = await fetch(`${VIEW_SCRIPT_URL}?code=${encodeURIComponent(code)}`);
+      const data = await response.json();
+      loader.style.display = "none";
+
+      if (data.error) {
+        errorMsg.textContent = "Order not found. Please check your confirmation number.";
+      } else {
+        document.getElementById("pickupName").textContent = data.pickupName;
+        document.getElementById("paymentName").textContent = data.paymentName;
+        document.getElementById("phone").textContent = data.phone;
+        document.getElementById("method").textContent = data.method;
+        document.getElementById("txnId").textContent = data.txnId;
+        document.getElementById("cart").textContent = data.parsedCart || "(not recorded)";
+        document.getElementById("amount").textContent = data.amount || "(n/a)";
+        document.getElementById("confirmCode").textContent = data.confirmCode;
+        document.getElementById("screenshotImg").src = data.imageUrl || "";
+        document.getElementById("screenshotImg").alt = data.imageUrl ? "Payment Screenshot" : "No screenshot uploaded";
+        details.style.display = "block";
+      }
+    } catch (err) {
+      loader.style.display = "none";
+      console.error("Fetch error:", err);
+      errorMsg.textContent = "An error occurred. Please try again later.";
+    }
+  }
+</script>
+
+</body>
+</html>
