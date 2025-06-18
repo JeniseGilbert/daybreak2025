@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - Day Break</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding-bottom: 60px;
+      background: #f9f9f9;
+    }
+    header {
+      background: #ffa726;
+      padding: 12px;
+      text-align: center;
+    }
+    header img {
+      height: 90px;
+    }
+    .container {
+      padding: 16px;
+    }
+    .cart-summary, .form-section {
+      background: #fff;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 16px;
+    }
+    .input-field {
+      width: 96%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+    .submit-btn {
+      background: #ffa726;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-weight: bold;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+    }
+    .green-btn, .purple-btn {
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      width: 96%;
+      margin: 10px 0;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .green-btn { background-color: #00D632; color: black; }
+    .purple-btn { background-color: #6534D1; color: white; }
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      font-size: 0.9em;
+    }
+    footer a {
+      flex: 1;
+      text-decoration: none;
+      color: #444;
+      text-align: center;
+    }
+    footer img {
+      width: 28px;
+      height: 28px;
+      margin-bottom: 4px;
+    }
+    
+    #startupModal {
+  display: flex;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+}
+#startupModal .modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 90%;
+  width: 400px;
+  text-align: center;
+}
+#startupModal h2 { color: #ffa726; margin-top: 0; }
+#startupModal .warning-text .danger { color: red; font-weight: bold; }
+#startupModal button {
+  margin-top: 20px;
+  background: #ffa726;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+    #loaderOverlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+    .spinner {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #ffa726;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    #successMessage {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #f9f9f9;
+      z-index: 9998;
+      justify-content: center;
+      align-items: center;
+    }
+    #successMessage .box {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 90%;
+      width: 400px;
+    }
+    #txnHelpModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+    #txnHelpModal .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+    #txnHelpModal ul {
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="https://imgur.com/YPspZxy.png" alt="Day Break Logo" />
+</header>
+
+
+
+<!-- Startup Modal -->
+<div id="startupModal">
+  <div class="modal-content">
+    <h2>Before You Continue</h2>
+    <p class="warning-text">
+      After you send your payment via Cash App or Zelle, you <strong>must return to this page</strong> and complete the form below.<br><br>
+      <span class="danger">Your order will NOT go through</span> if the form isn't submitted.
+    </p>
+    <button onclick="closeStartupModal()">Got it</button>
+  </div>
+</div>
+
+<div id="progressBarContainer" style="padding: 12px 16px;">
+  <div style="background: #eee; border-radius: 12px; height: 12px; width: 100%;">
+    <div id="progressBar" style="
+      height: 100%;
+      width: 33.3%;
+      background: #6534D1;
+      border-radius: 12px;
+      transition: width 0.3s ease;
+    "></div>
+  </div>
+  <div style="text-align: center; margin-top: 6px; font-size: 0.9em; font-weight: bold;" id="progressLabel">Step 1 of 3</div>
+</div>
+
+
+<div class="container">
+  <div class="cart-summary" id="orderSummary"></div>
+  
+  <!-- STEP 1: Pickup Info -->
+<div class="form-section" id="step1">
+  <h3>Step 1: Pickup Info</h3>
+  <input class="input-field" type="text" id="firstName" placeholder="First Name" required>
+  <input class="input-field" type="text" id="lastName" placeholder="Last Name" required>
+  <button class="submit-btn" onclick="goToStep(2)">Next</button>
+</div>
+
+<!-- STEP 2: Choose Payment Button -->
+<div class="form-section" id="step2" style="display:none;">
+  <h3>Step 2: Select Payment Option</h3>
+  <p>Please click a payment option below to pay before submitting your form.</p>
+  <a class="green-btn" href="https://cash.app/$TriniJen14" target="_blank">Pay via Cash App</a>
+  <a class="purple-btn" href="#" onclick="alert('Go to your bank app and send payment through Zelle to: Jenise Gilbert 281-730-4040'); return false;">Pay via Zelle</a>
+  <label style="display:block; margin-top: 16px;">
+  <input type="checkbox" id="paymentConfirmCheckbox" required>
+  I have submitted my payment through Zelle or Cash App
+</label>
+  <div style="display: flex; justify-content: space-between; gap: 12px; margin-top: 20px;">
+  
+  <button class="submit-btn" onclick="goToStep(1)" style="flex: 1;">Back</button>
+  <button class="submit-btn" onclick="validateStep2()" style="flex: 1;">Next</button>
+</div>
+
+
+</div>
+
+<!-- STEP 3: Confirmation Form -->
+<div class="form-section" id="step3" style="display:none;">
+  <h3>Step 3: Transaction Confirmation</h3>
+  <form id="payment-form">
+    
+    <!-- Payment Method Dropdown -->
+<label for="paymentMethod">Payment Method:</label>
+<select id="paymentMethod" class="input-field" required onchange="toggleDetails(this.value)">
+  <option value="" disabled selected>Select Payment Method</option>
+  <option value="cashapp">Cash App</option>
+  <option value="zelle">Zelle</option>
+</select>
+
+<!-- Cash App Tag -->
+<div id="cashappField" style="display:none;">
+  <input class="input-field" type="text" id="cashappTag" placeholder="$YourCashTag" />
+</div>
+
+<!-- Zelle Name -->
+<div id="zelleField" style="display:none;">
+  <input class="input-field" type="text" id="zelleName" placeholder="Full Name on Zelle" />
+</div>
+
+
+    <input class="input-field" type="tel" id="phone" placeholder="Phone Number" required>
+
+    <label for="transactionId">
+      Transaction Number
+      <a href="#" onclick="openTxnHelpModal()" style="font-size:0.9em; color:#007bff;">Where do I find this?</a>
+    </label>
+    <input class="input-field" type="text" id="transactionId" placeholder="Transaction Number" required>
+
+    <label>Upload Payment Screenshot:</label>
+    <input class="input-field file-upload" type="file" id="screenshot" accept="image/*" required>
+
+    <div style="display: flex; justify-content: space-between; gap: 12px; margin-top: 20px;">
+  
+  <button class="submit-btn" onclick="goToStep(1)" style="flex: 1;">Back</button>
+  <button class="submit-btn" onclick="validateStep2()" style="flex: 1;">Next</button>
+</div>
+
+  </form>
+  <input type="text" id="honeypot" name="address" style="display:none;" autocomplete="off">
+
+</div>
+
+
+<!-- Transaction Help Modal -->
+<div id="txnHelpModal">
+  <div class="modal-content">
+    <h3 style="color:#ffa726;">How to Find Your Transaction Number</h3>
+    <ul style="padding-left: 18px; font-size: 0.95em; color: #333;">
+  <li><strong>Cash App:</strong>
+    <ol style="padding-left: 20px; margin-top: 6px;">
+      <li>Open Cash App.</li>
+      <li>Tap the Activity tab (clock icon).</li>
+      <li>Select your payment.</li>
+      <li>Scroll to find the "Transaction Number" and copy it (usually starts with a letter).</li>
+    </ol>
+  </li>
+  <li><strong>Zelle:</strong>
+    <ol style="padding-left: 20px; margin-top: 6px;">
+      <li>Log into your banking app.</li>
+      <li>Go to Zelle transaction history.</li>
+      <li>Select your payment.</li>
+      <li>Copy the confirmation or reference number shown.</li>
+    </ol>
+  </li>
+</ul>
+    <button class="green-btn" onclick="closeTxnHelpModal()" style="width:auto;">Close</button>
+  </div>
+</div>
+
+<!-- Loader -->
+<div id="loaderOverlay">
+  <div>
+    <div class="spinner"></div>
+    <p style="color:white;">Please wait... we're submitting your order.</p>
+  </div>
+</div>
+
+<!-- Success -->
+<div id="successMessage">
+  <div class="box">
+    <h2 style="color:#00C853;">Order Submitted!</h2>
+    <p>Thank you for your order.<br>
+    Your confirmation number is:<br>
+    <strong id="confirmCode" style="color:#ffa726;"></strong><br>
+    <button onclick="copyConfirmCode()" class="green-btn" style="width:auto; margin:10px auto 0;">Copy Confirmation Number</button><br><br>
+    Please take a screenshot of this message for your records. You will need the confirmation number to view your order.</p>
+    <a href="orders.html" class="green-btn">← View Your Order</a>
+    <a href="menu.html" class="purple-btn">← View Menu</a>
+  </div>
+</div>
+
+<footer>
+  <a href="menu.html"><img src="https://img.icons8.com/?size=100&id=G736SmolvT3J&format=png&color=000000" alt="Menu"><br>Menu</a>
+  <a href="cart.html"><img src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=000000" alt="Cart"><br>Cart</a>
+  <a href="orders.html"><img src="https://img.icons8.com/?size=100&id=MU6RngCQ3iWG&format=png&color=000000" alt="Orders"><br>Orders</a>
+</footer>
+
+<script>
+const cart = JSON.parse(localStorage.getItem("daybreakCart") || "[]");
+let subtotal = 0;
+
+function renderCartSummary() {
+  const container = document.getElementById("orderSummary");
+  container.innerHTML = '<h3>Your Order</h3>';
+  cart.forEach(item => {
+    const itemTotal = (item.price * item.qty).toFixed(2);
+    subtotal += item.price * item.qty;
+    container.innerHTML += `<p>${item.name} (x${item.qty}) - $${itemTotal}</p>`;
+  });
+  const tax = +(subtotal * 0.0825).toFixed(2);
+  const total = +(subtotal + tax).toFixed(2);
+  container.innerHTML += `<p><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>`;
+  container.innerHTML += `<p><strong>Tax:</strong> $${tax.toFixed(2)}</p>`;
+  container.innerHTML += `<p><strong>Total:</strong> $${total.toFixed(2)}</p>`;
+}
+
+function toggleDetails(method) {
+  document.getElementById("cashappField").style.display = (method === "cashapp") ? "block" : "none";
+  document.getElementById("zelleField").style.display = (method === "zelle") ? "block" : "none";
+
+  // Clear unused field to avoid errors
+  document.getElementById("cashappTag").value = method === "cashapp" ? document.getElementById("cashappTag").value : "";
+  document.getElementById("zelleName").value = method === "zelle" ? document.getElementById("zelleName").value : "";
+}
+
+
+function openTxnHelpModal() {
+  document.getElementById("txnHelpModal").style.display = "flex";
+}
+function closeTxnHelpModal() {
+  document.getElementById("txnHelpModal").style.display = "none";
+}
+function copyConfirmCode() {
+  const code = document.getElementById("confirmCode").textContent;
+  navigator.clipboard.writeText(code).then(() => alert("Confirmation number copied!"));
+}
+
+document.getElementById("payment-form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  document.getElementById("loaderOverlay").style.display = "flex";
+
+  const confirmation = "DB-" + Math.floor(100000 + Math.random() * 900000);
+
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const pickupName = `${firstName} ${lastName}`;
+
+  const method = document.getElementById("paymentMethod").value;
+  const paymentName = method === "cashapp"
+    ? document.getElementById("cashappTag").value.trim()
+    : document.getElementById("zelleName").value.trim();
+
+  const phone = document.getElementById("phone").value.trim();
+  const transactionId = document.getElementById("transactionId").value.trim();
+  const file = document.getElementById("screenshot").files[0];
+
+
+const keyParts = ['d@yBr3', 'ak_#20', '25$secure'];
+const passKey = keyParts.join('');
+
+const honeypot = document.getElementById("honeypot").value.trim();
+if (honeypot !== "") {
+  alert("Invalid submission.");
+  document.getElementById("loaderOverlay").style.display = "none";
+  return;
+}
+
+  const imgData = new FormData();
+  imgData.append("image", file);
+
+  let imageUrl = "";
+  try {
+    const res = await fetch("https://api.imgur.com/3/image", {
+      method: "POST",
+      headers: { Authorization: "Client-ID 68f6c28e9fabb52" },
+      body: imgData
+    });
+    const result = await res.json();
+    imageUrl = result.success ? result.data.link : "";
+  } catch (err) {
+    console.error("Image upload failed:", err);
+  }
+
+  const formData = new FormData();
+  formData.append("pickupName", pickupName);
+  formData.append("paymentName", paymentName); // corrected here
+  formData.append("phone", phone);
+  formData.append("paymentMethod", method);
+  formData.append("transactionId", transactionId);
+  formData.append("confirmationNumber", confirmation);
+  formData.append("imageUrl", imageUrl);
+  formData.append("cart", JSON.stringify(cart));
+  formData.append("passKey", passKey);
+formData.append("address", honeypot);
+
+
+  try {
+    await fetch("https://script.google.com/macros/s/AKfycbxlnXGbiMrdC1MHY0vPlFHpxQuWGn4OOmjJGst38B9nvHRG8JRRI71oupJM3Xp8xfF9/exec", {
+
+      method: "POST",
+      body: formData
+    });
+
+    localStorage.removeItem("daybreakCart");
+    document.getElementById("loaderOverlay").style.display = "none";
+    document.getElementById("confirmCode").textContent = confirmation;
+    document.getElementById("successMessage").style.display = "flex";
+  } catch (error) {
+    document.getElementById("loaderOverlay").style.display = "none";
+    alert("Error submitting order. Please try again.");
+    console.error(error);
+  }
+});
+
+function goToStep(step) {
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById(`step${i}`).style.display = (i === step) ? 'block' : 'none';
+  }
+
+  // Update progress bar
+  const progress = document.getElementById("progressBar");
+  const label = document.getElementById("progressLabel");
+
+  const stepPercent = {
+    1: '33.3%',
+    2: '66.6%',
+    3: '100%'
+  };
+
+  progress.style.width = stepPercent[step];
+  label.textContent = `Step ${step} of 3`;
+}
+
+function validateStep2() {
+  const checkbox = document.getElementById("paymentConfirmCheckbox");
+  if (!checkbox.checked) {
+    alert("Please confirm that you have submitted your payment before continuing.");
+    return;
+  }
+  goToStep(3);
+}
+
+
+function closeStartupModal() {
+  document.getElementById("startupModal").style.display = "none";
+}
+
+renderCartSummary();
+</script>
+</body>
+</html>
