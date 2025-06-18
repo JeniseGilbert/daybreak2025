@@ -1,0 +1,1019 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day Break Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+       /* Consistent box-sizing across all elements */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding-top: 130px; /* space for fixed header */
+      padding-bottom: 120px; /* space for fixed footer */
+      background: #f9f9f9;
+    }
+
+   header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #ffa726;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;    /* vertically center image */
+  justify-content: center; /* horizontally center image */
+  z-index: 999;
+}
+
+header img {
+  height: 100px;
+}
+   
+    .container {
+      padding: 16px;
+    }
+    .item-card {
+      background: #fff;
+      padding: 16px;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .item-info {
+      flex: 1;
+    }
+    .item-info h3 {
+      margin: 0 0 6px;
+    }
+
+    .item-info p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .item-info span {
+      display: block;
+      margin-top: 4px;
+      font-weight: bold;
+      color: #4caf50;
+    }
+    
+    .item-img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 6px; /* optional */
+}
+
+    .add-btn {
+      background: #00bfa5;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .modal {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+    }
+    .modal-content {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+    }
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #999;
+    }
+    fieldset {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 20px;
+    }
+    fieldset legend {
+      font-weight: bold;
+    }
+    .submit-btn {
+      margin-top: 20px;
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 1em;
+      font-weight: bold;
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+    }
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .qty-btn {
+      background-color: #00bfa5;
+      color: white;
+      border: none;
+      font-size: 1.2em;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .qty-input {
+      width: 50px;
+      text-align: center;
+      font-size: 1.1em;
+      font-weight: bold;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 6px;
+      background: #f9f9f9;
+    }
+    
+    .cart-toggle {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+}
+
+#cart-summary.minimized {
+  height: 32px;
+  overflow: hidden;
+  padding: 8px 16px;
+}
+
+#cart-summary.minimized #cart-content {
+  display: none;
+}
+
+#cart-summary.minimized .cart-toggle::after {
+  content: '+';
+}
+
+#cart-summary .cart-toggle::after {
+  content: '−';
+}
+
+
+     footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    font-size: 0.9em;
+    z-index: 998;
+  }
+
+  footer a {
+    flex: 1;
+    text-decoration: none;
+    color: #444;
+    text-align: center;
+  }
+
+  footer a div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  footer img {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 4px;
+  }
+
+  @media screen and (max-width: 480px) {
+    header img {
+      height: 60px;
+    }
+  }
+    @media screen and (max-width: 480px) {
+      .container {
+        padding-bottom: 120px;
+      }
+      
+    }
+
+    #cart-summary {
+  position: fixed;
+  bottom: 120px; /* Instead of top: 20px */
+  right: 20px;
+  left: 20px;
+  background: white;
+  padding: 12px 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 2000;
+}
+
+    #notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4caf50;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  display: none;
+  z-index: 3000;
+  max-width: 90vw;
+  width: fit-content;
+  box-sizing: border-box;
+  text-align: center;
+  white-space: nowrap;           /* ✅ default is no wrap */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+
+@media screen and (max-width: 480px) {
+  @media screen and (max-width: 480px) {
+  #notification {
+    max-width: 90%;
+    left: 50%;
+    
+    transform: translateX(-50%);
+  }
+}
+
+}
+
+
+    
+    @media screen and (max-width: 480px) {
+  .item-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .item-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .item-info {
+    width: 100%;
+  }
+
+  .add-btn {
+    width: 100%;
+    padding: 12px;
+  }
+  
+ 
+
+}
+
+@media screen and (max-width: 480px) {
+  .modal-content {
+    width: 95%;
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.2em;
+  }
+
+  .submit-btn {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  .qty-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1em;
+  }
+
+  .qty-input {
+    width: 45px;
+    font-size: 1em;
+  }
+}
+
+.mini-cart-btn {
+  background-color: #00bfa5 !important;
+  color: white !important;
+  border: none;
+  width: 32px;
+  height: 32px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 2px;
+}
+.mini-cart-btn:hover {
+  background-color: #009e8c !important;
+}
+
+.cart-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #f44336;
+  font-size: 0.8em;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-grow: 1;
+}
+
+.cart-qty {
+  font-weight: bold;
+  font-size: 1em;
+  min-width: 20px;
+  text-align: center;
+}
+
+.cart-price {
+  font-size: 0.95em;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+
+
+/*new toast*/
+.floating-cart-summary {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 0.9em;
+  max-width: 100%;
+  margin-top: 20px;
+  display: none;
+}
+
+
+.floating-cart-summary a {
+  background: #ffa726;
+  color: white;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 6px;
+  text-align: center;
+}
+.floating-cart-summary button {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 6px;
+  font-size: 0.85em;
+}
+
+@media screen and (max-width: 480px) {
+  .floating-cart-summary {
+    right: 10px;
+    left: auto;
+    bottom: 100px;
+    max-width: 90%;
+  }
+}
+
+
+/*Cart icon*/
+/* Cart Icon Button */
+#cart-icon {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  cursor: pointer;
+}
+#cart-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Floating Cart Summary */
+.floating-cart-summary {
+  position: fixed;
+  bottom: 150px;
+  right: 16px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 0.9em;
+  max-width: 260px;
+  display: none;
+  z-index: 1000;
+}
+
+.floating-cart-summary a {
+  background: #ffa726;
+  color: white;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 6px;
+  text-align: center;
+}
+.floating-cart-summary button {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 6px;
+  font-size: 0.85em;
+}
+
+@media screen and (max-width: 480px) {
+  #cart-icon {
+    bottom: 80px;
+    right: 12px;
+    width: 50px;
+    height: 50px;
+  }
+  #cart-icon img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .floating-cart-summary {
+    right: 10px;
+    left: auto;
+    bottom: 140px;
+    max-width: 90%;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  header img {
+    height: 60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #cart-summary {
+    right: 10px;
+    left: 10px;
+    top: auto;
+    bottom: 100px;
+    max-width: 90%;
+    font-size: 0.9em;
+    padding: 10px;
+  }
+
+  
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding-bottom: 120px; /* creates room for cart and footer */
+  }
+}
+
+
+
+
+
+/*test*/
+#mini-cart-toggle {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background: #ffa726;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#mini-cart {
+  position: fixed;
+  bottom: 140px;
+  right: 20px;
+  background: white;
+  width: 280px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  border-radius: 12px;
+  z-index: 999;
+  padding: 16px;
+}
+
+.mini-cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.close-mini-cart {
+  font-size: 20px;
+  cursor: pointer;
+  color: #888;
+}
+
+#mini-cart-content a {
+  background: #ffa726;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#mini-cart-content button {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+  </style>
+</head>
+<body>
+<header>
+  <img src="https://imgur.com/YPspZxy.png" alt="Day Break Logo" style="height: 110px;" />
+</header>
+
+
+<div class="container">
+  <div class="item-card">
+    <img src="https://imgur.com/yyDYaQa.png" class="item-img" loading="lazy" />
+    <div class="item-info">
+      <h3>Breakfast Plate</h3>
+      <p>Boil egg, bake, cucumber salad, saltfish, smoked herring, plantain</p>
+      <span>$20</span>
+
+    </div>
+    <button class="add-btn" onclick="openItemModal('breakfast')">+ Add</button>
+  </div>
+  
+   <div class="item-card">
+    <img src="https://imgur.com/TGqGaOK.png" class="item-img" loading="lazy" />
+    <div class="item-info">
+      <h3>Breakfast Combo</h3>
+      <p>Breakfast Plate + Local Juice </p>
+      <span>$25</span>
+    </div>
+    <button class="add-btn" onclick="openItemModal('combo')">+ Add</button>
+  </div>
+
+  <div class="item-card">
+    <img src="https://imgur.com/u0870Ns.png" class="item-img" loading="lazy" />
+    <div class="item-info">
+      <h3>Local Juice</h3>
+       <p>Sorrel, Mauby, Squash</p>
+      <span>$6</span>
+
+    </div>
+    <button class="add-btn" onclick="openItemModal('juice')">+ Add</button>
+  </div>
+
+ <div class="item-card">
+  <img src="https://imgur.com/a0YNQ6q.png" class="item-img" loading="lazy" />
+  <div class="item-info">
+    <h3>BBQ Chicken Plate</h3>
+    <p>Grilled chicken served with two bakes</p>
+      <span>$15</span>
+    <div class="qty-control">
+      <button class="qty-btn" onclick="updateQty(-1, this)">−</button>
+      <input type="number" class="qty-input" value="1" min="1" max="5" readonly>
+      <button class="qty-btn" onclick="updateQty(1, this)">+</button>
+    </div>
+  </div>
+  <button class="add-btn" onclick="addQuickItem('BBQ Chicken Plate', this)">+ Add</button>
+</div>
+
+  
+ <div class="item-card">
+  <img src="https://imgur.com/4iczo7O.png" class="item-img" loading="lazy" />
+  <div class="item-info">
+    <h3>Fish Plate</h3>
+    <p>Fried fish served with two bakes</p>
+      <span>$15</span>
+
+    <div class="qty-control">
+      <button class="qty-btn" onclick="updateQty(-1, this)">−</button>
+      <input type="number" class="qty-input" value="1" min="1" max="5" readonly>
+      <button class="qty-btn" onclick="updateQty(1, this)">+</button>
+    </div>
+  </div>
+  <button class="add-btn" onclick="addQuickItem('Fish Plate', this)">+ Add</button>
+</div>
+  
+  
+</div>
+
+<!-- MODAL -->
+<div id="customModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 id="modalTitle">Customize</h2>
+    <div id="juiceField">
+      <label for="juice">Choose Your Juice:</label>
+      <select id="juice">
+        <option value="">Select Juice</option>
+        <option value="Sorrel">Sorrel</option>
+        <option value="Mauby">Mauby</option>
+        <option value="Squash">Squash</option>
+      </select>
+    </div>
+    <fieldset id="exclusionField">
+      <legend>Exclude Ingredients</legend>
+      <label><input type="checkbox" value="Egg"> No Egg</label><br>
+      <label><input type="checkbox" value="Plantain"> No Plantain</label><br>
+      <label><input type="checkbox" value="Cucumber Salad"> No Cucumber Salad</label><br>
+      <label><input type="checkbox" value="Spinach"> No Spinach</label><br>
+      <label><input type="checkbox" value="Saltfish"> No Saltfish</label><br>
+      <label><input type="checkbox" value="Smoked Herring"> No Smoked Herring</label>
+    </fieldset>
+    <div class="qty-control">
+      <button type="button" class="qty-btn" onclick="updateQty(-1)">−</button>
+      <input type="number" id="qtyInput" class="qty-input" value="1" readonly>
+      <button type="button" class="qty-btn" onclick="updateQty(1)">+</button>
+    </div>
+    <button class="submit-btn" onclick="submitCustomOrder()">Add to Cart</button>
+  </div>
+</div>
+
+<!-- Mini Cart Toggle -->
+<div id="mini-cart-toggle" onclick="toggleMiniCart()">
+  🛒 View Cart (<span id="mini-cart-count">0</span>)
+</div>
+
+<!-- Expandable Mini Cart -->
+<div id="mini-cart" style="display: none;">
+  <div class="mini-cart-header">
+    <strong>Your Cart</strong>
+    <span class="close-mini-cart" onclick="toggleMiniCart()">×</span>
+  </div>
+  <div id="mini-cart-content"></div>
+</div>
+
+<!-- Floating Cart Summary -->
+<div id="cart-summary">
+  <div class="cart-toggle" onclick="toggleCartSummary()"></div>
+  <div id="cart-content"></div>
+</div>
+
+<div id="notification">Item added to cart!</div>
+
+<footer>
+  <a href="menu.html"><img src="https://img.icons8.com/?size=100&id=G736SmolvT3J&format=png&color=000000" alt="Menu"><br>Menu</a>
+  <a href="cart.html"><img src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=000000" alt="Cart"><br>Cart</a>
+  <a href="orders.html"><img src="https://img.icons8.com/?size=100&id=MU6RngCQ3iWG&format=png&color=000000" alt="Orders"><br>Orders</a>
+</footer>
+
+
+<script>
+let currentItemType = "";
+let cart = JSON.parse(localStorage.getItem('daybreakCart') || '[]');
+
+// Open modal for items with customization
+function openItemModal(type) {
+  currentItemType = type;
+  document.getElementById("customModal").style.display = "flex";
+
+  document.getElementById("juice").selectedIndex = 0;
+  document.getElementById("qtyInput").value = 1;
+  document.querySelectorAll('#exclusionField input[type="checkbox"]').forEach(cb => cb.checked = false);
+
+  document.getElementById("modalTitle").innerText = "Customize " + type.charAt(0).toUpperCase() + type.slice(1);
+  document.getElementById("juiceField").style.display = (type === 'combo' || type === 'juice') ? 'block' : 'none';
+  document.getElementById("exclusionField").style.display = (type === 'breakfast' || type === 'combo') ? 'block' : 'none';
+}
+
+function closeModal() {
+  document.getElementById("customModal").style.display = "none";
+}
+
+// Quantity pickers (modal and inline)
+function updateQty(change, btn = null) {
+  let input = btn 
+    ? btn.parentElement.querySelector('.qty-input') 
+    : document.getElementById("qtyInput");
+
+  let val = parseInt(input.value);
+  val += change;
+  if (val >= 1 && val <= 10) input.value = val;
+}
+
+// Add items quickly (e.g. BBQ, Fish)
+function addQuickItem(name, btn) {
+  const qty = parseInt(btn.previousElementSibling.querySelector('.qty-input').value);
+  const price = (name === 'BBQ Chicken Plate' || name === 'Fish Plate') ? 15 : 0;
+
+  const existing = cart.find(item => item.name === name);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ name, qty, price });
+  }
+  btn.previousElementSibling.querySelector('.qty-input').value = 0;
+
+
+  localStorage.setItem('daybreakCart', JSON.stringify(cart));
+  updateCartSummary();
+  updateMiniCart(); // ⬅️ Force update count and contents
+  showNotification("Item added to cart!");
+}
+
+// Add items from modal
+function submitCustomOrder() {
+  const qty = parseInt(document.querySelector('#customModal .qty-input').value);
+  const juice = document.getElementById('juice').value;
+  const exclusions = Array.from(document.querySelectorAll('#exclusionField input:checked')).map(cb => cb.value);
+
+  if ((currentItemType === 'combo' || currentItemType === 'juice') && !juice) {
+    showError("Please select a juice.");
+    return;
+  }
+
+  let name = currentItemType === 'combo' ? "Breakfast Combo" :
+             currentItemType === 'juice' ? `Local Juice - ${juice}` : "Breakfast Plate";
+
+  if (juice && currentItemType === 'combo') name += ` w/ ${juice}`;
+  if (exclusions.length > 0) name += ` (No: ${exclusions.join(', ')})`;
+
+  let price = 20;
+  if (currentItemType === 'combo') price = 25;
+  if (currentItemType === 'juice') price = 6;
+
+  const existing = cart.find(item => item.name === name);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ name, qty, price });
+  }
+
+  localStorage.setItem('daybreakCart', JSON.stringify(cart));
+  closeModal();
+  updateCartSummary();
+  updateMiniCart(); // ⬅️ Ensures counter updates
+  showNotification("Item added to cart!");
+}
+
+// Notification helpers
+function showError(msg = "Something went wrong.") {
+  const note = document.getElementById('notification');
+  note.textContent = msg;
+  note.style.background = '#f44336';
+  note.style.display = 'block';
+  setTimeout(() => note.style.display = 'none', 3000);
+}
+
+function showNotification(msg = "Item added to cart!") {
+  const note = document.getElementById('notification');
+  note.textContent = msg;
+  note.style.background = '#4caf50';
+
+  // Smart wrapping
+  const shouldWrap = msg.length > 38 || msg.includes('Breakfast') || msg.includes('Combo') || msg.includes('No:');
+  note.style.whiteSpace = shouldWrap ? 'normal' : 'nowrap';
+  note.style.textOverflow = shouldWrap ? 'unset' : 'ellipsis';
+
+  note.style.display = 'block';
+  setTimeout(() => {
+    note.style.display = 'none';
+  }, 3000);
+}
+
+
+// Cart summary
+let hideCartTimeout = null;
+
+function updateCartSummary(showInstantly = false) {
+  const summary = document.getElementById("cart-summary");
+  const cartContent = document.getElementById("cart-content");
+
+  if (!cart || cart.length === 0) {
+    summary.style.display = "none";
+    return;
+  }
+
+  let subtotal = cart.reduce((total, item) => total + item.price * item.qty, 0);
+
+ cartContent.innerHTML = `
+  <strong>Cart:</strong><br>
+  ${cart.map(i => `${i.name} x${i.qty}`).join("<br>")}
+  <br><strong>Subtotal:</strong> $${subtotal.toFixed(2)}
+  <div style="display: flex; gap: 10px; margin-top: 8px;">
+    <a href='cart.html' style="flex: 1; text-align: center; background: #60ba39; color: white; padding: 6px; border-radius: 6px; font-weight: bold; text-decoration: none;">Open Cart</a>
+    <button onclick='clearCart()' style="flex: 1; background: #f44336; color: white; border: none; padding: 6px; border-radius: 6px; font-weight: bold;">Clear Cart</button>
+  </div>`;
+
+  
+  
+
+  if (!showInstantly) {
+    clearTimeout(hideCartTimeout);
+    hideCartTimeout = setTimeout(() => {
+      summary.style.display = "none";
+    }, 4000);
+  }
+}
+
+function clearCart() {
+  cart = [];
+  localStorage.setItem('daybreakCart', JSON.stringify(cart));
+  updateCartSummary();
+  updateMiniCart(); // ⬅️ Keeps cart icon accurate
+  showNotification("Cart cleared.");
+}
+
+// Toggle cart view
+function toggleMiniCart() {
+  const cartBox = document.getElementById('mini-cart');
+  cartBox.style.display = cartBox.style.display === 'none' ? 'block' : 'none';
+}
+
+
+function formatCartItemName(name) {
+  if (!name.includes("(No:")) return `<strong>${name}</strong>`;
+
+  const base = name.split(" (No:")[0];
+  const exclusions = name.match(/\(No: (.*)\)/)?.[1].split(", ").filter(Boolean);
+
+  return `
+    <strong>${base}</strong><br>
+    <small style="color:#666;">No:</small>
+    <ul style="margin: 4px 0 0 16px; padding: 0; font-size: 0.85em; color: #666; list-style-type: disc;">
+      ${exclusions.map(i => `<li>${i}</li>`).join("")}
+    </ul>
+  `;
+}
+
+// Mini-cart display (with qty & remove)
+function updateMiniCart() {
+  const cartContent = document.getElementById('mini-cart-content');
+  const cartCount = document.getElementById('mini-cart-count');
+
+  if (!cart || cart.length === 0) {
+    document.getElementById('mini-cart').style.display = 'none';
+    cartCount.textContent = '0';
+    return;
+  }
+
+  cartCount.textContent = cart.reduce((sum, i) => sum + i.qty, 0);
+
+  let subtotal = cart.reduce((total, item) => total + item.price * item.qty, 0);
+
+  cartContent.innerHTML = cart.map((item, index) => `
+    <div style="margin-bottom: 10px;">
+      ${formatCartItemName(item.name)}
+      <div class="cart-item-row">
+  <button class="remove-btn" onclick="removeItem(${index})">✕</button>
+  <div class="cart-controls">
+    <button class="mini-cart-btn" onclick="changeCartQty(${index}, -1)">−</button>
+    <span class="cart-qty">${item.qty}</span>
+    <button class="mini-cart-btn" onclick="changeCartQty(${index}, 1)">+</button>
+  </div>
+  <span class="cart-price">$${(item.price * item.qty).toFixed(2)}</span>
+</div>
+
+
+      
+    </div>
+  `).join('') + `
+    <hr>
+    <strong>Subtotal:</strong> $${subtotal.toFixed(2)}
+   <div style="display: flex; gap: 10px; margin-top: 8px;">
+  <a href='cart.html' style="flex: 1; text-align: center; background: #60ba39; color: white; padding: 6px; border-radius: 6px; font-weight: bold; text-decoration: none;">Checkout</a>
+  <button onclick='clearCart()' style="flex: 1; font-size: 1em; text-align: center; background: #f44336; color: white; padding: 6px; border-radius: 6px; font-weight: bold; text-decoration: none; cursor: pointer;">Clear Cart</button>
+</div>
+
+
+  `;
+}
+
+// Quantity change in mini-cart
+function changeCartQty(index, delta) {
+  if (cart[index]) {
+    cart[index].qty += delta;
+    if (cart[index].qty < 1) {
+      cart.splice(index, 1);
+    }
+    localStorage.setItem('daybreakCart', JSON.stringify(cart));
+    updateCartSummary(true);
+    updateMiniCart(); // ⬅️ Reflects cart icon count
+  }
+}
+
+// Remove item from cart
+function removeItem(index) {
+  const item = cart[index];
+  if (!item) return;
+
+  const confirmed = confirm(`Remove "${item.name}" from your cart?`);
+  if (!confirmed) return;
+
+  cart.splice(index, 1);
+  localStorage.setItem('daybreakCart', JSON.stringify(cart));
+  updateCartSummary(true);
+  updateMiniCart();
+  showNotification(`Removed "${item.name}" from cart.`);
+}
+
+
+// On page load
+updateMiniCart();
+updateCartSummary();
+</script>
+
+
+
+</body>
+</html>
