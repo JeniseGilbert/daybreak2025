@@ -92,6 +92,8 @@
 
 
 
+<audio id="notifSound" src="assets/sounds/mixkit-alert-quick-chime-766.wav" preload="auto"></audio>
+
 <script>
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbxlnXGbiMrdC1MHY0vPlFHpxQuWGn4OOmjJGst38B9nvHRG8JRRI71oupJM3Xp8xfF9/exec?kitchen=true";
   const PASSKEY = "d@yBr3ak_#2025$secure";
@@ -121,71 +123,85 @@
   }
 
   function formatItemList(items) {
-    return items.map(item => {
-      // Breakfast Combo with Juice
-      if (item.includes("Breakfast Combo with Juice")) {
-        const qtyMatch = item.match(/x(\d+)/);
-        const qty = qtyMatch ? qtyMatch[1] : "1";
-        const qtyDisplay = `<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> `;
-        const juiceMatch = item.match(/Juice – (\w+)/);
-        const juiceFlavor = juiceMatch ? juiceMatch[1] : "Juice";
+  const foodItems = [];
+  const drinkItems = [];
 
-        if (item.includes("No:")) {
-          const [main, exclusions] = item.split("(No:");
-          const removedItems = exclusions.replace(")", "").split(",").map(x => x.trim());
-          return `
-            ${qtyDisplay}<strong>Breakfast Combo with ${juiceFlavor}</strong><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 0.9em; color:#c00;">No: ${removedItems.join(", ")}</span>
-          `;
-        }
+  items.forEach(item => {
+    // === Breakfast Combo ===
+    if (item.includes("Breakfast Combo")) {
+      const qty = item.match(/x(\d+)/)?.[1] || "1";
+      const juiceMatch = item.match(/w\/ (\w+)/i);
+      const juice = juiceMatch ? juiceMatch[1] : "Juice";
 
-        return `${qtyDisplay}<strong>Breakfast Combo with ${juiceFlavor}</strong>`;
+      const exclusionMatch = item.match(/\(No:([^)]+)\)/);
+      const exclusions = exclusionMatch ? exclusionMatch[1].split(",").map(x => x.trim()) : [];
+
+      foodItems.push(`
+        <span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>Breakfast Combo w/ ${juice}</strong>
+        ${exclusions.length ? `<br><span style="color:#c00;">  No: ${exclusions.join(", ")}</span>` : ""}
+      `);
+
+      // Add to drink section too (but mark as combo)
+      drinkItems.push(`
+        <span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>${juice} Juice</strong> <span style="font-size:0.9em;">(combo)</span>
+      `);
+      return;
+    }
+
+    // === Regular Breakfast Plate ===
+    if (item.includes("Breakfast Plate")) {
+      const qty = item.match(/x(\d+)/)?.[1] || "1";
+      const exclusionMatch = item.match(/\(No:([^)]+)\)/);
+      const exclusions = exclusionMatch ? exclusionMatch[1].split(",").map(x => x.trim()) : [];
+
+      foodItems.push(`
+        <span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>Breakfast Plate</strong>
+        ${exclusions.length ? `<br><span style="color:#c00;">  No: ${exclusions.join(", ")}</span>` : ""}
+      `);
+      return;
+    }
+
+    // === Fish Plate ===
+    if (item.includes("Fish Plate")) {
+      const qty = item.match(/x(\d+)/)?.[1] || "1";
+      foodItems.push(`<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>Fish Plate</strong>`);
+      return;
+    }
+
+    // === BBQ Chicken Plate ===
+    if (item.includes("BBQ Chicken Plate")) {
+      const qty = item.match(/x(\d+)/)?.[1] || "1";
+      foodItems.push(`<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>BBQ Chicken Plate</strong>`);
+      return;
+    }
+
+    // === Local Juice ===
+    if (item.includes("Local Juice")) {
+      const match = item.match(/Local Juice - (\w+) x(\d+)/);
+      if (match) {
+        const flavor = match[1];
+        const qty = match[2];
+        drinkItems.push(`<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>${flavor} Juice</strong>`);
       }
+      return;
+    }
 
-      // Regular Breakfast Plate
-      if (item.includes("Breakfast Plate")) {
-        const qtyMatch = item.match(/x(\d+)/);
-        const qty = qtyMatch ? qtyMatch[1] : "1";
-        const qtyDisplay = `<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> `;
+    // Fallback (unparsed)
+    foodItems.push(`<strong>${item}</strong>`);
+  });
 
-        if (item.includes("No:")) {
-          const [main, exclusions] = item.split("(No:");
-          const removedItems = exclusions.replace(")", "").split(",").map(x => x.trim());
-          return `
-            ${qtyDisplay}<strong>Breakfast Plate</strong><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 0.9em; color:#c00;">No: ${removedItems.join(", ")}</span>
-          `;
-        }
+  // Combine under Food & Drinks headings
+  return `
+    <u><strong>Food</strong></u><br>
+    ${foodItems.join("<br>")}
+    <br><br>
+    <u><strong>Drinks</strong></u><br>
+    ${drinkItems.join("<br>")}
+  `;
+}
 
-        return `${qtyDisplay}<strong>Breakfast Plate</strong>`;
-      }
 
-      // Fish Plate
-      if (item.includes("Fish Plate")) {
-        const qty = item.match(/x(\d+)/)?.[1] || "1";
-        return `<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>Fish Plate</strong>`;
-      }
 
-      // BBQ Chicken Plate
-      if (item.includes("BBQ Chicken Plate")) {
-        const qty = item.match(/x(\d+)/)?.[1] || "1";
-        return `<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>BBQ Chicken Plate</strong>`;
-      }
-
-      // Local Juice
-      if (item.includes("Local Juice")) {
-        const match = item.match(/Local Juice - (\w+) x(\d+)/);
-        if (match) {
-          const flavor = match[1];
-          const qty = match[2];
-          return `<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>${flavor} Juice</strong>`;
-        }
-      }
-
-      // Fallback
-      return `<strong>${item}</strong>`;
-    }).join("<br>");
-  }
 
   function renderOrders() {
     const newCol = document.getElementById("newColumn");
@@ -204,9 +220,10 @@
 
       const card = document.createElement("div");
       card.className = "order-card";
-      const formattedItems = formatItemList(order.items);
 
+      const formattedItems = formatItemList(order.items);
       card.innerHTML = `<strong>${order.name}</strong><br>${formattedItems}`;
+
       card.dataset.id = order.id;
       card.dataset.status = order.status;
 
@@ -243,6 +260,7 @@
   setInterval(fetchOrders, 3000);
   fetchOrders();
 </script>
+
 
 </body>
 </html>
