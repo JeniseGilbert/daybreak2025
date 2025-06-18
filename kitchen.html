@@ -56,6 +56,7 @@
       margin-bottom: 10px;
       cursor: pointer;
       transition: transform 0.3s ease;
+       line-height: 1.5;
     }
 
     .order-card.prepping {
@@ -69,6 +70,45 @@
     .hidden {
       display: none;
     }
+    .loading-spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #ffa726;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.large-spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #ffa726;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
   </style>
 </head>
 <body>
@@ -87,12 +127,11 @@
       <h2>Ready</h2>
     </div>
   </div>
+  
+
+
   <audio id="notifSound" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/sounds/mixkit-alert-quick-chime-766.wav" preload="auto"></audio>
 
-
-
-
-<audio id="notifSound" src="assets/sounds/mixkit-alert-quick-chime-766.wav" preload="auto"></audio>
 
 <script>
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbxlnXGbiMrdC1MHY0vPlFHpxQuWGn4OOmjJGst38B9nvHRG8JRRI71oupJM3Xp8xfF9/exec?kitchen=true";
@@ -241,19 +280,33 @@
       }
 
       card.addEventListener("click", async () => {
-        let newStatus = null;
-        if (order.status === "new") newStatus = "prepping";
-        else if (order.status === "prepping") newStatus = "ready";
-        else if (order.status === "ready") newStatus = "sent";
-        else return;
+  let newStatus = null;
 
-        try {
-          await fetch(`${SHEET_URL.replace('?kitchen=true', '')}?setStatus=${newStatus}&id=${order.id}&passKey=${encodeURIComponent(PASSKEY)}`);
-          setTimeout(fetchOrders, 1000);
-        } catch (err) {
-          console.error("Failed to update status:", err);
-        }
-      });
+  if (order.status === "new") newStatus = "prepping";
+  else if (order.status === "prepping") newStatus = "ready";
+  else if (order.status === "ready") newStatus = "sent";
+  else return;
+
+  // 🔄 Add fade-out animation
+  card.style.opacity = "0.3";
+  card.style.transition = "opacity 1.3s ease";
+
+  try {
+    await fetch(`${SHEET_URL.replace('?kitchen=true', '')}?setStatus=${newStatus}&id=${order.id}&passKey=${encodeURIComponent(PASSKEY)}`);
+
+    // 🕓 Delay a bit then fetch new state
+    setTimeout(() => {
+      fetchOrders();
+    }, 300);
+  } catch (err) {
+    console.error("Failed to update status:", err);
+  }
+  const spinner = document.createElement("span");
+spinner.className = "loading-spinner";
+card.appendChild(spinner);
+
+});
+
     });
   }
 
