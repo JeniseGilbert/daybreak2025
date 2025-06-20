@@ -137,6 +137,13 @@
   const SHEET_URL = "https://script.google.com/macros/s/AKfycbxlnXGbiMrdC1MHY0vPlFHpxQuWGn4OOmjJGst38B9nvHRG8JRRI71oupJM3Xp8xfF9/exec?kitchen=true";
   const PASSKEY = "d@yBr3ak_#2025$secure";
 
+  // ✅ Use object to track clicked card + status
+  let clickedCards = JSON.parse(localStorage.getItem("clickedCards") || "{}");
+
+  function saveClickedCards() {
+    localStorage.setItem("clickedCards", JSON.stringify(clickedCards));
+  }
+
   let orderData = [];
   let previousOrderIds = new Set();
 
@@ -162,85 +169,67 @@
   }
 
   function formatItemList(items) {
-  const foodItems = [];
-  const drinkItems = [];
+    const foodItems = [];
+    const drinkItems = [];
 
-  items.forEach(item => {
-    // === Breakfast Combo ===
-    if (item.includes("Breakfast Combo")) {
-      const qty = item.match(/x(\d+)/)?.[1] || "1";
-      const juiceMatch = item.match(/w\/ (\w+)/i);
-      const juice = juiceMatch ? juiceMatch[1] : "Juice";
+    items.forEach(item => {
+      if (item.includes("Breakfast Combo")) {
+        const qty = item.match(/x(\d+)/)?.[1] || "1";
+        const juiceMatch = item.match(/w\/ (\w+)/i);
+        const juice = juiceMatch ? juiceMatch[1] : "Juice";
+        const exclusionMatch = item.match(/\(No:([^)]+)\)/);
+        const exclusions = exclusionMatch ? exclusionMatch[1].split(",").map(x => x.trim()) : [];
 
-      const exclusionMatch = item.match(/\(No:([^)]+)\)/);
-      const exclusions = exclusionMatch ? exclusionMatch[1].split(",").map(x => x.trim()) : [];
+        foodItems.push(`<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>Breakfast Combo w/ ${juice}</strong>
+        ${exclusions.length ? `<br><span style="color:#c00;">  No: ${exclusions.join(", ")}</span>` : ""}`);
 
-      foodItems.push(`
-        <span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>Breakfast Combo w/ ${juice}</strong>
-        ${exclusions.length ? `<br><span style="color:#c00;">  No: ${exclusions.join(", ")}</span>` : ""}
-      `);
-
-      // Add to drink section too (but mark as combo)
-      drinkItems.push(`
-        <span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>${juice} Juice</strong> <span style="font-size:0.9em;">(combo)</span>
-      `);
-      return;
-    }
-
-    // === Regular Breakfast Plate ===
-    if (item.includes("Breakfast Plate")) {
-      const qty = item.match(/x(\d+)/)?.[1] || "1";
-      const exclusionMatch = item.match(/\(No:([^)]+)\)/);
-      const exclusions = exclusionMatch ? exclusionMatch[1].split(",").map(x => x.trim()) : [];
-
-      foodItems.push(`
-        <span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>Breakfast Plate</strong>
-        ${exclusions.length ? `<br><span style="color:#c00;">  No: ${exclusions.join(", ")}</span>` : ""}
-      `);
-      return;
-    }
-
-    // === Fish Plate ===
-    if (item.includes("Fish Plate")) {
-      const qty = item.match(/x(\d+)/)?.[1] || "1";
-      foodItems.push(`<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>Fish Plate</strong>`);
-      return;
-    }
-
-    // === BBQ Chicken Plate ===
-    if (item.includes("BBQ Chicken Plate")) {
-      const qty = item.match(/x(\d+)/)?.[1] || "1";
-      foodItems.push(`<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>BBQ Chicken Plate</strong>`);
-      return;
-    }
-
-    // === Local Juice ===
-    if (item.includes("Local Juice")) {
-      const match = item.match(/Local Juice - (\w+) x(\d+)/);
-      if (match) {
-        const flavor = match[1];
-        const qty = match[2];
-        drinkItems.push(`<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>${flavor} Juice</strong>`);
+        drinkItems.push(`<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>${juice} Juice</strong> <span style="font-size:0.9em;">(combo)</span>`);
+        return;
       }
-      return;
-    }
 
-    // Fallback (unparsed)
-    foodItems.push(`<strong>${item}</strong>`);
-  });
+      if (item.includes("Breakfast Plate")) {
+        const qty = item.match(/x(\d+)/)?.[1] || "1";
+        const exclusionMatch = item.match(/\(No:([^)]+)\)/);
+        const exclusions = exclusionMatch ? exclusionMatch[1].split(",").map(x => x.trim()) : [];
 
-  // Combine under Food & Drinks headings
-  return `
-    <u><strong>Food</strong></u><br>
-    ${foodItems.join("<br>")}
-    <br><br>
-    <u><strong>Drinks</strong></u><br>
-    ${drinkItems.join("<br>")}
-  `;
-}
+        foodItems.push(`<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>Breakfast Plate</strong>
+        ${exclusions.length ? `<br><span style="color:#c00;">  No: ${exclusions.join(", ")}</span>` : ""}`);
+        return;
+      }
 
+      if (item.includes("Fish Plate")) {
+        const qty = item.match(/x(\d+)/)?.[1] || "1";
+        foodItems.push(`<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>Fish Plate</strong>`);
+        return;
+      }
 
+      if (item.includes("BBQ Chicken Plate")) {
+        const qty = item.match(/x(\d+)/)?.[1] || "1";
+        foodItems.push(`<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>BBQ Chicken Plate</strong>`);
+        return;
+      }
 
+      if (item.includes("Local Juice")) {
+        const match = item.match(/Local Juice - (\w+) x(\d+)/);
+        if (match) {
+          const flavor = match[1];
+          const qty = match[2];
+          drinkItems.push(`<span style="font-size: 1.4em; font-weight: bold;">(${qty})</span> <strong>${flavor} Juice</strong>`);
+        }
+        return;
+      }
+
+      foodItems.push(`<strong>${item}</strong>`);
+    });
+
+    return `
+      <u><strong>Food</strong></u><br>
+      ${foodItems.join("<br>")}
+      <br><br>
+      <u><strong>Drinks</strong></u><br>
+      ${drinkItems.join("<br>")}
+    `;
+  }
 
   function renderOrders() {
     const newCol = document.getElementById("newColumn");
@@ -255,16 +244,30 @@
 
     orderData.forEach(order => {
       order.status = order.kitchenStatus || "new";
-      if (order.status === "sent") return;
+
+      if (order.status === "sent") {
+        delete clickedCards[order.id];
+        saveClickedCards();
+        return;
+      }
 
       const card = document.createElement("div");
       card.className = "order-card";
+      card.dataset.id = order.id;
+      card.dataset.status = order.status;
 
       const formattedItems = formatItemList(order.items);
       card.innerHTML = `<strong>${order.name}</strong><br>${formattedItems}`;
 
-      card.dataset.id = order.id;
-      card.dataset.status = order.status;
+      // ✅ Show spinner only if status matches original click
+      if (clickedCards[order.id] === order.status) {
+        card.style.opacity = "0.4";
+        card.style.position = "relative";
+        const overlay = document.createElement("div");
+        overlay.className = "spinner-overlay";
+        overlay.innerHTML = `<div class="large-spinner"></div>`;
+        card.appendChild(overlay);
+      }
 
       if (order.status === "prepping") {
         card.classList.add("prepping");
@@ -279,40 +282,54 @@
         newCol.appendChild(card);
       }
 
-      card.addEventListener("click", async () => {
-  let newStatus = null;
+      card.addEventListener("click", () => {
+        let newStatus = null;
+        let delay = 2000;
 
-  if (order.status === "new") newStatus = "prepping";
-  else if (order.status === "prepping") newStatus = "ready";
-  else if (order.status === "ready") newStatus = "sent";
-  else return;
+        if (order.status === "new") {
+          newStatus = "prepping";
+          delay = 2000;
+        } else if (order.status === "prepping") {
+          newStatus = "ready";
+          delay = 2500;
+        } else if (order.status === "ready") {
+          newStatus = "sent";
+          delay = 2000;
+        } else {
+          return;
+        }
 
-  // 🔄 Add fade-out animation
-  card.style.opacity = "0.3";
-  card.style.transition = "opacity 1.3s ease";
+        // ✅ Track card and the column it was clicked in
+        clickedCards[order.id] = order.status;
+        saveClickedCards();
 
-  try {
-    await fetch(`${SHEET_URL.replace('?kitchen=true', '')}?setStatus=${newStatus}&id=${order.id}&passKey=${encodeURIComponent(PASSKEY)}`);
+        card.style.opacity = "0.4";
+        card.style.position = "relative";
+        const overlay = document.createElement("div");
+        overlay.className = "spinner-overlay";
+        overlay.innerHTML = `<div class="large-spinner"></div>`;
+        card.appendChild(overlay);
 
-    // 🕓 Delay a bit then fetch new state
-    setTimeout(() => {
-      fetchOrders();
-    }, 300);
-  } catch (err) {
-    console.error("Failed to update status:", err);
-  }
-  const spinner = document.createElement("span");
-spinner.className = "loading-spinner";
-card.appendChild(spinner);
-
-});
-
+        // Wait before sending update
+        setTimeout(() => {
+          fetch(`${SHEET_URL.replace('?kitchen=true', '')}?setStatus=${newStatus}&id=${order.id}&passKey=${encodeURIComponent(PASSKEY)}`)
+            .catch(err => {
+              console.error("Status update failed:", err);
+              delete clickedCards[order.id];
+              saveClickedCards();
+              overlay.remove();
+              card.style.opacity = "1";
+            });
+        }, delay);
+      });
     });
   }
 
   setInterval(fetchOrders, 3000);
   fetchOrders();
 </script>
+
+
 
 
 </body>
