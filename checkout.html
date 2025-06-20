@@ -224,7 +224,8 @@
   <h3>Step 1: Pickup Info</h3>
   <input class="input-field" type="text" id="firstName" placeholder="First Name" required>
   <input class="input-field" type="text" id="lastName" placeholder="Last Name" required>
-  <button class="submit-btn" onclick="goToStep(2)">Next</button>
+  <button class="submit-btn" onclick="validateStep1()">Next</button>
+
 </div>
 
 <!-- STEP 2: Choose Payment Button -->
@@ -481,6 +482,18 @@ function goToStep(step) {
 
   progress.style.width = stepPercent[step];
   label.textContent = `Step ${step} of 3`;
+}
+
+function validateStep1() {
+  const first = document.getElementById("firstName").value.trim();
+  const last = document.getElementById("lastName").value.trim();
+
+  if (!first || !last) {
+    alert("Please enter both first and last name.");
+    return;
+  }
+
+  goToStep(2);
 }
 
 function validateStep2() {
