@@ -194,20 +194,24 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
 
-  td {
+   td {
     border: none;
     border-bottom: 1px solid #eee;
     position: relative;
-    padding-left: 50%;
+    padding-left: 16px;         /* Normal padding */
+    padding-top: 36px;          /* Make space for label above */
     text-align: left;
+    word-break: break-word;
+    white-space: normal;
   }
 
   td::before {
     content: attr(data-label);
     position: absolute;
+    top: 8px;
     left: 16px;
-    top: 12px;
     font-weight: bold;
+    font-size: 0.85rem;
     color: #555;
     white-space: nowrap;
   }
@@ -334,26 +338,29 @@ document.getElementById("adminPass").addEventListener("keydown", function(e) {
   }
 
   async function approveOrder(code) {
-    lastApprovedCode = code;
-    await fetch(`${SHEET_URL}?approve=${encodeURIComponent(code)}`);
-    showToast(code);
-    fetchOrders();
-  }
+  lastApprovedCode = code;
+  await fetch(`${SHEET_URL}?approve=${encodeURIComponent(code)}&passKey=${encodeURIComponent(PASSKEY)}`);
+  showToast(code);
+  fetchOrders();
+}
+
 
   async function rejectOrder(code) {
-    const confirmReject = confirm(`Are you sure you want to reject ${code}?`);
-    if (!confirmReject) return;
-    await fetch(`${SHEET_URL}?reject=${encodeURIComponent(code)}`);
-    fetchOrders();
-  }
+  const confirmReject = confirm(`Are you sure you want to reject ${code}?`);
+  if (!confirmReject) return;
+  await fetch(`${SHEET_URL}?reject=${encodeURIComponent(code)}&passKey=${encodeURIComponent(PASSKEY)}`);
+  fetchOrders();
+}
+
 
   async function undoLastApproval() {
-    if (!lastApprovedCode) return;
-    await fetch(`${SHEET_URL}?undoApprove=${encodeURIComponent(lastApprovedCode)}`);
-    lastApprovedCode = "";
-    fetchOrders();
-    document.getElementById("toast").style.display = "none";
-  }
+  if (!lastApprovedCode) return;
+  await fetch(`${SHEET_URL}?undoApprove=${encodeURIComponent(lastApprovedCode)}&passKey=${encodeURIComponent(PASSKEY)}`);
+  lastApprovedCode = "";
+  fetchOrders();
+  document.getElementById("toast").style.display = "none";
+}
+
 
   function showToast(code) {
     document.getElementById("toastCode").textContent = code;
