@@ -180,32 +180,6 @@
     #txnHelpModal ul {
       text-align: left;
     }
-    
-    .cart-item {
-  background: #fff;
-  padding: 12px;
-  border-radius: 10px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.cart-item p {
-  margin: 4px 0;
-  font-size: 14px;
-}
-
-.cart-item .extras {
-  font-size: 13px;
-  color: #666;
-}
-
-.cart-totals {
-  background: #fefefe;
-  padding: 12px;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
   </style>
 </head>
 <body>
@@ -378,65 +352,20 @@
 const cart = JSON.parse(localStorage.getItem("daybreakCart") || "[]");
 let subtotal = 0;
 
-
 function renderCartSummary() {
   const container = document.getElementById("orderSummary");
-  const cart = JSON.parse(localStorage.getItem("daybreakCart") || "[]");
-  let subtotal = 0;
   container.innerHTML = '<h3>Your Order</h3>';
-
   cart.forEach(item => {
     const itemTotal = (item.price * item.qty).toFixed(2);
     subtotal += item.price * item.qty;
-
-    let itemHTML = `<div class="cart-item">`;
-
-    // 🧁 FOOD ITEM
-    if (!item.type || item.type === "food") {
-      itemHTML += `
-        <p><strong>${item.name || "Food Item"}</strong> (x${item.qty})</p>
-        <p>$${itemTotal}</p>
-      `;
-      if (item.extras) {
-        itemHTML += `<p class="extras">${Object.entries(item.extras)
-          .map(([k, v]) => `${k}: ${v}`)
-          .join(", ")}</p>`;
-      }
-    }
-
-    // 👕 SHIRT ITEM
-    else if (item.type === "shirt") {
-      itemHTML += `
-        <p><strong>Custom T-Shirt</strong> (x${item.qty})</p>
-        <p>Style: ${item.style || item.styleId}</p>
-        <p>Size: ${item.size} | Color: ${item.color || "N/A"}</p>
-        <p>Price: $${itemTotal}</p>
-      `;
-      if (item.backDesign) {
-        itemHTML += `<p>Back Design: ✅ Yes</p>`;
-      }
-      if (item.frontImg) {
-        itemHTML += `<img src="${item.frontImg}" alt="Front Design" style="width:70px; border-radius:8px; margin-top:5px;">`;
-      }
-    }
-
-    itemHTML += `</div><hr/>`;
-    container.innerHTML += itemHTML;
+    container.innerHTML += `<p>${item.name} (x${item.qty}) - $${itemTotal}</p>`;
   });
-
   const tax = +(subtotal * 0.0825).toFixed(2);
   const total = +(subtotal + tax).toFixed(2);
-
-  container.innerHTML += `
-    <div class="cart-totals">
-      <p><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
-      <p><strong>Tax:</strong> $${tax.toFixed(2)}</p>
-      <p><strong>Total:</strong> $${total.toFixed(2)}</p>
-    </div>
-  `;
+  container.innerHTML += `<p><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>`;
+  container.innerHTML += `<p><strong>Tax:</strong> $${tax.toFixed(2)}</p>`;
+  container.innerHTML += `<p><strong>Total:</strong> $${total.toFixed(2)}</p>`;
 }
-
-
 
 function toggleDetails(method) {
   document.getElementById("cashappField").style.display = (method === "cashapp") ? "block" : "none";
