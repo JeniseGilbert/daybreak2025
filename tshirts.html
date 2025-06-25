@@ -1676,6 +1676,8 @@ function updatePrice(selectElem) {
   return finalPrice;
 }
 
+
+
 function addToCart(styleId) {
   const size = document.getElementById(`shirtSize-${styleId}`).value;
   const qty = parseInt(document.getElementById(`shirtQty-${styleId}`).value, 10);
@@ -1686,6 +1688,7 @@ function addToCart(styleId) {
   const backDesignId = backDesign ? backDesign.match(/(\d+)\.png/)?.[1] : null;
   const price = updatePrice(document.getElementById(`shirtSize-${styleId}`));
   const newItem = {
+    type: "shirt",            // ✅ distinguish this item in checkout
     style: styleId,
     styleId,
     size,
