@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daybreak Tees</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #121212;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .style-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .shirt-card {
+      background: #1f1f1f;
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    }
+
+    .shirt-img {
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto 12px;
+    }
+
+    .swatch-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      cursor: pointer;
+    }
+
+    .swatch:hover {
+      transform: scale(1.2);
+    }
+
+    .swatch.selected {
+      border: 3px solid #ffa726;
+      box-shadow: 0 0 5px #ffa726;
+    }
+
+    .custom-btn {
+      background: #ffa726;
+      color: #000;
+      padding: 10px 16px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .custom-btn:hover {
+      background: #ffb84d;
+    }
+
+    #backModal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #2a2a2a;
+      padding: 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .back-option {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border: 3px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .back-option.selected {
+      border-color: #ffa726;
+    }
+
+    .preview {
+      margin-top: 8px;
+      font-size: 0.9em;
+    }
+    
+   .qty-wrapper {
+  margin: 12px 0;
+  text-align: center;
+}
+
+.qty-wrapper label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.qty-adjuster {
+  display: inline-flex;
+  align-items: center;
+  background: #2a2a2a;
+  border: 1.5px solid #ffa726;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.qty-adjuster button {
+  background: transparent;
+  border: none;
+  color: #ffa726;
+  font-size: 20px;
+  font-weight: bold;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.qty-adjuster button:hover {
+  background: #ffa726;
+  color: #000;
+}
+
+.qty-adjuster input {
+  width: 48px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.custom-btn:disabled {
+  background: #555;
+  color: #999;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.price-container {
+  position: relative;
+  display: inline-block;
+}
+
+
+
+.size-picker {
+  margin: 12px 0;
+  text-align: center;
+}
+
+.size-picker label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.size-picker select {
+  width: 100%;
+  max-width: 160px;
+  background: #1f1f1f;
+  color: #fff;
+  border: 2px solid #ffa726;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  transition: border 0.3s ease;
+}
+
+.size-picker select:focus,
+.size-picker select:hover {
+  border-color: #ffb84d;
+}
+
+#cartIcon {
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  font-size: 20px;
+  background: #ffa726;
+  color: #000;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#cartPanel {
+  position: fixed;
+  right: -100%;
+  top: 0;
+  height: 100%;
+  width: 300px;
+  background: #1f1f1f;
+  color: #fff;
+  padding: 20px;
+  overflow-y: auto;
+  transition: right 0.3s ease;
+  z-index: 999;
+  box-shadow: -4px 0 10px rgba(0,0,0,0.4);
+}
+
+#cartPanel.open {
+  right: 0;
+}
+
+#cartPanel h2 {
+  margin-top: 0;
+  color: #ffa726;
+}
+
+.cart-item {
+  background: #2a2a2a;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  font-size: 0.9em;
+}
+
+.cart-item img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 6px;
+}
+
+#cartCount {
+  background: red;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  vertical-align: top;
+  margin-left: 4px;
+}
+
+.qty-adjuster-sm {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.qty-adjuster-sm button {
+  padding: 4px 8px;
+  font-size: 14px;
+  border: none;
+  background: #ffa726;
+  color: #000;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.remove-btn {
+  background: #e53935;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+
+.grand-total {
+  font-weight: bold;
+  text-align: right;
+  margin-top: 10px;
+}
+
+.checkout-btn {
+  background: #ffa726;
+  color: #000;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.exit-btn {
+  margin-top: 10px;
+  padding: 10px 16px;
+  background-color: #ccc;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.exit-btn:hover {
+  background-color: #bbb;
+}
+
+
+.toast {
+  visibility: hidden;
+  min-width: 260px;
+  background-color: #ff4444;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 12px;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+@media (max-width: 480px) {
+  #cartSummary {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  #cartSummary img {
+    width: 40px;
+  }
+
+  #cartSummary button {
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+<h1>Daybreak Tees</h1>
+
+<div class="style-grid">
+
+  <!-- CARD TEMPLATE (Dominica) -->
+  <div class="shirt-card" data-style="Dominica">
+    <img id="img-Dominica" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/16.png" class="shirt-img">
+
+    <div class="size-picker">
+  <label for="shirtSize-Dominica">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-Dominica" onchange="validateSelections('Dominica'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
+
+
+
+    <div class="color-picker">
+      <label>Color:</label>
+      <div class="swatch-row">
+        
+  <span class="swatch" style="background:#000000" onclick="changeColor('16', 'img-Dominica', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('9', 'img-Dominica', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('10', 'img-Dominica', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('11', 'img-Dominica', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('12', 'img-Dominica', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('13', 'img-Dominica', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('14', 'img-Dominica', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('15', 'img-Dominica', 'White')"></span>
+      </div>
+    </div>
+
+   <div class="qty-wrapper">
+  <label for="shirtQty-Dominica">Qty:</label>
+  <div class="qty-adjuster">
+    <button onclick="adjustQty('shirtQty-Dominica', -1); validateSelections('Dominica')">−</button>
+    
+    <input type="number" id="shirtQty-Dominica" min="0" value="0" readonly>
+    <button onclick="adjustQty('shirtQty-Dominica', 1); validateSelections('Dominica')">+</button>
+
+  </div>
+</div>
+
+
+    <div class="back-design-toggle">
+      <label>Want a Back Design (+$5)?</label><br>
+      <label><input type="radio" name="backDesign-Dominica" value="yes" onclick="openBackModal('Dominica')"> Yes</label>
+      <label><input type="radio" name="backDesign-Dominica" value="no" onclick="handleBackDesignChoice(false, 'Dominica')"> No</label>
+    </div>
+
+    <div class="preview" id="backPreview-Dominica">No back design selected</div><br>
+    
+  <div class="price-container">
+  <div id="priceDisplay-Dominica" class="priceDisplay">Starting at $13</div>
+</div>
+
+  
+    <br><button class="custom-btn" id="addToCart-Dominica" data-style="Dominica" onclick="addToCart('Dominica')" disabled>Add to Cart</button>
+</div>
+
+
+
+
+
+
+
+</div>
+  
+
+<!-- SHARED BACK DESIGN MODAL -->
+<div id="backModal">
+  <div class="modal-content">
+    <h3>Select Back Design</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/113.png" class="back-option" onclick="selectBack(this, 'https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/113.png')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/114.png" class="back-option" onclick="selectBack(this, 'https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/114.png')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/115.png" class="back-option" onclick="selectBack(this, 'https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/115.png')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/116.png" class="back-option" onclick="selectBack(this, 'https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/116.png')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/117.png" class="back-option" onclick="selectBack(this, 'https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/117.png')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/118.png" class="back-option" onclick="selectBack(this, 'https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/118.png')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/119.png" class="back-option" onclick="selectBack(this, 'https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/119.png')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/120.png" class="back-option" onclick="selectBack(this, 'https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/120.png')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/121.png" class="back-option" onclick="selectBack(this, 'https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/121.png')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/122.png" class="back-option" onclick="selectBack(this, 'https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/122.png')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/123.png" class="back-option" onclick="selectBack(this, 'https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/123.png')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/124.png" class="back-option" onclick="selectBack(this, 'https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/124.png')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/125.png" class="back-option" onclick="selectBack(this, 'https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/125.png')">
+      <!-- Add more as needed -->
+    </div>
+    <button class="custom-btn" onclick="closeBackModal()">Done</button>
+  </div>
+</div>
+
+
+
+<!-- Cart Icon -->
+<div id="cartIconWrapper" onclick="toggleCartSummary()" style="position: fixed; top: 20px; right: 20px; z-index: 1000; cursor: pointer;">
+  <img src="https://img.icons8.com/ios-filled/30/ffffff/shopping-bag.png" alt="Cart Icon"/>
+  <div id="cartCount" style="position: absolute; top: -6px; right: -6px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">0</div>
+</div>
+
+
+
+
+<!-- Slide-in Cart Panel -->
+<div id="cartSummary" style="position: fixed; top: 0; right: 0; height: 100vh; width: 300px; background: #000; color: #fff; box-shadow: -2px 0 10px rgba(0,0,0,0.2); padding: 20px; overflow-y: auto; z-index: 999; transform: translateX(100%); transition: transform 0.3s ease;">
+  <h2>Cart Summary</h2>
+  <div id="cartItems" ></div>
+  <hr>
+  <div style="display: flex; justify-content: space-between; font-weight: bold;">
+    <span>Total:</span>
+    <span id="cartTotal">$0.00</span>
+  </div>
+  <button onclick="goToCheckout()" style="margin-top: 20px; width: 100%; background: #ffa726; border: none; padding: 12px; font-weight: bold; cursor: pointer;">Checkout</button>
+   <button onclick="closeCartSummary()" class="exit-btn">Exit</button>
+</div>
+
+
+<!--Toast-->
+<div id="toast" class="toast">Please complete all required selections.</div>
+
+
+
+<script>
+let selectedBackDesign = "";
+let activeStyleId = "";
+const selectedColors = {};
+const selectedBackDesigns = {};
+
+function changeColor(imgNumber, imgId, colorName) {
+  const img = document.getElementById(imgId);
+  img.src = `https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/${imgNumber}.png`;
+
+  const card = img.closest(".shirt-card");
+  const swatches = card.querySelectorAll(".swatch");
+  swatches.forEach(s => s.classList.remove("selected"));
+
+  event.target.classList.add("selected");
+  card.dataset.selectedColor = colorName;
+
+  const styleId = card.dataset.style;
+  selectedColors[styleId] = colorName;
+}
+
+function openBackModal(styleId) {
+  activeStyleId = styleId;
+  document.getElementById('backModal').style.display = 'flex';
+}
+
+function closeBackModal() {
+  document.getElementById('backModal').style.display = 'none';
+}
+
+function selectBack(elem, imagePath) {
+  document.querySelectorAll('.back-option').forEach(opt => opt.classList.remove('selected'));
+  elem.classList.add('selected');
+  selectedBackDesign = imagePath;
+  selectedBackDesigns[activeStyleId] = imagePath;
+
+  const preview = document.getElementById(`backPreview-${activeStyleId}`);
+  preview.innerHTML = `
+    <div style="margin-top: 10px;">
+      <small>Back Design:</small><br>
+      <img src="${selectedBackDesign}" style="width:60px; height:60px; border-radius:6px; border:1px solid #ccc;">
+    </div>
+  `;
+
+  const sizeSelect = document.getElementById(`shirtSize-${activeStyleId}`);
+  updatePrice(sizeSelect);
+  closeBackModal();
+}
+
+function handleBackDesignChoice(wantsDesign, styleId) {
+  if (!wantsDesign) {
+    selectedBackDesign = "";
+    selectedBackDesigns[styleId] = null;
+    document.getElementById(`backPreview-${styleId}`).innerText = "No back design selected";
+    const size = document.getElementById(`shirtSize-${styleId}`);
+    updatePrice(size);
+  }
+}
+
+function updatePrice(selectElem) {
+  const card = selectElem.closest('.shirt-card');
+  const styleId = card.dataset.style;
+  const size = document.getElementById(`shirtSize-${styleId}`).value;
+  const qtyInput = document.getElementById(`shirtQty-${styleId}`);
+  const qty = parseInt(qtyInput?.value || 1, 10);
+
+  const priceDisplay = document.getElementById(`priceDisplay-${styleId}`);
+  const radios = document.getElementsByName(`backDesign-${styleId}`);
+  const wantsBack = [...radios].find(r => r.checked && r.value === "yes");
+
+  let basePrice = (["2XL +$2", "3XL +$2"].includes(size)) ? 15 : 13;
+  let finalPrice = basePrice;
+
+  if (wantsBack && selectedBackDesigns[styleId]) {
+    finalPrice += 5;
+  }
+
+  const totalPrice = finalPrice * (isNaN(qty) ? 1 : qty);
+  priceDisplay.innerText = `Price: $${finalPrice} × ${qty} = $${totalPrice}`;
+  return finalPrice;
+}
+
+function addToCart(styleId) {
+  const size = document.getElementById(`shirtSize-${styleId}`).value;
+  const qty = parseInt(document.getElementById(`shirtQty-${styleId}`).value, 10);
+  const color = selectedColors[styleId] || "";
+  const frontImgEl = document.getElementById(`img-${styleId}`);
+  const frontImg = frontImgEl ? frontImgEl.src : "";
+  const backDesign = selectedBackDesigns[styleId] || null;
+  const backDesignId = backDesign ? backDesign.match(/(\d+)\.png/)?.[1] : null;
+  const price = updatePrice(document.getElementById(`shirtSize-${styleId}`));
+
+  const newItem = {
+    style: styleId,
+    styleId,
+    size,
+    qty,
+    color,
+    price,
+    frontImg,
+    backDesign,
+    backDesignId
+  };
+
+  cart.push(newItem);
+  localStorage.setItem("daybreakCart", JSON.stringify(cart));
+  updateCartCount();
+  showToast("Item added to cart!");
+  renderCart();
+  if (typeof updateCartSummary === 'function') {
+    updateCartSummary();
+  }
+
+  // === Reset selections ===
+resetShirtForm(styleId);
+
+
+}
+function resetShirtForm(styleId) {
+  // Reset size dropdown
+  const sizeSelect = document.getElementById(`shirtSize-${styleId}`);
+  sizeSelect.selectedIndex = 0;
+
+  // Reset quantity
+  document.getElementById(`shirtQty-${styleId}`).value = 0;
+
+  // Reset color swatches and image
+  const card = document.querySelector(`.shirt-card[data-style="${styleId}"]`);
+  const swatches = card.querySelectorAll(".swatch");
+  swatches.forEach(sw => sw.classList.remove("selected"));
+  document.getElementById(`img-${styleId}`).src = "https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/16.png";
+
+  // Reset back design
+  const backRadios = document.querySelectorAll(`input[name="backDesign-${styleId}"]`);
+  backRadios.forEach(r => r.checked = false);
+  document.getElementById(`backPreview-${styleId}`).innerText = "No back design selected";
+
+  // Reset pricing
+  document.getElementById(`priceDisplay-${styleId}`).innerText = "Starting at $13";
+
+  // Reset button
+  const addBtn = document.getElementById(`addToCart-${styleId}`);
+  addBtn.disabled = true;
+
+  // Clear global selections
+  selectedColors[styleId] = null;
+  selectedBackDesigns[styleId] = null;
+}
+
+
+function adjustQty(inputId, change) {
+  const input = document.getElementById(inputId);
+  let value = parseInt(input.value, 10);
+  if (isNaN(value)) value = 0;
+
+  value += change;
+  value = Math.max(0, value);
+  input.value = value;
+
+  const styleId = inputId.replace('shirtQty-', '');
+  const btn = document.getElementById(`addToCart-${styleId}`);
+  btn.disabled = value === 0;
+
+  const sizeSelect = document.getElementById(`shirtSize-${styleId}`);
+  updatePrice(sizeSelect);
+}
+
+function validateSelections(styleId) {
+  const size = document.getElementById(`shirtSize-${styleId}`).value;
+  const qty = parseInt(document.getElementById(`shirtQty-${styleId}`).value);
+  const btn = document.getElementById(`addToCart-${styleId}`);
+  btn.disabled = !size || qty <= 0;
+}
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+// === CART LOGIC ===
+let cart = JSON.parse(localStorage.getItem("daybreakCart") || "[]");
+
+function toggleCartSummary() {
+  const summary = document.getElementById("cartSummary");
+  summary.style.transform = summary.style.transform === "translateX(0%)" ? "translateX(100%)" : "translateX(0%)";
+}
+
+function updateCartCount() {
+  document.getElementById("cartCount").innerText = cart.reduce((sum, item) => sum + item.qty, 0);
+}
+
+function renderCart() {
+  const cartItemsContainer = document.getElementById("cartItems");
+  const cartTotalElem = document.getElementById("cartTotal");
+  cartItemsContainer.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+
+    const itemDiv = document.createElement("div");
+    itemDiv.innerHTML = `
+      <div style="margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 10px;">
+        <div style="display:flex; gap:10px; align-items:center;">
+          <img src="${item.frontImg}" alt="Front" style="width:50px; border-radius:6px;">
+          ${item.backDesign ? `<img src="${item.backDesign}" alt="Back" style="width:50px; border-radius:6px;">` : ""}
+        </div>
+        <div style="margin-top:5px;">
+          <strong>${item.style}</strong> (${item.size}, ${item.color})<br>
+          ${item.backDesignId ? `Back Design #${item.backDesignId}<br>` : ""}
+          Qty: 
+          <button onclick="changeQty(${index}, -1)">−</button>
+          ${item.qty}
+          <button onclick="changeQty(${index}, 1)">+</button>
+          <br>
+          $${item.price} each
+          <button onclick="removeItem(${index})" style="float:right;">🗑️</button>
+        </div>
+      </div>
+    `;
+    cartItemsContainer.appendChild(itemDiv);
+  });
+
+  cartTotalElem.innerText = `$${total.toFixed(2)}`;
+  localStorage.setItem("daybreakCart", JSON.stringify(cart));
+  updateCartCount();
+}
+
+function updateCartSummary() {
+  const summary = document.getElementById("cartSummaryItems"); // make sure this ID exists in your HTML
+  const totalElem = document.getElementById("cartSummaryTotal");
+  summary.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+
+    const itemDiv = document.createElement("div");
+    itemDiv.innerHTML = `
+      <div style="margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 10px;">
+        <div style="display:flex; gap:10px; align-items:center;">
+          <img src="${item.frontImg}" alt="Front" style="width:50px; border-radius:6px;">
+          ${item.backDesign ? `<img src="${item.backDesign}" alt="Back" style="width:50px; border-radius:6px;">` : ""}
+        </div>
+        <div style="margin-top:5px;">
+          <strong>${item.style}</strong> (${item.size}, ${item.color})<br>
+          ${item.backDesignId ? `Back Design #${item.backDesignId}<br>` : ""}
+          Qty: ${item.qty}<br>
+          $${item.price} each
+        </div>
+      </div>
+    `;
+    summary.appendChild(itemDiv);
+  });
+
+  totalElem.innerText = `$${total.toFixed(2)}`;
+}
+
+
+function changeQty(index, delta) {
+  cart[index].qty += delta;
+  if (cart[index].qty < 1) cart.splice(index, 1);
+  renderCart();
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  renderCart();
+}
+
+function goToCheckout() {
+  window.location.href = "checkout.html";
+}
+
+function closeCartSummary() {
+  document.getElementById("cartSummary").style.transform = "translateX(100%)";
+}
+
+updateCartCount();
+renderCart();
+</script>
+
+
+</body>
+</html>
