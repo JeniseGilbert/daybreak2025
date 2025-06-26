@@ -1672,7 +1672,19 @@ header img {
     <span>Total:</span>
     <span id="cartTotal">$0.00</span>
   </div>
-  <button onclick="goToCheckout()" style="margin-top: 20px; width: 100%; background: #ffa726; border: none; padding: 12px; font-weight: bold; cursor: pointer;">Checkout</button>
+ <div style="text-align: center; margin-top: 24px;">
+  <button
+    id="checkoutBtn"
+    onclick="goToCheckout()"
+    style="margin-top: 20px; width: 100%; background: #ffa726; border: none; padding: 12px; font-weight: bold; cursor: pointer;"
+  >
+    Checkout
+  </button>
+  <p id="emptyCartMsg" style="color: #ccc; display: none; margin-top: 10px;">
+    Your cart is empty. Add a shirt to continue.
+  </p>
+</div>
+
    <button onclick="closeCartSummary()" class="exit-btn">Exit</button>
 </div>
  
@@ -1784,7 +1796,7 @@ function addToCart(styleId) {
   const backDesignId = backDesign.match(/(\d+)\.png/)?.[1] || "None";
 
   // ✅ Get visible style name from data-style
-  const cardEl = document.querySelector(`[data-style-id="${styleId}"]`);
+const cardEl = document.querySelector(`.shirt-card[data-style="${styleId}"]`);
   const styleName = cardEl?.dataset?.style || styleId || "None";
 
   const price = updatePrice(document.getElementById(`shirtSize-${styleId}`));
@@ -1838,6 +1850,8 @@ function addToCart(styleId) {
   selectedColors[styleId] = null;
   selectedBackDesigns[styleId] = null;
   validateSelections(styleId);
+  updateCheckoutState();
+
 }
 
  
@@ -1935,6 +1949,7 @@ function renderCart() {
 
   cartTotalElem.innerText = `$${total.toFixed(2)}`;
   localStorage.setItem("daybreakShirtCart", JSON.stringify(cart));
+  updateCheckoutState();
   updateCartCount();
 }
 
@@ -1965,7 +1980,7 @@ function removeItem(index) {
 }
  
 function goToCheckout() {
-  window.location.href = "checkout.html";
+  window.location.href = "tshirtcheckout.html";
 }
  
 function closeCartSummary() {
@@ -1976,6 +1991,26 @@ function scrollToShirt(styleId) {
   const el = document.querySelector(`.shirt-card[data-style="${styleId}"]`);
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
+
+function updateCheckoutState() {
+  const cart = JSON.parse(localStorage.getItem('daybreakShirtCart') || '[]');
+  const checkoutBtn = document.getElementById("checkoutBtn");
+  const emptyMsg = document.getElementById("emptyCartMsg");
+
+  if (!cart.length) {
+    checkoutBtn.disabled = true;
+    checkoutBtn.style.opacity = "0.5";
+    checkoutBtn.style.cursor = "not-allowed";
+    emptyMsg.style.display = "block";
+  } else {
+    checkoutBtn.disabled = false;
+    checkoutBtn.style.opacity = "1";
+    checkoutBtn.style.cursor = "pointer";
+    emptyMsg.style.display = "none";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", updateCheckoutState);
  
 // Initialize cart on page load
 updateCartCount();
