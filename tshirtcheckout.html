@@ -399,14 +399,19 @@ function renderCartSummary() {
         Qty: ${item.qty} × $${item.price} = <strong>$${itemTotal}</strong><br>
         <div style="margin-top: 6px;">
           <img src="${item.frontImg}" alt="Front" style="width:60px; height:60px; object-fit:cover; border-radius:6px; margin-right: 8px;">
-${item.backDesign && item.backDesign !== "None"
-  ? `<img src="${item.backDesign}" alt="Back" style="width:60px; height:60px; object-fit:cover; border-radius:6px;">`
-  : ""
-}
+          ${item.backDesign && item.backDesign !== "None"
+            ? `<img src="${item.backDesign}" alt="Back" style="width:60px; height:60px; object-fit:cover; border-radius:6px;">`
+            : ""}
         </div>
       </div>
     `;
   });
+
+  if (cart.length === 0) {
+    container.innerHTML = `<h3>Your Order</h3><p style="color: red;">Your cart is empty. Please add at least one item before continuing.</p>`;
+    document.querySelectorAll(".submit-btn").forEach(btn => btn.disabled = true);
+    return;
+  }
 
   const tax = +(subtotal * 0.0825).toFixed(2);
   const total = +(subtotal + tax).toFixed(2);
@@ -416,7 +421,11 @@ ${item.backDesign && item.backDesign !== "None"
     <p><strong>Tax (8.25%):</strong> $${tax.toFixed(2)}</p>
     <p><strong>Total:</strong> $${total.toFixed(2)}</p>
   `;
+
+  // Re-enable buttons if cart is not empty
+  document.querySelectorAll(".submit-btn").forEach(btn => btn.disabled = false);
 }
+
 
 function toggleDetails(method) {
   document.getElementById("cashappField").style.display = (method === "cashapp") ? "block" : "none";
