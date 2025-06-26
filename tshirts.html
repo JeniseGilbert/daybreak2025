@@ -13,13 +13,13 @@
       padding: 20px;
       margin: 0;
     }
-
+ 
     .style-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
     }
-
+ 
     .shirt-card {
       background: #1f1f1f;
       padding: 16px;
@@ -27,7 +27,7 @@
       text-align: center;
       box-shadow: 0 5px 15px rgba(0,0,0,0.4);
     }
-
+ 
     .shirt-img {
       width: 100%;
       max-width: 260px;
@@ -35,7 +35,7 @@
       object-fit: contain;
       margin: 0 auto 12px;
     }
-
+ 
     .swatch-row {
       display: flex;
       justify-content: center;
@@ -43,7 +43,7 @@
       margin-top: 8px;
       flex-wrap: wrap;
     }
-
+ 
     .swatch {
       width: 24px;
       height: 24px;
@@ -51,16 +51,16 @@
       border: 2px solid #ccc;
       cursor: pointer;
     }
-
+ 
     .swatch:hover {
       transform: scale(1.2);
     }
-
+ 
     .swatch.selected {
       border: 3px solid #ffa726;
       box-shadow: 0 0 5px #ffa726;
     }
-
+ 
     .custom-btn {
       background: #ffa726;
       color: #000;
@@ -71,11 +71,11 @@
       font-weight: bold;
       cursor: pointer;
     }
-
+ 
     .custom-btn:hover {
       background: #ffb84d;
     }
-
+ 
     #backModal {
       display: none;
       position: fixed;
@@ -88,7 +88,7 @@
       justify-content: center;
       align-items: center;
     }
-
+ 
     .modal-content {
       background: #2a2a2a;
       padding: 20px;
@@ -96,7 +96,7 @@
       width: 90%;
       max-width: 500px;
     }
-
+ 
     .back-option {
       width: 80px;
       height: 80px;
@@ -105,28 +105,28 @@
       border-radius: 8px;
       cursor: pointer;
     }
-
+ 
     .back-option.selected {
       border-color: #ffa726;
     }
-
+ 
     .preview {
       margin-top: 8px;
       font-size: 0.9em;
     }
-    
+   
    .qty-wrapper {
   margin: 12px 0;
   text-align: center;
 }
-
+ 
 .qty-wrapper label {
   display: block;
   margin-bottom: 6px;
   font-size: 0.95rem;
   color: #ccc;
 }
-
+ 
 .qty-adjuster {
   display: inline-flex;
   align-items: center;
@@ -135,7 +135,7 @@
   border-radius: 6px;
   overflow: hidden;
 }
-
+ 
 .qty-adjuster button {
   background: transparent;
   border: none;
@@ -147,12 +147,12 @@
   cursor: pointer;
   transition: background 0.2s;
 }
-
+ 
 .qty-adjuster button:hover {
   background: #ffa726;
   color: #000;
 }
-
+ 
 .qty-adjuster input {
   width: 48px;
   text-align: center;
@@ -162,33 +162,33 @@
   font-weight: bold;
   font-size: 1rem;
 }
-
+ 
 .custom-btn:disabled {
   background: #555;
   color: #999;
   cursor: not-allowed;
   opacity: 0.6;
 }
-
+ 
 .price-container {
   position: relative;
   display: inline-block;
 }
-
-
-
+ 
+ 
+ 
 .size-picker {
   margin: 12px 0;
   text-align: center;
 }
-
+ 
 .size-picker label {
   display: block;
   margin-bottom: 6px;
   font-size: 0.95rem;
   color: #ccc;
 }
-
+ 
 .size-picker select {
   width: 100%;
   max-width: 160px;
@@ -204,12 +204,12 @@
   cursor: pointer;
   transition: border 0.3s ease;
 }
-
+ 
 .size-picker select:focus,
 .size-picker select:hover {
   border-color: #ffb84d;
 }
-
+ 
 #cartIcon {
   position: fixed;
   top: 30px;
@@ -223,7 +223,7 @@
   z-index: 1000;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
-
+ 
 #cartPanel {
   position: fixed;
   right: -100%;
@@ -238,16 +238,16 @@
   z-index: 999;
   box-shadow: -4px 0 10px rgba(0,0,0,0.4);
 }
-
+ 
 #cartPanel.open {
   right: 0;
 }
-
+ 
 #cartPanel h2 {
   margin-top: 0;
   color: #ffa726;
 }
-
+ 
 .cart-item {
   background: #2a2a2a;
   padding: 12px;
@@ -255,7 +255,7 @@
   border-radius: 10px;
   font-size: 0.9em;
 }
-
+ 
 .cart-item img {
   width: 60px;
   height: 60px;
@@ -263,7 +263,7 @@
   object-fit: cover;
   margin-bottom: 6px;
 }
-
+ 
 #cartCount {
   background: red;
   color: #fff;
@@ -273,7 +273,7 @@
   vertical-align: top;
   margin-left: 4px;
 }
-
+ 
 .cart-item-group {
   padding: 10px;
   background: #1a1a1a;
@@ -284,20 +284,20 @@
   flex-direction: column;
   gap: 6px;
 }
-
+ 
 .cart-item-details {
   font-weight: bold;
   display: flex;
   align-items: center;
   gap: 6px;
 }
-
+ 
 .cart-meta {
   font-weight: normal;
   color: #ccc;
   font-size: 0.9em;
 }
-
+ 
 .cart-controls-row {
   display: flex;
   align-items: center;
@@ -305,24 +305,24 @@
   gap: 10px;
   flex-wrap: wrap;
 }
-
+ 
 .cart-price {
   font-weight: bold;
   font-size: 0.95em;
   white-space: nowrap;
 }
-
+ 
 .cart-qty {
   min-width: 20px;
   text-align: center;
 }
-
+ 
 .qty-adjuster-sm {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-
+ 
 .qty-adjuster-sm button {
   padding: 4px 10px;
   font-size: 14px;
@@ -333,7 +333,7 @@
   cursor: pointer;
   font-weight: bold;
 }
-
+ 
 .remove-btn {
   background: none;
   border: none;
@@ -341,15 +341,15 @@
   font-size: 18px;
   cursor: pointer;
 }
-
-
-
+ 
+ 
+ 
 .grand-total {
   font-weight: bold;
   text-align: right;
   margin-top: 10px;
 }
-
+ 
 .checkout-btn {
   background: #ffa726;
   color: #000;
@@ -361,7 +361,7 @@
   margin-top: 12px;
   cursor: pointer;
 }
-
+ 
 .exit-btn {
   margin-top: 10px;
   padding: 10px 16px;
@@ -373,12 +373,12 @@
   cursor: pointer;
   width: 100%;
 }
-
+ 
 .exit-btn:hover {
   background-color: #bbb;
 }
-
-
+ 
+ 
 .toast {
   visibility: hidden;
   min-width: 260px;
@@ -400,7 +400,7 @@
   visibility: visible;
   opacity: 1;
 }
-
+ 
 .lookbook-scroll {
   overflow-x: auto;
   white-space: nowrap;
@@ -408,13 +408,13 @@
   background: #1c1c1c;
   border-bottom: 2px solid #ffa726;
 }
-
+ 
 .lookbook-track {
   display: flex;
   gap: 14px;
   padding: 0 12px;
 }
-
+ 
 .lookbook-item {
   display: flex;
   flex-direction: column;
@@ -425,7 +425,7 @@
   font-size: 13px;
   text-align: center;
 }
-
+ 
 .lookbook-item img {
   width: 60px;
   height: 60px;
@@ -435,36 +435,36 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.4);
   transition: transform 0.2s ease;
 }
-
+ 
 .lookbook-item:hover img {
   transform: scale(1.05);
   border-color: #ffa726;
 }
-
-
-
+ 
+ 
+ 
 @media (max-width: 480px) {
   #cartSummary {
     padding: 10px;
     font-size: 0.9rem;
   }
-
+ 
   #cartSummary img {
     width: 40px;
   }
-
+ 
   #cartSummary button {
     font-size: 0.85rem;
     padding: 10px;
   }
 }
-
+ 
   </style>
 </head>
 <body>
-
+ 
 <h1>Daybreak Tees</h1>
-
+ 
 <div class="lookbook-scroll">
   <div class="lookbook-track">
     <div class="lookbook-item" onclick="scrollToShirt('Trinidad')">
@@ -525,17 +525,17 @@
     </div>
   </div>
 </div>
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 <div class="style-grid">
 <!-- CARD TEMPLATE (Trinidad) -->
   <div class="shirt-card" data-style="Trinidad">
    <img id="img-Trinidad" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/8.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-Trinidad">Size:</label>
   <div class="custom-select-wrapper">
@@ -550,13 +550,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
       <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('8', 'img-Trinidad', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('1', 'img-Trinidad', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('2', 'img-Trinidad', 'Red')"></span>
@@ -567,46 +567,46 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('7', 'img-Trinidad', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-Trinidad" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
   <label for="shirtQty-Trinidad">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-Trinidad', -1); validateSelections('Trinidad')">−</button>
-    
+   
     <input type="number" id="shirtQty-Trinidad" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-Trinidad', 1); validateSelections('Trinidad')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-Trinidad" value="yes" onclick="openBackModal('Trinidad'); validateSelections('Trinidad')"> Yes</label>
 <label><input type="radio" name="backDesign-Trinidad" value="no" onclick="handleBackDesignChoice(false, 'Trinidad'); validateSelections('Trinidad')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-Trinidad">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-Trinidad" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-Trinidad" data-style="Trinidad" onclick="addToCart('Trinidad')" disabled>Add to Cart</button>
 </div>
-
-
-
-
+ 
+ 
+ 
+ 
   <!-- CARD TEMPLATE (Dominica) -->
   <div class="shirt-card" data-style="Dominica">
    <img id="img-Dominica" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/16.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-Dominica">Size:</label>
   <div class="custom-select-wrapper">
@@ -621,13 +621,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
       <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('16', 'img-Dominica', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('9', 'img-Dominica', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('10', 'img-Dominica', 'Red')"></span>
@@ -638,47 +638,47 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('15', 'img-Dominica', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-Dominica" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
   <label for="shirtQty-Dominica">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-Dominica', -1); validateSelections('Dominica')">−</button>
-    
+   
     <input type="number" id="shirtQty-Dominica" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-Dominica', 1); validateSelections('Dominica')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-Dominica" value="yes" onclick="openBackModal('Dominica'); validateSelections('Dominica')"> Yes</label>
 <label><input type="radio" name="backDesign-Dominica" value="no" onclick="handleBackDesignChoice(false, 'Dominica'); validateSelections('Dominica')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-Dominica">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-Dominica" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-Dominica" data-style="Dominica" onclick="addToCart('Dominica')" disabled>Add to Cart</button>
 </div>
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 <!-- CARD TEMPLATE (St.Lucia) -->
   <div class="shirt-card" data-style="St.Lucia">
    <img id="img-St.Lucia" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/24.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-St.Lucia">Size:</label>
   <div class="custom-select-wrapper">
@@ -693,13 +693,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
       <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('24', 'img-St.Lucia', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('17', 'img-St.Lucia', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('18', 'img-St.Lucia', 'Red')"></span>
@@ -710,44 +710,44 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('23', 'img-St.Lucia', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-St.Lucia" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
   <label for="shirtQty-St.Lucia">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-St.Lucia', -1); validateSelections('St.Lucia')">−</button>
-    
+   
     <input type="number" id="shirtQty-St.Lucia" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-St.Lucia', 1); validateSelections('St.Lucia')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-St.Lucia" value="yes" onclick="openBackModal('St.Lucia'); validateSelections('St.Lucia')"> Yes</label>
 <label><input type="radio" name="backDesign-St.Lucia" value="no" onclick="handleBackDesignChoice(false, 'St.Lucia'); validateSelections('St.Lucia')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-St.Lucia">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-St.Lucia" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-St.Lucia" data-style="St.Lucia" onclick="addToCart('St.Lucia')" disabled>Add to Cart</button>
 </div>
-
-
+ 
+ 
 <!-- CARD TEMPLATE (VI) -->
   <div class="shirt-card" data-style="VI">
    <img id="img-VI" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/32.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-VI">Size:</label>
   <div class="custom-select-wrapper">
@@ -762,13 +762,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
       <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('32', 'img-VI', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('25', 'img-VI', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('26', 'img-VI', 'Red')"></span>
@@ -779,45 +779,45 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('31', 'img-VI', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-VI" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
   <label for="shirtQty-VI">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-VI', -1); validateSelections('VI')">−</button>
-    
+   
     <input type="number" id="shirtQty-VI" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-VI', 1); validateSelections('VI')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-VI" value="yes" onclick="openBackModal('VI'); validateSelections('VI')"> Yes</label>
 <label><input type="radio" name="backDesign-VI" value="no" onclick="handleBackDesignChoice(false, 'VI'); validateSelections('VI')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-VI">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-VI" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-VI" data-style="VI" onclick="addToCart('VI')" disabled>Add to Cart</button>
 </div>
-
-
-
+ 
+ 
+ 
 <!-- CARD TEMPLATE (Grenada) -->
   <div class="shirt-card" data-style="Grenada">
    <img id="img-Grenada" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/40.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-Grenada">Size:</label>
   <div class="custom-select-wrapper">
@@ -832,13 +832,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
       <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('40', 'img-Grenada', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('33', 'img-Grenada', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('34', 'img-Grenada', 'Red')"></span>
@@ -849,44 +849,44 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('39', 'img-Grenada', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-Grenada" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
   <label for="shirtQty-Grenada">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-Grenada', -1); validateSelections('Grenada')">−</button>
-    
+   
     <input type="number" id="shirtQty-Grenada" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-Grenada', 1); validateSelections('Grenada')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-Grenada" value="yes" onclick="openBackModal('Grenada'); validateSelections('Grenada')"> Yes</label>
 <label><input type="radio" name="backDesign-Grenada" value="no" onclick="handleBackDesignChoice(false, 'Grenada'); validateSelections('Grenada')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-Grenada">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-Grenada" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-Grenada" data-style="Grenada" onclick="addToCart('Grenada')" disabled>Add to Cart</button>
 </div>
-
-
+ 
+ 
 <!-- CARD TEMPLATE (Guyana) -->
   <div class="shirt-card" data-style="Guyana">
    <img id="img-Guyana" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/48.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-Guyana">Size:</label>
   <div class="custom-select-wrapper">
@@ -901,13 +901,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
       <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('48', 'img-Guyana', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('41', 'img-Guyana', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('42', 'img-Guyana', 'Red')"></span>
@@ -918,47 +918,47 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('47', 'img-Guyana', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-Guyana" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
   <label for="shirtQty-Guyana">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-Guyana', -1); validateSelections('Guyana')">−</button>
-    
+   
     <input type="number" id="shirtQty-Guyana" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-Guyana', 1); validateSelections('Guyana')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-Guyana" value="yes" onclick="openBackModal('Guyana'); validateSelections('Guyana')"> Yes</label>
 <label><input type="radio" name="backDesign-Guyana" value="no" onclick="handleBackDesignChoice(false, 'Guyana'); validateSelections('Guyana')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-Guyana">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-Guyana" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-Guyana" data-style="Guyana" onclick="addToCart('Guyana')" disabled>Add to Cart</button>
 </div>
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 <!-- CARD TEMPLATE (Jamaica) -->
   <div class="shirt-card" data-style="Jamaica">
    <img id="img-Jamaica" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/56.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-Jamaica">Size:</label>
   <div class="custom-select-wrapper">
@@ -973,13 +973,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
       <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('56', 'img-Jamaica', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('49', 'img-Jamaica', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('50', 'img-Jamaica', 'Red')"></span>
@@ -990,46 +990,46 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('55', 'img-Jamaica', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-Jamaica" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
   <label for="shirtQty-Jamaica">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-Jamaica', -1); validateSelections('Jamaica')">−</button>
-    
+   
     <input type="number" id="shirtQty-Jamaica" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-Jamaica', 1); validateSelections('Jamaica')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-Jamaica" value="yes" onclick="openBackModal('Jamaica'); validateSelections('Jamaica')"> Yes</label>
 <label><input type="radio" name="backDesign-Jamaica" value="no" onclick="handleBackDesignChoice(false, 'Jamaica'); validateSelections('Jamaica')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-Jamaica">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-Jamaica" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-Jamaica" data-style="Jamaica" onclick="addToCart('Jamaica')" disabled>Add to Cart</button>
 </div>
-
-
-
-
- <!-- CARD TEMPLATE (USA) -->
+ 
+ 
+ 
+ 
+<!-- CARD TEMPLATE (USA) -->
   <div class="shirt-card" data-style="USA">
    <img id="img-USA" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/64.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-USA">Size:</label>
   <div class="custom-select-wrapper">
@@ -1044,13 +1044,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
       <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('64', 'img-USA', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('57', 'img-USA', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('58', 'img-USA', 'Red')"></span>
@@ -1061,47 +1061,47 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('63', 'img-USA', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-USA" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
   <label for="shirtQty-USA">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-USA', -1); validateSelections('USA')">−</button>
-    
+   
     <input type="number" id="shirtQty-USA" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-USA', 1); validateSelections('USA')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-USA" value="yes" onclick="openBackModal('USA'); validateSelections('USA')"> Yes</label>
 <label><input type="radio" name="backDesign-USA" value="no" onclick="handleBackDesignChoice(false, 'USA'); validateSelections('USA')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-USA">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-USA" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-USA" data-style="USA" onclick="addToCart('USA')" disabled>Add to Cart</button>
 </div>
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
   <!-- CARD TEMPLATE (Daybreak-1) -->
   <div class="shirt-card" data-style="Daybreak-1">
    <img id="img-Daybreak-1" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/72.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-Daybreak-1">Size:</label>
   <div class="custom-select-wrapper">
@@ -1116,13 +1116,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
       <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('72', 'img-Daybreak-1', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('65', 'img-Daybreak-1', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('66', 'img-Daybreak-1', 'Red')"></span>
@@ -1133,49 +1133,49 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('71', 'img-Daybreak-1', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-Daybreak-1" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
   <label for="shirtQty-Daybreak-1">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-Daybreak-1', -1); validateSelections('Daybreak-1')">−</button>
-    
+   
     <input type="number" id="shirtQty-Daybreak-1" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-Daybreak-1', 1); validateSelections('Daybreak-1')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-Daybreak-1" value="yes" onclick="openBackModal('Daybreak-1'); validateSelections('Daybreak-1')"> Yes</label>
 <label><input type="radio" name="backDesign-Daybreak-1" value="no" onclick="handleBackDesignChoice(false, 'Daybreak-1'); validateSelections('Daybreak-1')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-Daybreak-1">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-Daybreak-1" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-Daybreak-1" data-style="Daybreak-1" onclick="addToCart('Daybreak-1')" disabled>Add to Cart</button>
 </div>
-
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 <!-- CARD TEMPLATE (Daybreak-2) -->
   <div class="shirt-card" data-style="Daybreak-2">
    <img id="img-Daybreak-2" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/80.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-Daybreak-2">Size:</label>
   <div class="custom-select-wrapper">
@@ -1190,13 +1190,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
       <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('80', 'img-Daybreak-2', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('73', 'img-Daybreak-2', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('74', 'img-Daybreak-2', 'Red')"></span>
@@ -1207,45 +1207,45 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('79', 'img-Daybreak-2', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-Daybreak-2" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
-  <label for="shirtQty-Daybreak-2">Qty:</label>
+ <label for="shirtQty-Daybreak-2">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-Daybreak-2', -1); validateSelections('Daybreak-2')">−</button>
-    
+   
     <input type="number" id="shirtQty-Daybreak-2" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-Daybreak-2', 1); validateSelections('Daybreak-2')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-Daybreak-2" value="yes" onclick="openBackModal('Daybreak-2'); validateSelections('Daybreak-2')"> Yes</label>
 <label><input type="radio" name="backDesign-Daybreak-2" value="no" onclick="handleBackDesignChoice(false, 'Daybreak-2'); validateSelections('Daybreak-2')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-Daybreak-2">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-Daybreak-2" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-Daybreak-2" data-style="Daybreak-2" onclick="addToCart('Daybreak-2')" disabled>Add to Cart</button>
 </div>
-
-
-
+ 
+ 
+ 
 <!-- CARD TEMPLATE (Daybreakers) -->
   <div class="shirt-card" data-style="Daybreakers">
    <img id="img-Daybreakers" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/88.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-Daybreakers">Size:</label>
   <div class="custom-select-wrapper">
@@ -1260,13 +1260,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
       <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('88', 'img-Daybreakers', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('81', 'img-Daybreakers', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('82', 'img-Daybreakers', 'Red')"></span>
@@ -1277,45 +1277,45 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('87', 'img-Daybreakers', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-Daybreakers" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
   <label for="shirtQty-Daybreakers">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-Daybreakers', -1); validateSelections('Daybreakers')">−</button>
-    
+   
     <input type="number" id="shirtQty-Daybreakers" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-Daybreakers', 1); validateSelections('Daybreakers')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-Daybreakers" value="yes" onclick="openBackModal('Daybreakers'); validateSelections('Daybreakers')"> Yes</label>
 <label><input type="radio" name="backDesign-Daybreakers" value="no" onclick="handleBackDesignChoice(false, 'Daybreakers'); validateSelections('Daybreakers')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-Daybreakers">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-Daybreakers" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-Daybreakers" data-style="Daybreakers" onclick="addToCart('Daybreakers')" disabled>Add to Cart</button>
 </div>
-
-
-
- <!-- CARD TEMPLATE (DFR-Green) -->
+ 
+ 
+ 
+<!-- CARD TEMPLATE (DFR-Green) -->
   <div class="shirt-card" data-style="DFR-Green">
    <img id="img-DFR-Green" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/96.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-DFR-Green">Size:</label>
   <div class="custom-select-wrapper">
@@ -1330,13 +1330,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
-      <label>Color:</label>
+     <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('96', 'img-DFR-Green', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('89', 'img-DFR-Green', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('90', 'img-DFR-Green', 'Red')"></span>
@@ -1347,47 +1347,47 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('95', 'img-DFR-Green', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-DFR-Green" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
   <label for="shirtQty-DFR-Green">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-DFR-Green', -1); validateSelections('DFR-Green')">−</button>
-    
+   
     <input type="number" id="shirtQty-DFR-Green" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-DFR-Green', 1); validateSelections('DFR-Green')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-DFR-Green" value="yes" onclick="openBackModal('DFR-Green'); validateSelections('DFR-Green')"> Yes</label>
 <label><input type="radio" name="backDesign-DFR-Green" value="no" onclick="handleBackDesignChoice(false, 'DFR-Green'); validateSelections('DFR-Green')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-DFR-Green">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-DFR-Green" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-DFR-Green" data-style="DFR-Green" onclick="addToCart('DFR-Green')" disabled>Add to Cart</button>
 </div>
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 <!-- CARD TEMPLATE (DFR-Purple) -->
   <div class="shirt-card" data-style="DFR-Purple">
    <img id="img-DFR-Purple" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/104.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-DFR-Purple">Size:</label>
   <div class="custom-select-wrapper">
@@ -1402,13 +1402,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
       <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('104', 'img-DFR-Purple', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('97', 'img-DFR-Purple', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('98', 'img-DFR-Purple', 'Red')"></span>
@@ -1419,53 +1419,53 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('103', 'img-DFR-Purple', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-DFR-Purple" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
   <label for="shirtQty-DFR-Purple">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-DFR-Purple', -1); validateSelections('DFR-Purple')">−</button>
-    
+   
     <input type="number" id="shirtQty-DFR-Purple" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-DFR-Purple', 1); validateSelections('DFR-Purple')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-DFR-Purple" value="yes" onclick="openBackModal('DFR-Purple'); validateSelections('DFR-Purple')"> Yes</label>
 <label><input type="radio" name="backDesign-DFR-Purple" value="no" onclick="handleBackDesignChoice(false, 'DFR-Purple'); validateSelections('DFR-Purple')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-DFR-Purple">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-DFR-Purple" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-DFR-Purple" data-style="DFR-Purple" onclick="addToCart('DFR-Purple')" disabled>Add to Cart</button>
 </div>
-
-
-
-
+ 
+ 
+ 
+ 
 <!-- CARD TEMPLATE (DVR-Purple) -->
   <div class="shirt-card" data-style="DVR-Purple">
    <img id="img-DVR-Purple" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/112.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
-
-
+ 
+ 
     <div class="size-picker">
   <label for="shirtSize-DVR-Purple">Size:</label>
   <div class="custom-select-wrapper">
     <select id="shirtSize-DVR-Purple" onchange="validateSelections('DVR-Purple'); updatePrice(this)">
   <option value="" disabled selected>Select a Size</option>
       <option>Small</option>
-      <option>Medium</option>
+     <option>Medium</option>
       <option>Large</option>
       <option>XL</option>
       <option>2XL +$2</option>
@@ -1473,13 +1473,13 @@
     </select>
   </div>
 </div>
-
-
-
+ 
+ 
+ 
     <div class="color-picker">
       <label>Color:</label>
       <div class="swatch-row">
-        
+       
   <span class="swatch" style="background:#000000" onclick="changeColor('112', 'img-DVR-Purple', 'Black')"></span>
   <span class="swatch" style="background:#f6cb48" onclick="changeColor('105', 'img-DVR-Purple', 'Yellow')"></span>
   <span class="swatch" style="background:#d11631" onclick="changeColor('106', 'img-DVR-Purple', 'Red')"></span>
@@ -1490,49 +1490,49 @@
   <span class="swatch" style="background:#ffffff" onclick="changeColor('111', 'img-DVR-Purple', 'White')"></span>
       </div>
       <input type="hidden" id="shirtColor-DVR-Purple" value="">
-
+ 
     </div>
-
+ 
    <div class="qty-wrapper">
   <label for="shirtQty-DVR-Purple">Qty:</label>
   <div class="qty-adjuster">
     <button onclick="adjustQty('shirtQty-DVR-Purple', -1); validateSelections('DVR-Purple')">−</button>
-    
+   
     <input type="number" id="shirtQty-DVR-Purple" min="0" value="0" readonly>
     <button onclick="adjustQty('shirtQty-DVR-Purple', 1); validateSelections('DVR-Purple')">+</button>
-
+ 
   </div>
 </div>
-
-
+ 
+ 
     <div class="back-design-toggle">
       <label>Want a Back Design (+$5)?</label><br>
       <label><input type="radio" name="backDesign-DVR-Purple" value="yes" onclick="openBackModal('DVR-Purple'); validateSelections('DVR-Purple')"> Yes</label>
 <label><input type="radio" name="backDesign-DVR-Purple" value="no" onclick="handleBackDesignChoice(false, 'DVR-Purple'); validateSelections('DVR-Purple')"> No</label>
-
+ 
     </div>
-
+ 
     <div class="preview" id="backPreview-DVR-Purple">No back design selected</div><br>
-    
+   
   <div class="price-container">
   <div id="priceDisplay-DVR-Purple" class="priceDisplay">Starting at $13</div>
 </div>
-
-  
+ 
+ 
     <br><button class="custom-btn" id="addToCart-DVR-Purple" data-style="DVR-Purple" onclick="addToCart('DVR-Purple')" disabled>Add to Cart</button>
 </div>
-
-
-
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 </div>
-  
-
+ 
+ 
 <!-- SHARED BACK DESIGN MODAL -->
 <div id="backModal">
   <div class="modal-content">
@@ -1556,29 +1556,26 @@
     <button class="custom-btn" onclick="closeBackModal()">Done</button>
   </div>
 </div>
-
+ 
 <!--Image expand Modal-->
 <div id="imageModal" style="display: none; position: fixed; z-index: 99999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center;">
   <span onclick="closeImageModal()" style="position: absolute; top: 20px; right: 30px; color: #fff; font-size: 30px; cursor: pointer;">×</span>
   <img id="modalImage" src="" style="max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.3);">
 </div>
+ 
 
-<div id="imageModal" style="display: none; position: fixed; z-index: 99999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center;">
-  <span onclick="closeImageModal()" style="position: absolute; top: 20px; right: 30px; color: #fff; font-size: 30px; cursor: pointer;">×</span>
-  <img id="modalImage" src="" style="max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.3);">
-</div>
-
-
-
+ 
+ 
+ 
 <!-- Cart Icon -->
 <div id="cartIconWrapper" onclick="toggleCartSummary()" style="position: fixed; top: 20px; right: 20px; z-index: 1000; cursor: pointer;">
   <img src="https://img.icons8.com/ios-filled/30/ffffff/shopping-bag.png" alt="Cart Icon"/>
   <div id="cartCount" style="position: absolute; top: -6px; right: -6px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">0</div>
 </div>
-
-
-
-
+ 
+ 
+ 
+ 
 <!-- Slide-in Cart Panel -->
 <div id="cartSummary" style="position: fixed; top: 0; right: 0; height: 100vh; width: 300px; background: #000; color: #fff; box-shadow: -2px 0 10px rgba(0,0,0,0.2); padding: 20px; overflow-y: auto; z-index: 999; transform: translateX(100%); transition: transform 0.3s ease;">
   <h2>Cart Summary</h2>
@@ -1591,280 +1588,306 @@
   <button onclick="goToCheckout()" style="margin-top: 20px; width: 100%; background: #ffa726; border: none; padding: 12px; font-weight: bold; cursor: pointer;">Checkout</button>
    <button onclick="closeCartSummary()" class="exit-btn">Exit</button>
 </div>
-
-
+ 
+ 
 <!--Toast-->
 <div id="toast" class="toast">Please complete all required selections.</div>
-
-
-
+ 
+ 
+ 
 <script>
-
+ 
 let selectedBackDesign = "";
 let activeStyleId = "";
 const selectedColors = {};
 const selectedBackDesigns = {};
-let cart = JSON.parse(localStorage.getItem("daybreakCart") || "[]");
-
+let cart = JSON.parse(localStorage.getItem('daybreakShirtCart') || '[]');
+ 
 function changeColor(imgNumber, imgId, colorName) {
-  const img = document.getElementById(imgId);
-  img.src = `https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/${imgNumber}.png`;
-  const card = img.closest(".shirt-card");
-  const swatches = card.querySelectorAll(".swatch");
-  swatches.forEach(s => s.classList.remove("selected"));
-  event.target.classList.add("selected");
-  card.dataset.selectedColor = colorName;
-  const styleId = card.dataset.style;
-  selectedColors[styleId] = colorName;
+  const img = document.getElementById(imgId);
+  img.src = `https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/${imgNumber}.png`;
+  const card = img.closest(".shirt-card");
+  const swatches = card.querySelectorAll(".swatch");
+  swatches.forEach(s => s.classList.remove("selected"));
+  event.target.classList.add("selected");
+  card.dataset.selectedColor = colorName;
+  const styleId = card.dataset.style;
+  selectedColors[styleId] = colorName;
 document.getElementById(`shirtColor-${styleId}`).value = colorName;
 validateSelections(styleId);
-  
+ 
 }
-
+ 
 function openBackModal(styleId) {
-  activeStyleId = styleId;
-  document.getElementById('backModal').style.display = 'flex';
+  activeStyleId = styleId;
+  document.getElementById('backModal').style.display = 'flex';
 }
-
+ 
 function closeBackModal() {
-  document.getElementById('backModal').style.display = 'none';
+  document.getElementById('backModal').style.display = 'none';
 }
-
+ 
 function selectBack(elem, imagePath) {
-  document.querySelectorAll('.back-option').forEach(opt => opt.classList.remove('selected'));
-  elem.classList.add('selected');
-  selectedBackDesign = imagePath;
-  selectedBackDesigns[activeStyleId] = imagePath;
-  const preview = document.getElementById(`backPreview-${activeStyleId}`);
-  preview.innerHTML = `
-    <div style="margin-top: 10px;">
-      <small>Back Design:</small><br>
-      <img src="${selectedBackDesign}" style="width:60px; height:60px; border-radius:6px; border:1px solid #ccc;">
-    </div>
-  `;
-  const sizeSelect = document.getElementById(`shirtSize-${activeStyleId}`);
-  updatePrice(sizeSelect);
-  closeBackModal();
+  document.querySelectorAll('.back-option').forEach(opt => opt.classList.remove('selected'));
+  elem.classList.add('selected');
+  selectedBackDesign = imagePath;
+  selectedBackDesigns[activeStyleId] = imagePath;
+  const preview = document.getElementById(`backPreview-${activeStyleId}`);
+  preview.innerHTML = `
+    <div style="margin-top: 10px;">
+      <small>Back Design:</small><br>
+      <img src="${selectedBackDesign}" style="width:60px; height:60px; border-radius:6px; border:1px solid #ccc;">
+    </div>
+  `;
+  const sizeSelect = document.getElementById(`shirtSize-${activeStyleId}`);
+  updatePrice(sizeSelect);
+  closeBackModal();
 }
-
+ 
 function handleBackDesignChoice(wantsDesign, styleId) {
-  if (!wantsDesign) {
-    selectedBackDesign = "";
-    selectedBackDesigns[styleId] = null;
-    document.getElementById(`backPreview-${styleId}`).innerText = "No back design selected";
-    const size = document.getElementById(`shirtSize-${styleId}`);
-    updatePrice(size);
-  }
+  if (!wantsDesign) {
+    selectedBackDesign = "";
+    selectedBackDesigns[styleId] = null;
+    document.getElementById(`backPreview-${styleId}`).innerText = "No back design selected";
+    const size = document.getElementById(`shirtSize-${styleId}`);
+    updatePrice(size);
+  }
 }
-
+ 
 function updatePrice(selectElem) {
-  const card = selectElem.closest('.shirt-card');
-  const styleId = card.dataset.style;
-  const size = document.getElementById(`shirtSize-${styleId}`).value;
-  const qtyInput = document.getElementById(`shirtQty-${styleId}`);
-  const qty = parseInt(qtyInput?.value || 1, 10);
-  const priceDisplay = document.getElementById(`priceDisplay-${styleId}`);
-  const radios = document.getElementsByName(`backDesign-${styleId}`);
-  const wantsBack = [...radios].find(r => r.checked && r.value === "yes");
-  let basePrice = (["2XL +$2", "3XL +$2"].includes(size)) ? 15 : 13;
-  let finalPrice = basePrice;
-  if (wantsBack && selectedBackDesigns[styleId]) {
-    finalPrice += 5;
-  }
-  const totalPrice = finalPrice * (isNaN(qty) ? 1 : qty);
-  priceDisplay.innerText = `Price: $${finalPrice} × ${qty} = $${totalPrice}`;
-  return finalPrice;
+  const card = selectElem.closest('.shirt-card');
+  const styleId = card.dataset.style;
+  const size = document.getElementById(`shirtSize-${styleId}`).value;
+  const qtyInput = document.getElementById(`shirtQty-${styleId}`);
+  const qty = parseInt(qtyInput?.value || 1, 10);
+  const priceDisplay = document.getElementById(`priceDisplay-${styleId}`);
+  const radios = document.getElementsByName(`backDesign-${styleId}`);
+  const wantsBack = [...radios].find(r => r.checked && r.value === "yes");
+  let basePrice = (["2XL +$2", "3XL +$2"].includes(size)) ? 15 : 13;
+  let finalPrice = basePrice;
+  if (wantsBack && selectedBackDesigns[styleId]) {
+    finalPrice += 5;
+  }
+  const totalPrice = finalPrice * (isNaN(qty) ? 1 : qty);
+  priceDisplay.innerText = `Price: $${finalPrice} × ${qty} = $${totalPrice}`;
+  return finalPrice;
 }
-
-
-
+ 
+ 
+ 
 function addToCart(styleId) {
-  const size = document.getElementById(`shirtSize-${styleId}`).value;
-  const qty = parseInt(document.getElementById(`shirtQty-${styleId}`).value, 10);
-  const color = selectedColors[styleId] || "";
-  const frontImgEl = document.getElementById(`img-${styleId}`);
-  const frontImg = frontImgEl ? frontImgEl.src : "";
-  const backDesign = selectedBackDesigns[styleId] || null;
-  const backDesignId = backDesign ? backDesign.match(/(\d+)\.png/)?.[1] : null;
-  const price = updatePrice(document.getElementById(`shirtSize-${styleId}`));
-  const newItem = {
-    type: "shirt",            // ✅ distinguish this item in checkout
-    style: styleId,
-    styleId,
-    size,
-    qty,
-    color,
-    price,
-    frontImg,
-    backDesign,
-    backDesignId
-  };
-  cart.push(newItem);
-  localStorage.setItem("daybreakCart", JSON.stringify(cart));
-  updateCartCount();
-  showToast("Item added to cart!");
-  renderCart();
-  if (typeof updateCartSummary === 'function') {
-    updateCartSummary();
-  }
+  const size = document.getElementById(`shirtSize-${styleId}`).value;
+  const qty = parseInt(document.getElementById(`shirtQty-${styleId}`).value, 10);
+  const color = selectedColors[styleId] || "";
 
-  // === FULL RESET LOGIC ===
-  const sizeSelect = document.getElementById(`shirtSize-${styleId}`);
-  sizeSelect.selectedIndex = 0;
-  const qtyInput = document.getElementById(`shirtQty-${styleId}`);
-  qtyInput.value = 0;
-  const addBtn = document.getElementById(`addToCart-${styleId}`);
-  addBtn.disabled = true;
-  const card = document.querySelector(`.shirt-card[data-style="${styleId}"]`);
-  const swatches = card.querySelectorAll(".swatch");
-  swatches.forEach(sw => sw.classList.remove("selected"));
-  document.getElementById(`img-${styleId}`).src = `https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/16.png`;
-  const backRadios = document.querySelectorAll(`input[name="backDesign-${styleId}"]`);
-  backRadios.forEach(r => r.checked = false);
-  document.getElementById(`backPreview-${styleId}`).innerText = "No back design selected";
-  document.getElementById(`priceDisplay-${styleId}`).innerText = "Starting at $13";
-  document.getElementById(`shirtColor-${styleId}`).value = "";
+  // Get front image
+  const frontImgEl = document.getElementById(`img-${styleId}`);
+  const frontImg = frontImgEl ? frontImgEl.src : "None";
 
-  selectedColors[styleId] = null;
-  selectedBackDesigns[styleId] = null;
-  validateSelections(styleId);
+  // Get back design
+  const backDesign = selectedBackDesigns[styleId] || "None";
+  const backDesignId = backDesign.match(/(\d+)\.png/)?.[1] || "None";
+
+  // ✅ Get visible style name from data-style
+  const cardEl = document.querySelector(`[data-style-id="${styleId}"]`);
+  const styleName = cardEl?.dataset?.style || styleId || "None";
+
+  const price = updatePrice(document.getElementById(`shirtSize-${styleId}`));
+
+  const newItem = {
+    type: "shirt",
+    style: styleName,
+    styleId,
+    size,
+    qty,
+    color,
+    price,
+    frontImg,
+    backDesign,
+    backDesignId
+  };
+
+  cart.push(newItem);
+  localStorage.setItem("daybreakShirtCart", JSON.stringify(cart));
+  updateCartCount();
+  showToast("Item added to cart!");
+  renderCart();
+
+  if (typeof updateCartSummary === 'function') {
+    updateCartSummary();
+  }
+
+  // ✅ === FULL RESET LOGIC (INSIDE the function now) ===
+  const sizeSelect = document.getElementById(`shirtSize-${styleId}`);
+  sizeSelect.selectedIndex = 0;
+
+  const qtyInput = document.getElementById(`shirtQty-${styleId}`);
+  qtyInput.value = 0;
+
+  const addBtn = document.getElementById(`addToCart-${styleId}`);
+  addBtn.disabled = true;
+
+  const card = document.querySelector(`.shirt-card[data-style="${styleId}"]`);
+  const swatches = card.querySelectorAll(".swatch");
+  swatches.forEach(sw => sw.classList.remove("selected"));
+
+  document.getElementById(`img-${styleId}`).src = `https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/16.png`;
+
+  const backRadios = document.querySelectorAll(`input[name="backDesign-${styleId}"]`);
+  backRadios.forEach(r => r.checked = false);
+
+  document.getElementById(`backPreview-${styleId}`).innerText = "No back design selected";
+  document.getElementById(`priceDisplay-${styleId}`).innerText = "Starting at $13";
+  document.getElementById(`shirtColor-${styleId}`).value = "";
+
+  selectedColors[styleId] = null;
+  selectedBackDesigns[styleId] = null;
+  validateSelections(styleId);
 }
 
+ 
 function adjustQty(inputId, change) {
-  const input = document.getElementById(inputId);
-  let value = parseInt(input.value, 10);
-  if (isNaN(value)) value = 0;
-  value += change;
-  value = Math.max(0, value);
-  input.value = value;
-  const styleId = inputId.replace('shirtQty-', '');
-  const btn = document.getElementById(`addToCart-${styleId}`);
-  btn.disabled = value === 0;
-  const sizeSelect = document.getElementById(`shirtSize-${styleId}`);
-  updatePrice(sizeSelect);
+  const input = document.getElementById(inputId);
+  let value = parseInt(input.value, 10);
+  if (isNaN(value)) value = 0;
+  value += change;
+  value = Math.max(0, value);
+  input.value = value;
+  const styleId = inputId.replace('shirtQty-', '');
+  const btn = document.getElementById(`addToCart-${styleId}`);
+  btn.disabled = value === 0;
+  const sizeSelect = document.getElementById(`shirtSize-${styleId}`);
+  updatePrice(sizeSelect);
 }
-
+ 
 function validateSelections(styleId) {
   const size = document.getElementById(`shirtSize-${styleId}`).value;
   const color = document.getElementById(`shirtColor-${styleId}`).value;
   const qty = parseInt(document.getElementById(`shirtQty-${styleId}`).value);
   const backRadios = document.getElementsByName(`backDesign-${styleId}`);
   const backSelected = [...backRadios].some(r => r.checked);
-
+ 
   const btn = document.getElementById(`addToCart-${styleId}`);
   btn.disabled = !size || !color || qty <= 0 || !backSelected;
 }
-
-
-
+ 
+ 
+ 
 function showToast(message) {
-  const toast = document.getElementById('toast');
-  toast.textContent = message;
-  toast.classList.add('show');
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 3000);
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
 }
-
+ 
 function toggleCartSummary() {
-  const summary = document.getElementById("cartSummary");
-  summary.style.transform = summary.style.transform === "translateX(0%)" ? "translateX(100%)" : "translateX(0%)";
+  const summary = document.getElementById("cartSummary");
+  summary.style.transform = summary.style.transform === "translateX(0%)" ? "translateX(100%)" : "translateX(0%)";
 }
-
+ 
 function updateCartCount() {
-  document.getElementById("cartCount").innerText = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById("cartCount").innerText = cart.reduce((sum, item) => sum + item.qty, 0);
 }
-
+ 
 function renderCart() {
-  const cartItemsContainer = document.getElementById("cartItems");
-  const cartTotalElem = document.getElementById("cartTotal");
-  cartItemsContainer.innerHTML = "";
-  let total = 0;
-  cart.forEach((item, index) => {
-    const itemTotal = item.price * item.qty;
-    total += itemTotal;
-    const itemDiv = document.createElement("div");
-    itemDiv.innerHTML = `
-  <div style="margin-bottom: 14px; border-bottom: 1px solid #444; padding-bottom: 12px;">
-    <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px;">
-      <img src="${item.frontImg}" alt="Front" style="width:50px; height:50px; border-radius:6px; object-fit:cover; cursor: pointer;" onclick="expandImage('${item.frontImg}')">
-${item.backDesign ? `<img src="${item.backDesign}" alt="Back" style="width:50px; height:50px; border-radius:6px; object-fit:cover; cursor: pointer;" onclick="expandImage('${item.backDesign}')">` : ""}
+  const cartItemsContainer = document.getElementById("cartItems");
+  const cartTotalElem = document.getElementById("cartTotal");
+  cartItemsContainer.innerHTML = "";
+  let total = 0;
 
-    </div>
+  cart.forEach((item, index) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
 
-    <div style="margin-bottom: 6px;">
-      <strong>${item.style}</strong> 
-      <span style="color: #ccc;">(${item.size}, ${item.color})</span>
-    </div>
+    const itemDiv = document.createElement("div");
+    itemDiv.innerHTML = `
+      <div style="margin-bottom: 14px; border-bottom: 1px solid #444; padding-bottom: 12px;">
+        <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px;">
+          <img src="${item.frontImg}" alt="Front" style="width:50px; height:50px; border-radius:6px; object-fit:cover; cursor: pointer;" onclick="expandImage('${item.frontImg}')">
+          ${item.backDesign && item.backDesign !== "None" ? `
+            <img src="${item.backDesign}" alt="Back" style="width:50px; height:50px; border-radius:6px; object-fit:cover; cursor: pointer;" onclick="expandImage('${item.backDesign}')">
+          ` : ""}
+        </div>
 
-    ${item.backDesignId ? `<div style="margin-bottom: 6px; color: #aaa;">Back Design #${item.backDesignId}</div>` : ""}
+        <div style="margin-bottom: 6px;">
+          <strong>${item.style}</strong>
+          <span style="color: #ccc;">(${item.size}, ${item.color})</span>
+        </div>
 
-    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-      <div style="display: flex; align-items: center; gap: 6px;">
-        <span>Qty:</span>
-        <button onclick="changeQty(${index}, -1)" style="background: #ffa726; color: #000; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">−</button>
-        <span style="min-width: 20px; text-align: center; font-weight: bold;">${item.qty}</span>
-        <button onclick="changeQty(${index}, 1)" style="background: #ffa726; color: #000; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">+</button>
+        ${item.backDesignId && item.backDesignId !== "None" ? `
+          <div style="margin-bottom: 6px; color: #aaa;">Back Design #${item.backDesignId}</div>
+        ` : ""}
+
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span>Qty:</span>
+            <button onclick="changeQty(${index}, -1)" style="background: #ffa726; color: #000; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">−</button>
+            <span style="min-width: 20px; text-align: center; font-weight: bold;">${item.qty}</span>
+            <button onclick="changeQty(${index}, 1)" style="background: #ffa726; color: #000; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">+</button>
+          </div>
+
+          <div style="font-weight: bold; color: #fff;">$${item.price} each</div>
+
+          <button onclick="removeItem(${index})" style="margin-left: auto; background: none; border: none; color: #f44336; font-size: 16px; cursor: pointer;">🗑️</button>
+        </div>
       </div>
+    `;
 
-      <div style="font-weight: bold; color: #fff;">$${item.price} each</div>
+    cartItemsContainer.appendChild(itemDiv);
+  });
 
-      <button onclick="removeItem(${index})" style="margin-left: auto; background: none; border: none; color: #f44336; font-size: 16px; cursor: pointer;">🗑️</button>
-    </div>
-  </div>
-`;
-
-    cartItemsContainer.appendChild(itemDiv);
-  });
-  cartTotalElem.innerText = `$${total.toFixed(2)}`;
-  localStorage.setItem("daybreakCart", JSON.stringify(cart));
-  updateCartCount();
+  cartTotalElem.innerText = `$${total.toFixed(2)}`;
+  localStorage.setItem("daybreakShirtCart", JSON.stringify(cart));
+  updateCartCount();
 }
 
+ 
 function expandImage(src) {
   const modal = document.getElementById("imageModal");
   const modalImg = document.getElementById("modalImage");
   modalImg.src = src;
   modal.style.display = "flex";
 }
-
+ 
 function closeImageModal() {
   document.getElementById("imageModal").style.display = "none";
 }
-
-
-
-
+ 
+ 
+ 
+ 
 function changeQty(index, delta) {
   cart[index].qty += delta;
   if (cart[index].qty < 1) cart.splice(index, 1);
   renderCart();
 }
-
+ 
 function removeItem(index) {
   cart.splice(index, 1);
   renderCart();
 }
-
+ 
 function goToCheckout() {
   window.location.href = "checkout.html";
 }
-
+ 
 function closeCartSummary() {
   document.getElementById("cartSummary").style.transform = "translateX(100%)";
 }
-
+ 
 function scrollToShirt(styleId) {
   const el = document.querySelector(`.shirt-card[data-style="${styleId}"]`);
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
-
+ 
 // Initialize cart on page load
 updateCartCount();
 renderCart();
 </script>
-
-
-
+ 
+ 
+ 
 </body>
 </html>
