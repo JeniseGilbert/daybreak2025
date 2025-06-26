@@ -162,12 +162,36 @@
       z-index: 9999;
       display: none;
     }
+    
+   .back-button {
+  position: fixed;
+  top: 131px;
+  
+  transform: translateX(50%);
+  z-index: 998;
+}
+
+.back-button a {
+  background: #ffa726;
+  color: #000;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+
   </style>
 </head>
 <body>
   <header>
     <img src="https://imgur.com/YPspZxy.png" alt="Day Break Logo" />
   </header>
+  
+<div class="back-button">
+  <a href="menu.html">← Back to Menu</a>
+</div>
 
   <div class="container" id="cartContainer">
     <!-- JS will inject cart items and summary -->
@@ -176,7 +200,7 @@
   <div id="toast">Cart cleared. <button onclick="undoClear()">Undo</button></div>
 
   <footer>
-    <a href="menu.html"><img src="https://img.icons8.com/?size=100&id=G736SmolvT3J&format=png&color=000000" alt="Menu"><br>Menu</a>
+    <a href="index.html"><img src="https://img.icons8.com/?size=100&id=2797&format=png&color=000000" alt="Home"><br>Home</a>
     <a href="cart.html"><img src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=000000" alt="Cart"><br>Cart</a>
     <a href="orders.html"><img src="https://img.icons8.com/?size=100&id=MU6RngCQ3iWG&format=png&color=000000" alt="Orders"><br>Orders</a>
   </footer>
