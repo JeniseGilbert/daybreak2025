@@ -253,11 +253,23 @@ header img {
         document.getElementById("phone").textContent = data.phone;
         document.getElementById("method").textContent = data.method;
         document.getElementById("txnId").textContent = data.txnId;
-        document.getElementById("cart").innerHTML = data.parsedCart || "<em>(not recorded)</em>";
+        let cartHtml = (data.parsedCart || "").replace(/<img[^>]*>/g, ""); // removes all <img> tags
+        document.getElementById("cart").innerHTML = cartHtml || "<em>(not recorded)</em>";
+
         document.getElementById("amount").textContent = data.amount || "(n/a)";
         document.getElementById("confirmCode").textContent = data.confirmCode;
-        document.getElementById("screenshotImg").src = data.imageUrl || "";
-        document.getElementById("screenshotImg").alt = data.imageUrl ? "Payment Screenshot" : "No screenshot uploaded";
+        const screenshotImg = document.getElementById("screenshotImg");
+
+  if (data.imageUrl) {
+  screenshotImg.src = data.imageUrl;
+  screenshotImg.alt = "Payment Screenshot";
+  screenshotImg.style.display = "block"; // ensure visible if image exists
+} else {
+  screenshotImg.src = "";
+  screenshotImg.alt = "";
+  screenshotImg.style.display = "none"; // hide if no image
+}
+
         details.style.display = "block";
       }
     } catch (err) {
