@@ -697,6 +697,43 @@ header img {
   <!--<button class="add-btn" onclick="addQuickItem('Fish Plate', this)">+ Add</button>-->
    <button class="add-btn" disabled style="background: #ccc; cursor: not-allowed;">+ Add</button>
 </div>
+
+
+<div class="item-card">
+  <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/be.png" class="item-img" loading="lazy" />
+  <div class="item-info">
+    <h3>Beer Setup</h3>
+    <p>Includes ice and 4 beers.</p>
+    <span>$25</span>
+    <div class="qty-control">
+      <button class="qty-btn" onclick="updateQty(-1, this)">−</button>
+      <input type="number" class="qty-input" value="1" min="1" max="5" readonly>
+      <button class="qty-btn" onclick="updateQty(1, this)">+</button>
+    </div>
+  </div>
+  <!--<button class="add-btn" onclick="addQuickItem('Beer Setup', this)">+ Add</button>-->
+  <button class="add-btn" disabled style="background: #ccc; cursor: not-allowed;">+ Add</button>
+  
+</div>
+
+  <div class="item-card">
+  <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/bottle.png" class="item-img" loading="lazy" />
+  <div class="item-info">
+    <h3>Bottle Setup</h3>
+    <p>Includes ice, bottle, and chasers.</p>
+    <span>$100</span>
+    <div class="qty-control">
+      <button class="qty-btn" onclick="updateQty(-1, this)">−</button>
+      <input type="number" class="qty-input" value="1" min="1" max="5" readonly>
+      <button class="qty-btn" onclick="updateQty(1, this)">+</button>
+    </div>
+  </div>
+  <!--<button class="add-btn" onclick="addQuickItem('Bottle Setup', this)">+ Add</button>-->
+  <button class="add-btn" disabled style="background: #ccc; cursor: not-allowed;">+ Add</button>
+  
+</div>
+  
+  
   
   
 </div>
@@ -795,10 +832,12 @@ function updateQty(change, btn = null) {
   if (val >= 1 && val <= 10) input.value = val;
 }
 
-// Add items quickly (e.g. BBQ, Fish)
+// Add items quickly (e.g. BBQ, Fish, Beer Set Up)
 function addQuickItem(name, btn) {
   const qty = parseInt(btn.previousElementSibling.querySelector('.qty-input').value);
-  const price = (name === 'BBQ Chicken Plate' || name === 'Fish Plate') ? 15 : 0;
+const price = (name === 'BBQ Chicken Plate' || name === 'Fish Plate') ? 15 :
+              (name === 'Beer Setup') ? 25 : 
+              (name === 'Bottle Setup')? 100 : 0;
 
   const existing = cart.find(item => item.name === name);
   if (existing) {
