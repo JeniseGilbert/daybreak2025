@@ -521,6 +521,8 @@ header img {
   background: #121212;
 }
 
+
+
  
 @media (max-width: 480px) {
   #cartSummary {
@@ -536,6 +538,62 @@ header img {
     font-size: 0.85rem;
     padding: 10px;
   }
+  
+  .style-grid {
+    grid-template-columns: 1fr; /* Stack cards vertically */
+    gap: 16px;
+    padding: 0 12px;
+  }
+
+  .shirt-card {
+    padding: 8px;
+  }
+
+  .shirt-img {
+  width: 100%;
+  max-width: 200px; /* or your preferred size */
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 0px; /* ↓ changed from 12px to 6px */
+}
+
+  .swatch-row {
+     .swatch-row {
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .swatch {
+    width: 22px;
+    height: 22px;
+  }
+
+  .size-picker select {
+    width: 100%;
+  }
+  
+  
+  .size-picker {
+  margin-top: -20 !important;
+  padding-top: -20 !important;
+}
+
+  .qty-adjuster input {
+    width: 36px;
+  }
+
+  .custom-btn {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .preview {
+    font-size: 0.8em;
+  }
+
+  .back-design-toggle label {
+    font-size: 0.9em;
+  }
 }
  
   </style>
@@ -548,6 +606,11 @@ header img {
 
 <div class="sticky-header-section">
   <h1>Daybreak T-Shirts</h1>
+  <div style="background: #fff3cd; color: #856404; border: 1px solid #ffeeba; padding: 8px 12px; border-radius: 8px; font-size: 14px; font-family: 'Montserrat', sans-serif; text-align: center; margin-bottom: 12px;">
+  <strong>Need a Custom Color?</strong> For color requests, contact <strong>Jenise</strong> at <a href="tel:2817304040" style="color: #856404;">(281) 730-4040</a>.
+</div>
+
+
   <div class="lookbook-scroll">
     <div class="lookbook-track">
       <div class="lookbook-item" onclick="scrollToShirt('Trinidad')">
@@ -605,6 +668,81 @@ header img {
     <div class="lookbook-item" onclick="scrollToShirt('DVR-Purple')">
       <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/DVR-Purple.png" alt="DVR-Purple"loading="lazy">
       <span>DVR-Purple</span>
+      </div>
+      
+      <div class="lookbook-item" onclick="scrollToShirt('BBS')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/126.png" alt="BBS"loading="lazy">
+      <span>BBS</span>
+      </div>
+      
+      <div class="lookbook-item" onclick="scrollToShirt('113')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/113.png" alt="114"loading="lazy">
+      <span>113</span>
+      </div>
+      
+      <div class="lookbook-item" onclick="scrollToShirt('114')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/114.png" alt="114"loading="lazy">
+      <span>114</span>
+      </div>
+      
+      <div class="lookbook-item" onclick="scrollToShirt('115')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/115.png" alt="115"loading="lazy">
+      <span>115</span>
+      </div>
+      
+      <div class="lookbook-item" onclick="scrollToShirt('116')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/116.png" alt="116"loading="lazy">
+      <span>116</span>
+      </div>
+      
+      <div class="lookbook-item" onclick="scrollToShirt('117')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/117.png" alt="117"loading="lazy">
+      <span>117</span>
+      </div>
+      
+      <div class="lookbook-item" onclick="scrollToShirt('118')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/118.png" alt="118"loading="lazy">
+      <span>118</span>
+      </div>
+      
+      <div class="lookbook-item" onclick="scrollToShirt('119')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/119.png" alt="119"loading="lazy">
+      <span>119</span>
+      </div>
+      
+      <div class="lookbook-item" onclick="scrollToShirt('120')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/120.png" alt="120"loading="lazy">
+      <span>120</span>
+      </div>
+      
+      <div class="lookbook-item" onclick="scrollToShirt('121')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/121.png" alt="121"loading="lazy">
+      <span>121</span> 
+      </div>
+      
+      <div class="lookbook-item" onclick="scrollToShirt('122')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/122.png" alt="122"loading="lazy">
+      <span>122</span>
+      </div>
+      
+      
+      <div class="lookbook-item" onclick="scrollToShirt('123')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/123.png" alt="123"loading="lazy">
+      <span>123</span>
+      </div>
+      
+      <div class="lookbook-item" onclick="scrollToShirt('124')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/124.png" alt="124"loading="lazy">
+      <span>124</span>
+      </div>
+      
+      <div class="lookbook-item" onclick="scrollToShirt('125')">
+      <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/125.png" alt="125"loading="lazy">
+      <span>125</span>
+      </div>
+      
+      
+      
     </div>
     </div>
   </div>
@@ -623,20 +761,6 @@ header img {
    <img id="img-Trinidad" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/8.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-Trinidad">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-Trinidad" onchange="validateSelections('Trinidad'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
  
  
  
@@ -656,6 +780,22 @@ header img {
       <input type="hidden" id="shirtColor-Trinidad" value="">
  
     </div>
+    
+       <div class="size-picker">
+  <label for="shirtSize-Trinidad">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-Trinidad" onchange="validateSelections('Trinidad'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
+ 
  
    <div class="qty-wrapper">
   <label for="shirtQty-Trinidad">Qty:</label>
@@ -694,20 +834,7 @@ header img {
    <img id="img-Dominica" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/16.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-Dominica">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-Dominica" onchange="validateSelections('Dominica'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
+   
  
  
  
@@ -727,6 +854,22 @@ header img {
       <input type="hidden" id="shirtColor-Dominica" value="">
  
     </div>
+    
+    
+     <div class="size-picker">
+  <label for="shirtSize-Dominica">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-Dominica" onchange="validateSelections('Dominica'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
  
    <div class="qty-wrapper">
   <label for="shirtQty-Dominica">Qty:</label>
@@ -766,20 +909,7 @@ header img {
    <img id="img-St.Lucia" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/24.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-St.Lucia">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-St.Lucia" onchange="validateSelections('St.Lucia'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
+ 
  
  
  
@@ -799,6 +929,21 @@ header img {
       <input type="hidden" id="shirtColor-St.Lucia" value="">
  
     </div>
+    
+       <div class="size-picker">
+  <label for="shirtSize-St.Lucia">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-St.Lucia" onchange="validateSelections('St.Lucia'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
  
    <div class="qty-wrapper">
   <label for="shirtQty-St.Lucia">Qty:</label>
@@ -835,20 +980,7 @@ header img {
    <img id="img-VI" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/32.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-VI">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-VI" onchange="validateSelections('VI'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
+   
  
  
  
@@ -868,6 +1000,21 @@ header img {
       <input type="hidden" id="shirtColor-VI" value="">
  
     </div>
+    
+     <div class="size-picker">
+  <label for="shirtSize-VI">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-VI" onchange="validateSelections('VI'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
  
    <div class="qty-wrapper">
   <label for="shirtQty-VI">Qty:</label>
@@ -905,20 +1052,7 @@ header img {
    <img id="img-Grenada" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/40.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-Grenada">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-Grenada" onchange="validateSelections('Grenada'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
+   
  
  
  
@@ -938,6 +1072,21 @@ header img {
       <input type="hidden" id="shirtColor-Grenada" value="">
  
     </div>
+    
+     <div class="size-picker">
+  <label for="shirtSize-Grenada">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-Grenada" onchange="validateSelections('Grenada'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
  
    <div class="qty-wrapper">
   <label for="shirtQty-Grenada">Qty:</label>
@@ -974,20 +1123,7 @@ header img {
    <img id="img-Guyana" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/48.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-Guyana">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-Guyana" onchange="validateSelections('Guyana'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
+ 
  
  
  
@@ -1007,6 +1143,22 @@ header img {
       <input type="hidden" id="shirtColor-Guyana" value="">
  
     </div>
+    
+    
+       <div class="size-picker">
+  <label for="shirtSize-Guyana">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-Guyana" onchange="validateSelections('Guyana'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
  
    <div class="qty-wrapper">
   <label for="shirtQty-Guyana">Qty:</label>
@@ -1046,20 +1198,7 @@ header img {
    <img id="img-Jamaica" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/56.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-Jamaica">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-Jamaica" onchange="validateSelections('Jamaica'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
+    
  
  
  
@@ -1079,6 +1218,22 @@ header img {
       <input type="hidden" id="shirtColor-Jamaica" value="">
  
     </div>
+    
+    
+    <div class="size-picker">
+  <label for="shirtSize-Jamaica">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-Jamaica" onchange="validateSelections('Jamaica'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
  
    <div class="qty-wrapper">
   <label for="shirtQty-Jamaica">Qty:</label>
@@ -1117,20 +1272,7 @@ header img {
    <img id="img-USA" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/64.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-USA">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-USA" onchange="validateSelections('USA'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
+   
  
  
  
@@ -1150,6 +1292,22 @@ header img {
       <input type="hidden" id="shirtColor-USA" value="">
  
     </div>
+    
+    
+     <div class="size-picker">
+  <label for="shirtSize-USA">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-USA" onchange="validateSelections('USA'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
  
    <div class="qty-wrapper">
   <label for="shirtQty-USA">Qty:</label>
@@ -1189,20 +1347,7 @@ header img {
    <img id="img-Daybreak-1" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/72.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-Daybreak-1">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-Daybreak-1" onchange="validateSelections('Daybreak-1'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
+   
  
  
  
@@ -1222,6 +1367,22 @@ header img {
       <input type="hidden" id="shirtColor-Daybreak-1" value="">
  
     </div>
+    
+    
+     <div class="size-picker">
+  <label for="shirtSize-Daybreak-1">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-Daybreak-1" onchange="validateSelections('Daybreak-1'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
  
    <div class="qty-wrapper">
   <label for="shirtQty-Daybreak-1">Qty:</label>
@@ -1263,20 +1424,7 @@ header img {
    <img id="img-Daybreak-2" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/80.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-Daybreak-2">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-Daybreak-2" onchange="validateSelections('Daybreak-2'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
+   
  
  
  
@@ -1296,6 +1444,21 @@ header img {
       <input type="hidden" id="shirtColor-Daybreak-2" value="">
  
     </div>
+    
+     <div class="size-picker">
+  <label for="shirtSize-Daybreak-2">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-Daybreak-2" onchange="validateSelections('Daybreak-2'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
  
    <div class="qty-wrapper">
  <label for="shirtQty-Daybreak-2">Qty:</label>
@@ -1333,20 +1496,7 @@ header img {
    <img id="img-Daybreakers" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/88.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-Daybreakers">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-Daybreakers" onchange="validateSelections('Daybreakers'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
+   
  
  
  
@@ -1366,6 +1516,21 @@ header img {
       <input type="hidden" id="shirtColor-Daybreakers" value="">
  
     </div>
+    
+     <div class="size-picker">
+  <label for="shirtSize-Daybreakers">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-Daybreakers" onchange="validateSelections('Daybreakers'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
  
    <div class="qty-wrapper">
   <label for="shirtQty-Daybreakers">Qty:</label>
@@ -1403,20 +1568,7 @@ header img {
    <img id="img-DFR-Green" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/96.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-DFR-Green">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-DFR-Green" onchange="validateSelections('DFR-Green'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
+ 
  
  
  
@@ -1437,6 +1589,24 @@ header img {
  
     </div>
  
+ 
+ 
+    <div class="size-picker">
+  <label for="shirtSize-DFR-Green">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-DFR-Green" onchange="validateSelections('DFR-Green'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
+
+
    <div class="qty-wrapper">
   <label for="shirtQty-DFR-Green">Qty:</label>
   <div class="qty-adjuster">
@@ -1475,20 +1645,7 @@ header img {
    <img id="img-DFR-Purple" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/104.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-DFR-Purple">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-DFR-Purple" onchange="validateSelections('DFR-Purple'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
+   
  
  
  
@@ -1508,6 +1665,22 @@ header img {
       <input type="hidden" id="shirtColor-DFR-Purple" value="">
  
     </div>
+    
+    
+     <div class="size-picker">
+  <label for="shirtSize-DFR-Purple">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-DFR-Purple" onchange="validateSelections('DFR-Purple'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
  
    <div class="qty-wrapper">
   <label for="shirtQty-DFR-Purple">Qty:</label>
@@ -1546,20 +1719,7 @@ header img {
    <img id="img-DVR-Purple" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/112.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
  
  
-    <div class="size-picker">
-  <label for="shirtSize-DVR-Purple">Size:</label>
-  <div class="custom-select-wrapper">
-    <select id="shirtSize-DVR-Purple" onchange="validateSelections('DVR-Purple'); updatePrice(this)">
-  <option value="" disabled selected>Select a Size</option>
-      <option>Small</option>
-     <option>Medium</option>
-      <option>Large</option>
-      <option>XL</option>
-      <option>2XL +$2</option>
-      <option>3XL +$2</option>
-    </select>
-  </div>
-</div>
+    
  
  
  
@@ -1579,6 +1739,22 @@ header img {
       <input type="hidden" id="shirtColor-DVR-Purple" value="">
  
     </div>
+    
+    
+    <div class="size-picker">
+  <label for="shirtSize-DVR-Purple">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-DVR-Purple" onchange="validateSelections('DVR-Purple'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+     <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
  
    <div class="qty-wrapper">
   <label for="shirtQty-DVR-Purple">Qty:</label>
@@ -1613,12 +1789,795 @@ header img {
  
  
  
+ <!-- CARD TEMPLATE (BBS) -->
+  <div class="shirt-card" data-style="BBS">
+   <img id="img-BBS" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/134.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+ 
+ 
+    
+ 
+ 
+    <div class="color-picker">
+      <label>Color:</label>
+      <div class="swatch-row">
+       
+  <span class="swatch" style="background:#000000" onclick="changeColor('134', 'img-BBS', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('127', 'img-BBS', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('128', 'img-BBS', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('129', 'img-BBS', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('130', 'img-BBS', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('131', 'img-BBS', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('132', 'img-BBS', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('133', 'img-BBS', 'White')"></span>
+      </div>
+      <input type="hidden" id="shirtColor-BBS" value="">
+ 
+    </div>
+    
+    
+    <div class="size-picker">
+  <label for="shirtSize-BBS">Size:</label>
+  <div class="custom-select-wrapper">
+    <select id="shirtSize-BBS" onchange="validateSelections('BBS'); updatePrice(this)">
+  <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+     <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+</div>
+ 
+ 
+   <div class="qty-wrapper">
+  <label for="shirtQty-BBS">Qty:</label>
+  <div class="qty-adjuster">
+    <button onclick="adjustQty('shirtQty-BBS', -1); validateSelections('BBS')">−</button>
+   
+    <input type="number" id="shirtQty-BBS" min="0" value="0" readonly>
+    <button onclick="adjustQty('shirtQty-BBS', 1); validateSelections('BBS')">+</button>
+ 
+  </div>
+</div>
+ 
+ 
+    <div class="back-design-toggle">
+      <label>Want a Back Design (+$5)?</label><br>
+      <label><input type="radio" name="backDesign-BBS" value="yes" onclick="openBackModal('BBS'); validateSelections('BBS')"> Yes</label>
+<label><input type="radio" name="backDesign-BBS" value="no" onclick="handleBackDesignChoice(false, 'BBS'); validateSelections('BBS')"> No</label>
+ 
+    </div>
+ 
+    <div class="preview" id="backPreview-BBS">No back design selected</div><br>
+   
+  <div class="price-container">
+  <div id="priceDisplay-BBS" class="priceDisplay">Starting at $13</div>
+</div>
+ 
+ 
+    <br><button class="custom-btn" id="addToCart-BBS" data-style="BBS" onclick="addToCart('BBS')" disabled>Add to Cart</button>
+</div>
  
  
  
+ 
+ 
+ 
+ 
+ <!-- CARD TEMPLATE (113) -->
+<div class="shirt-card" data-style="113">
+  <img id="img-113" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/113.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+
+  
+
+  <div class="color-picker">
+    <label>Color:</label>
+    <div class="swatch-row">
+  <span class="swatch" style="background:#000000" onclick="changeColor('113', 'img-113', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('113', 'img-113', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('113', 'img-113', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('113', 'img-113', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('113', 'img-113', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('113', 'img-113', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('113', 'img-113', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('113', 'img-113', 'White')"></span>
+    </div>
+    <input type="hidden" id="shirtColor-113" value="">
+  </div>
+  
+  
+  <div class="size-picker">
+    <label for="shirtSize-113">Size:</label>
+    <select id="shirtSize-113" onchange="validateSelections('113'); updatePrice(this)">
+      <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+
+  <div class="qty-wrapper">
+    <label for="shirtQty-113">Qty:</label>
+    <div class="qty-adjuster">
+      <button onclick="adjustQty('shirtQty-113', -1); validateSelections('113')">−</button>
+      <input type="number" id="shirtQty-113" min="0" value="0" readonly>
+      <button onclick="adjustQty('shirtQty-113', 1); validateSelections('113')">+</button>
+    </div>
+  </div>
+
+  <!-- REMOVE Back Design section -->
+  <div class="price-container">
+    <div id="priceDisplay-113" class="priceDisplay">Starting at $13</div>
+  </div>
+
+  <br>
+  <button class="custom-btn" id="addToCart-113" data-style="113" onclick="addToCart('113')" disabled>Add to Cart</button>
+</div>
+
+ <!-- CARD TEMPLATE (114) -->
+<div class="shirt-card" data-style="114">
+  <img id="img-114" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/114.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+
+  
+
+  <div class="color-picker">
+    <label>Color:</label>
+    <div class="swatch-row">
+  <span class="swatch" style="background:#000000" onclick="changeColor('114', 'img-114', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('114', 'img-114', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('114', 'img-114', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('114', 'img-114', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('114', 'img-114', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('114', 'img-114', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('114', 'img-114', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('114', 'img-114', 'White')"></span>
+    </div>
+    <input type="hidden" id="shirtColor-114" value="">
+  </div>
+  
+  
+  <div class="size-picker">
+    <label for="shirtSize-114">Size:</label>
+    <select id="shirtSize-114" onchange="validateSelections('114'); updatePrice(this)">
+      <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+
+  <div class="qty-wrapper">
+    <label for="shirtQty-114">Qty:</label>
+    <div class="qty-adjuster">
+      <button onclick="adjustQty('shirtQty-114', -1); validateSelections('114')">−</button>
+      <input type="number" id="shirtQty-114" min="0" value="0" readonly>
+      <button onclick="adjustQty('shirtQty-114', 1); validateSelections('114')">+</button>
+    </div>
+  </div>
+
+  <!-- REMOVE Back Design section -->
+  <div class="price-container">
+    <div id="priceDisplay-114" class="priceDisplay">Starting at $13</div>
+  </div>
+
+  <br>
+  <button class="custom-btn" id="addToCart-114" data-style="114" onclick="addToCart('114')" disabled>Add to Cart</button>
+</div>
+ 
+ 
+ 
+ <!-- CARD TEMPLATE (115) -->
+<div class="shirt-card" data-style="115">
+  <img id="img-115" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/115.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+
+  
+
+  <div class="color-picker">
+    <label>Color:</label>
+    <div class="swatch-row">
+  <span class="swatch" style="background:#000000" onclick="changeColor('115', 'img-115', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('115', 'img-115', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('115', 'img-115', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('115', 'img-115', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('115', 'img-115', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('115', 'img-115', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('115', 'img-115', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('115', 'img-115', 'White')"></span>
+    </div>
+    <input type="hidden" id="shirtColor-115" value="">
+  </div>
+  
+  
+  <div class="size-picker">
+    <label for="shirtSize-115">Size:</label>
+    <select id="shirtSize-115" onchange="validateSelections('115'); updatePrice(this)">
+      <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+
+  <div class="qty-wrapper">
+    <label for="shirtQty-115">Qty:</label>
+    <div class="qty-adjuster">
+      <button onclick="adjustQty('shirtQty-115', -1); validateSelections('115')">−</button>
+      <input type="number" id="shirtQty-115" min="0" value="0" readonly>
+      <button onclick="adjustQty('shirtQty-115', 1); validateSelections('115')">+</button>
+    </div>
+  </div>
+
+  <!-- REMOVE Back Design section -->
+  <div class="price-container">
+    <div id="priceDisplay-115" class="priceDisplay">Starting at $13</div>
+  </div>
+
+  <br>
+  <button class="custom-btn" id="addToCart-115" data-style="115" onclick="addToCart('115')" disabled>Add to Cart</button>
+</div>
+ 
+ 
+  <!-- CARD TEMPLATE (116) -->
+<div class="shirt-card" data-style="116">
+  <img id="img-116" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/116.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+
+ 
+
+  <div class="color-picker">
+    <label>Color:</label>
+    <div class="swatch-row">
+  <span class="swatch" style="background:#000000" onclick="changeColor('116', 'img-116', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('116', 'img-116', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('116', 'img-116', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('116', 'img-116', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('116', 'img-116', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('116', 'img-116', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('116', 'img-116', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('116', 'img-116', 'White')"></span>
+    </div>
+    <input type="hidden" id="shirtColor-116" value="">
+  </div>
+  
+   <div class="size-picker">
+    <label for="shirtSize-116">Size:</label>
+    <select id="shirtSize-116" onchange="validateSelections('116'); updatePrice(this)">
+      <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+
+  <div class="qty-wrapper">
+    <label for="shirtQty-116">Qty:</label>
+    <div class="qty-adjuster">
+      <button onclick="adjustQty('shirtQty-116', -1); validateSelections('116')">−</button>
+      <input type="number" id="shirtQty-116" min="0" value="0" readonly>
+      <button onclick="adjustQty('shirtQty-116', 1); validateSelections('116')">+</button>
+    </div>
+  </div>
+
+  <!-- REMOVE Back Design section -->
+  <div class="price-container">
+    <div id="priceDisplay-116" class="priceDisplay">Starting at $13</div>
+  </div>
+
+  <br>
+  <button class="custom-btn" id="addToCart-116" data-style="116" onclick="addToCart('116')" disabled>Add to Cart</button>
+</div>
+ 
+  
+ <!-- CARD TEMPLATE (117) -->
+<div class="shirt-card" data-style="117">
+  <img id="img-117" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/117.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+
+  
+
+  <div class="color-picker">
+    <label>Color:</label>
+    <div class="swatch-row">
+  <span class="swatch" style="background:#000000" onclick="changeColor('117', 'img-117', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('117', 'img-117', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('117', 'img-117', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('117', 'img-117', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('117', 'img-117', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('117', 'img-117', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('117', 'img-117', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('117', 'img-117', 'White')"></span>
+    </div>
+    <input type="hidden" id="shirtColor-117" value="">
+  </div>
+  
+  
+  <div class="size-picker">
+    <label for="shirtSize-117">Size:</label>
+    <select id="shirtSize-117" onchange="validateSelections('117'); updatePrice(this)">
+      <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+
+  <div class="qty-wrapper">
+    <label for="shirtQty-117">Qty:</label>
+    <div class="qty-adjuster">
+      <button onclick="adjustQty('shirtQty-117', -1); validateSelections('117')">−</button>
+      <input type="number" id="shirtQty-117" min="0" value="0" readonly>
+      <button onclick="adjustQty('shirtQty-117', 1); validateSelections('117')">+</button>
+    </div>
+  </div>
+
+  <!-- REMOVE Back Design section -->
+  <div class="price-container">
+    <div id="priceDisplay-117" class="priceDisplay">Starting at $13</div>
+  </div>
+
+  <br>
+  <button class="custom-btn" id="addToCart-117" data-style="117" onclick="addToCart('117')" disabled>Add to Cart</button>
+</div>
+ 
+ <!-- CARD TEMPLATE (118) -->
+<div class="shirt-card" data-style="118">
+  <img id="img-118" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/118.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+
+  
+
+  <div class="color-picker">
+    <label>Color:</label>
+    <div class="swatch-row">
+  <span class="swatch" style="background:#000000" onclick="changeColor('118', 'img-118', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('118', 'img-118', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('118', 'img-118', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('118', 'img-118', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('118', 'img-118', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('118', 'img-118', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('118', 'img-118', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('118', 'img-118', 'White')"></span>
+    </div>
+    <input type="hidden" id="shirtColor-118" value="">
+  </div>
+  
+  
+  <div class="size-picker">
+    <label for="shirtSize-118">Size:</label>
+    <select id="shirtSize-118" onchange="validateSelections('118'); updatePrice(this)">
+      <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+
+  <div class="qty-wrapper">
+    <label for="shirtQty-118">Qty:</label>
+    <div class="qty-adjuster">
+      <button onclick="adjustQty('shirtQty-118', -1); validateSelections('118')">−</button>
+      <input type="number" id="shirtQty-118" min="0" value="0" readonly>
+      <button onclick="adjustQty('shirtQty-118', 1); validateSelections('118')">+</button>
+    </div>
+  </div>
+
+  <!-- REMOVE Back Design section -->
+  <div class="price-container">
+    <div id="priceDisplay-118" class="priceDisplay">Starting at $13</div>
+  </div>
+
+  <br>
+  <button class="custom-btn" id="addToCart-118" data-style="118" onclick="addToCart('118')" disabled>Add to Cart</button>
+</div>
+ 
+ <!-- CARD TEMPLATE (119) -->
+<div class="shirt-card" data-style="119">
+  <img id="img-119" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/119.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+
+  
+
+  <div class="color-picker">
+    <label>Color:</label>
+    <div class="swatch-row">
+  <span class="swatch" style="background:#000000" onclick="changeColor('119', 'img-119', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('119', 'img-119', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('119', 'img-119', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('119', 'img-119', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('119', 'img-119', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('119', 'img-119', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('119', 'img-119', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('119', 'img-119', 'White')"></span>
+    </div>
+    <input type="hidden" id="shirtColor-119" value="">
+  </div>
+  
+  <div class="size-picker">
+    <label for="shirtSize-119">Size:</label>
+    <select id="shirtSize-119" onchange="validateSelections('119'); updatePrice(this)">
+      <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+
+  <div class="qty-wrapper">
+    <label for="shirtQty-119">Qty:</label>
+    <div class="qty-adjuster">
+      <button onclick="adjustQty('shirtQty-119', -1); validateSelections('119')">−</button>
+      <input type="number" id="shirtQty-119" min="0" value="0" readonly>
+      <button onclick="adjustQty('shirtQty-119', 1); validateSelections('119')">+</button>
+    </div>
+  </div>
+
+  <!-- REMOVE Back Design section -->
+  <div class="price-container">
+    <div id="priceDisplay-119" class="priceDisplay">Starting at $13</div>
+  </div>
+
+  <br>
+  <button class="custom-btn" id="addToCart-119" data-style="119" onclick="addToCart('119')" disabled>Add to Cart</button>
+</div>
+ 
+ 
+ 
+  <!-- CARD TEMPLATE (120) -->
+<div class="shirt-card" data-style="120">
+  <img id="img-120" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/120.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+
+  
+
+  <div class="color-picker">
+    <label>Color:</label>
+    <div class="swatch-row">
+  <span class="swatch" style="background:#000000" onclick="changeColor('120', 'img-120', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('120', 'img-120', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('120', 'img-120', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('120', 'img-120', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('120', 'img-120', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('120', 'img-120', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('120', 'img-120', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('120', 'img-120', 'White')"></span>
+    </div>
+    <input type="hidden" id="shirtColor-120" value="">
+  </div>
+  
+  
+  <div class="size-picker">
+    <label for="shirtSize-120">Size:</label>
+    <select id="shirtSize-120" onchange="validateSelections('120'); updatePrice(this)">
+      <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+
+  <div class="qty-wrapper">
+    <label for="shirtQty-120">Qty:</label>
+    <div class="qty-adjuster">
+      <button onclick="adjustQty('shirtQty-120', -1); validateSelections('120')">−</button>
+      <input type="number" id="shirtQty-120" min="0" value="0" readonly>
+      <button onclick="adjustQty('shirtQty-120', 1); validateSelections('120')">+</button>
+    </div>
+  </div>
+
+  <!-- REMOVE Back Design section -->
+  <div class="price-container">
+    <div id="priceDisplay-120" class="priceDisplay">Starting at $13</div>
+  </div>
+
+  <br>
+  <button class="custom-btn" id="addToCart-120" data-style="120" onclick="addToCart('120')" disabled>Add to Cart</button>
+</div>
+ 
+ 
+ 
+ 
+ <!-- CARD TEMPLATE (121) -->
+<div class="shirt-card" data-style="121">
+  <img id="img-121" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/121.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+
+ 
+
+  <div class="color-picker">
+    <label>Color:</label>
+    <div class="swatch-row">
+  <span class="swatch" style="background:#000000" onclick="changeColor('121', 'img-121', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('121', 'img-121', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('121', 'img-121', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('121', 'img-121', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('121', 'img-121', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('121', 'img-121', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('121', 'img-121', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('121', 'img-121', 'White')"></span>
+    </div>
+    <input type="hidden" id="shirtColor-121" value="">
+  </div>
+  
+  
+   <div class="size-picker">
+    <label for="shirtSize-121">Size:</label>
+    <select id="shirtSize-121" onchange="validateSelections('121'); updatePrice(this)">
+      <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+
+  <div class="qty-wrapper">
+    <label for="shirtQty-121">Qty:</label>
+    <div class="qty-adjuster">
+      <button onclick="adjustQty('shirtQty-121', -1); validateSelections('121')">−</button>
+      <input type="number" id="shirtQty-121" min="0" value="0" readonly>
+      <button onclick="adjustQty('shirtQty-121', 1); validateSelections('121')">+</button>
+    </div>
+  </div>
+
+  <!-- REMOVE Back Design section -->
+  <div class="price-container">
+    <div id="priceDisplay-121" class="priceDisplay">Starting at $13</div>
+  </div>
+
+  <br>
+  <button class="custom-btn" id="addToCart-121" data-style="121" onclick="addToCart('121')" disabled>Add to Cart</button>
+</div>
+ 
+ 
+ 
+  <!-- CARD TEMPLATE (122) -->
+<div class="shirt-card" data-style="122">
+  <img id="img-122" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/122.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+
+
+
+  <div class="color-picker">
+    <label>Color:</label>
+    <div class="swatch-row">
+  <span class="swatch" style="background:#000000" onclick="changeColor('122', 'img-122', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('122', 'img-122', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('122', 'img-122', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('122', 'img-122', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('122', 'img-122', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('122', 'img-122', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('122', 'img-122', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('122', 'img-122', 'White')"></span>
+    </div>
+    <input type="hidden" id="shirtColor-122" value="">
+  </div>
+  
+    <div class="size-picker">
+    <label for="shirtSize-122">Size:</label>
+    <select id="shirtSize-122" onchange="validateSelections('122'); updatePrice(this)">
+      <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+
+  <div class="qty-wrapper">
+    <label for="shirtQty-122">Qty:</label>
+    <div class="qty-adjuster">
+      <button onclick="adjustQty('shirtQty-122', -1); validateSelections('122')">−</button>
+      <input type="number" id="shirtQty-122" min="0" value="0" readonly>
+      <button onclick="adjustQty('shirtQty-122', 1); validateSelections('122')">+</button>
+    </div>
+  </div>
+
+  <!-- REMOVE Back Design section -->
+  <div class="price-container">
+    <div id="priceDisplay-122" class="priceDisplay">Starting at $13</div>
+  </div>
+
+  <br>
+  <button class="custom-btn" id="addToCart-122" data-style="122" onclick="addToCart('122')" disabled>Add to Cart</button>
+</div>
+ 
+ 
+ 
+ 
+  <!-- CARD TEMPLATE (123) -->
+<div class="shirt-card" data-style="123">
+  <img id="img-123" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/123.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+
+  
+
+  <div class="color-picker">
+    <label>Color:</label>
+    <div class="swatch-row">
+  <span class="swatch" style="background:#000000" onclick="changeColor('123', 'img-123', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('123', 'img-123', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('123', 'img-123', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('123', 'img-123', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('123', 'img-123', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('123', 'img-123', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('123', 'img-123', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('123', 'img-123', 'White')"></span>
+    </div>
+    <input type="hidden" id="shirtColor-123" value="">
+  </div>
+  
+  
+  <div class="size-picker">
+    <label for="shirtSize-123">Size:</label>
+    <select id="shirtSize-123" onchange="validateSelections('123'); updatePrice(this)">
+      <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+
+  <div class="qty-wrapper">
+    <label for="shirtQty-123">Qty:</label>
+    <div class="qty-adjuster">
+      <button onclick="adjustQty('shirtQty-123', -1); validateSelections('123')">−</button>
+      <input type="number" id="shirtQty-123" min="0" value="0" readonly>
+      <button onclick="adjustQty('shirtQty-123', 1); validateSelections('123')">+</button>
+    </div>
+  </div>
+
+  <!-- REMOVE Back Design section -->
+  <div class="price-container">
+    <div id="priceDisplay-123" class="priceDisplay">Starting at $13</div>
+  </div>
+
+  <br>
+  <button class="custom-btn" id="addToCart-123" data-style="123" onclick="addToCart('123')" disabled>Add to Cart</button>
+</div>
+ 
+ 
+ 
+ 
+   <!-- CARD TEMPLATE (124) -->
+<div class="shirt-card" data-style="124">
+  <img id="img-124" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/124.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+
+ 
+
+  <div class="color-picker">
+    <label>Color:</label>
+    <div class="swatch-row">
+  <span class="swatch" style="background:#000000" onclick="changeColor('124', 'img-124', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('124', 'img-124', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('124', 'img-124', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('124', 'img-124', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('124', 'img-124', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('124', 'img-124', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('124', 'img-124', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('124', 'img-124', 'White')"></span>
+    </div>
+    <input type="hidden" id="shirtColor-124" value="">
+  </div>
+  
+   <div class="size-picker">
+    <label for="shirtSize-124">Size:</label>
+    <select id="shirtSize-124" onchange="validateSelections('124'); updatePrice(this)">
+      <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+
+  <div class="qty-wrapper">
+    <label for="shirtQty-124">Qty:</label>
+    <div class="qty-adjuster">
+      <button onclick="adjustQty('shirtQty-124', -1); validateSelections('124')">−</button>
+      <input type="number" id="shirtQty-124" min="0" value="0" readonly>
+      <button onclick="adjustQty('shirtQty-124', 1); validateSelections('124')">+</button>
+    </div>
+  </div>
+
+  <!-- REMOVE Back Design section -->
+  <div class="price-container">
+    <div id="priceDisplay-124" class="priceDisplay">Starting at $13</div>
+  </div>
+
+  <br>
+  <button class="custom-btn" id="addToCart-124" data-style="124" onclick="addToCart('124')" disabled>Add to Cart</button>
+</div>
  
 </div>
  
+ 
+ 
+  <!-- CARD TEMPLATE (125) -->
+<div class="shirt-card" data-style="125">
+  <img id="img-125" src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/125.png" class="shirt-img" onclick="expandImage(this.src)" style="cursor: pointer;">
+
+  
+
+  <div class="color-picker">
+    <label>Color:</label>
+    <div class="swatch-row">
+  <span class="swatch" style="background:#000000" onclick="changeColor('125', 'img-125', 'Black')"></span>
+  <span class="swatch" style="background:#f6cb48" onclick="changeColor('125', 'img-125', 'Yellow')"></span>
+  <span class="swatch" style="background:#d11631" onclick="changeColor('125', 'img-125', 'Red')"></span>
+  <span class="swatch" style="background:#9474c3" onclick="changeColor('125', 'img-125', 'Purple')"></span>
+  <span class="swatch" style="background:#0ca7e0" onclick="changeColor('125', 'img-125', 'Blue')"></span>
+  <span class="swatch" style="background:#fa6b02" onclick="changeColor('125', 'img-125', 'Orange')"></span>
+  <span class="swatch" style="background:#83c95e" onclick="changeColor('125', 'img-125', 'Green')"></span>
+  <span class="swatch" style="background:#ffffff" onclick="changeColor('125', 'img-125', 'White')"></span>
+    </div>
+    <input type="hidden" id="shirtColor-125" value="">
+  </div>
+
+
+<div class="size-picker">
+    <label for="shirtSize-125">Size:</label>
+    <select id="shirtSize-125" onchange="validateSelections('125'); updatePrice(this)">
+      <option value="" disabled selected>Select a Size</option>
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+      <option>2XL +$2</option>
+      <option>3XL +$2</option>
+    </select>
+  </div>
+
+  <div class="qty-wrapper">
+    <label for="shirtQty-125">Qty:</label>
+    <div class="qty-adjuster">
+      <button onclick="adjustQty('shirtQty-125', -1); validateSelections('125')">−</button>
+      <input type="number" id="shirtQty-125" min="0" value="0" readonly>
+      <button onclick="adjustQty('shirtQty-125', 1); validateSelections('125')">+</button>
+    </div>
+  </div>
+
+  <!-- REMOVE Back Design section -->
+  <div class="price-container">
+    <div id="priceDisplay-125" class="priceDisplay">Starting at $13</div>
+  </div>
+
+  <br>
+  <button class="custom-btn" id="addToCart-125" data-style="125" onclick="addToCart('125')" disabled>Add to Cart</button>
+</div>
+
+
+
+
+ 
+ 
+</div>
  
 <!-- SHARED BACK DESIGN MODAL -->
 <div id="backModal">
@@ -1873,13 +2832,16 @@ function validateSelections(styleId) {
   const size = document.getElementById(`shirtSize-${styleId}`).value;
   const color = document.getElementById(`shirtColor-${styleId}`).value;
   const qty = parseInt(document.getElementById(`shirtQty-${styleId}`).value);
+
+  // Try to get the back design radio group (may not exist)
   const backRadios = document.getElementsByName(`backDesign-${styleId}`);
-  const backSelected = [...backRadios].some(r => r.checked);
- 
+  const hasBackOption = backRadios.length > 0;
+  const backSelected = hasBackOption ? [...backRadios].some(r => r.checked) : true;
+
   const btn = document.getElementById(`addToCart-${styleId}`);
   btn.disabled = !size || !color || qty <= 0 || !backSelected;
 }
- 
+
  
  
 function showToast(message) {
