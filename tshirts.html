@@ -604,11 +604,18 @@ header img {
     <img src="https://imgur.com/YPspZxy.png" alt="Day Break Logo" style="height: 110px;" />
  </header>
 
-<div class="sticky-header-section">
-  <h1>Daybreak T-Shirts</h1>
-  <div style="background: #fff3cd; color: #856404; border: 1px solid #ffeeba; padding: 8px 12px; border-radius: 8px; font-size: 14px; font-family: 'Montserrat', sans-serif; text-align: center; margin-bottom: 12px;">
-  <strong>Need a Custom Color?</strong> For color requests, contact <strong>Jenise</strong> at <a href="tel:2817304040" style="color: #856404;">(281) 730-4040</a>.
-</div>
+<div class="sticky-header-section" style="padding: 16px; background: #121212;">
+  <h1 style="color: #ffa726; font-family: 'Montserrat', sans-serif;">Daybreak T-Shirts</h1>
+
+  <button id="toggleHeader" style="margin: 10px auto 12px; padding: 6px 14px; background: #ffa726; color: #121212; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+    Hide Lookbook ▲
+  </button>
+
+  <div id="headerContent">
+    <div style="background: #fff3cd; color: #856404; border: 1px solid #ffeeba; padding: 8px 12px; border-radius: 8px; font-size: 14px; font-family: 'Montserrat', sans-serif; text-align: center; margin-bottom: 12px;">
+      <strong>Need a Custom Color?</strong> For color requests, contact <strong>Jenise</strong> at
+      <a href="tel:2817304040" style="color: #856404;">(281) 730-4040</a>.
+    </div>
 
 
   <div class="lookbook-scroll">
@@ -2927,7 +2934,16 @@ function closeImageModal() {
   document.getElementById("imageModal").style.display = "none";
 }
  
- 
+ const toggleBtn = document.getElementById('toggleHeader');
+  const headerContent = document.getElementById('headerContent');
+  let isVisible = true;
+
+  toggleBtn.addEventListener('click', () => {
+    isVisible = !isVisible;
+    headerContent.style.display = isVisible ? 'block' : 'none';
+    toggleBtn.innerText = isVisible ? 'Hide Lookbook ▲' : 'Show Lookbook ▼';
+  });
+
  
  
 function changeQty(index, delta) {
