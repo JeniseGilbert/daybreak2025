@@ -10,8 +10,35 @@
       background: #121212;
       color: #fff;
       font-family: 'Montserrat', sans-serif;
-      padding: 20px;
+      padding-top: 220px;
+      padding-bottom: 120px;
       margin: 0;
+      text-align: center;
+    }
+    
+    header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #ffa726;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;    /* vertically center image */
+  justify-content: center; /* horizontally center image */
+  z-index: 999;
+}
+
+header img {
+  height: 100px;
+}
+
+
+
+    h1 {
+      color: #ffa726;
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      
     }
  
     .style-grid {
@@ -407,12 +434,14 @@
   padding: 10px 0;
   background: #1c1c1c;
   border-bottom: 2px solid #ffa726;
+  
 }
  
 .lookbook-track {
   display: flex;
   gap: 14px;
   padding: 0 12px;
+  
 }
  
 .lookbook-item {
@@ -440,8 +469,58 @@
   transform: scale(1.05);
   border-color: #ffa726;
 }
+     footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #1f1f1f;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    font-size: 0.9em;
+    z-index: 998;
+  }
+
+  footer a {
+    flex: 1;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+  }
+
+  footer a div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  footer img {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 4px;
+  }
  
  
+ .sticky-header-section {
+  position: sticky;
+  top: 120px; /* adjust this to match the height of your fixed header */
+  background: #121212;
+  z-index: 998;
+  padding-top: 10px;
+}
+
+.sticky-header-section h1 {
+  margin: 0 0 10px;
+  color: #ffa726;
+  font-size: 1.8em;
+  background: #121212;
+}
+
  
 @media (max-width: 480px) {
   #cartSummary {
@@ -463,11 +542,15 @@
 </head>
 <body>
  
-<h1>Daybreak Tees</h1>
- 
-<div class="lookbook-scroll">
-  <div class="lookbook-track">
-    <div class="lookbook-item" onclick="scrollToShirt('Trinidad')">
+<header>
+    <img src="https://imgur.com/YPspZxy.png" alt="Day Break Logo" style="height: 110px;" />
+ </header>
+
+<div class="sticky-header-section">
+  <h1>Daybreak T-Shirts</h1>
+  <div class="lookbook-scroll">
+    <div class="lookbook-track">
+      <div class="lookbook-item" onclick="scrollToShirt('Trinidad')">
       <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/Trinidad.png" alt="Trinidad" loading="lazy">
       <span>Trinidad</span>
     </div>
@@ -523,9 +606,13 @@
       <img src="https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/t-shirts/DVR-Purple.png" alt="DVR-Purple"loading="lazy">
       <span>DVR-Purple</span>
     </div>
+    </div>
   </div>
 </div>
+
  
+ 
+
  
  
  
@@ -1594,7 +1681,15 @@
 <div id="toast" class="toast">Please complete all required selections.</div>
  
  
- 
+ <footer>
+  <a href="index.html"><img src="https://img.icons8.com/?size=100&id=2797&format=png&color=ffffff" alt="Home"><br>Home</a>
+  <a href="tshirts.html"><img src="https://img.icons8.com/?size=100&id=105820&format=png&color=ffffff" alt="T-Shirts"><br>T-Shirts</a>
+  <a href="tshirtorders.html"><img src="https://img.icons8.com/?size=100&id=heDwXLLgB3Xy&format=png&color=ffffff" alt="Orders"><br>Orders</a>
+</footer>
+
+
+
+
 <script>
  
 let selectedBackDesign = "";
@@ -1870,7 +1965,7 @@ function removeItem(index) {
 }
  
 function goToCheckout() {
-  window.location.href = "tshirtcheckout.html";
+  window.location.href = "checkout.html";
 }
  
 function closeCartSummary() {
