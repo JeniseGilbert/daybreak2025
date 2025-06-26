@@ -380,17 +380,30 @@ let subtotal = 0;
 function renderCartSummary() {
   const container = document.getElementById("orderSummary");
   container.innerHTML = '<h3>Your Order</h3>';
+
+  subtotal = 0;
+  if (!cart || cart.length === 0) {
+    container.innerHTML += `<p style="color:red;">Your cart is empty. Please add items before continuing.</p>`;
+    document.querySelectorAll(".submit-btn").forEach(btn => btn.disabled = true);
+    return;
+  }
+
   cart.forEach(item => {
     const itemTotal = (item.price * item.qty).toFixed(2);
     subtotal += item.price * item.qty;
     container.innerHTML += `<p>${item.name} (x${item.qty}) - $${itemTotal}</p>`;
   });
+
   const tax = +(subtotal * 0.0825).toFixed(2);
   const total = +(subtotal + tax).toFixed(2);
   container.innerHTML += `<p><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>`;
   container.innerHTML += `<p><strong>Tax:</strong> $${tax.toFixed(2)}</p>`;
   container.innerHTML += `<p><strong>Total:</strong> $${total.toFixed(2)}</p>`;
+
+  // Re-enable submit buttons if cart is valid
+  document.querySelectorAll(".submit-btn").forEach(btn => btn.disabled = false);
 }
+
 
 function toggleDetails(method) {
   document.getElementById("cashappField").style.display = (method === "cashapp") ? "block" : "none";
