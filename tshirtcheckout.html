@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Checkout - Day Break</title>
+  <title>T-ShirtCheckout - Day Break</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -338,7 +338,7 @@
     <button onclick="copyConfirmCode()" class="green-btn" style="width:auto; margin:10px auto 0;">Copy Confirmation Number</button><br><br>
     Please take a screenshot of this message for your records. You will need the confirmation number to view your order.</p>
     <a href="orders.html" class="green-btn">← View Your Order</a>
-    <a href="menu.html" class="purple-btn">← View Menu</a>
+    <a href="tshirts.html" class="purple-btn">← T-Shirt Home</a>
   </div>
 </div>
 
@@ -349,22 +349,44 @@
 </footer>
 
 <script>
-const cart = JSON.parse(localStorage.getItem("daybreakCart") || "[]");
+let cart = JSON.parse(localStorage.getItem('daybreakShirtCart') || '[]');
 let subtotal = 0;
 
 function renderCartSummary() {
   const container = document.getElementById("orderSummary");
   container.innerHTML = '<h3>Your Order</h3>';
+
+  cart = JSON.parse(localStorage.getItem('daybreakShirtCart') || '[]');
+  let subtotal = 0;
+
   cart.forEach(item => {
     const itemTotal = (item.price * item.qty).toFixed(2);
     subtotal += item.price * item.qty;
-    container.innerHTML += `<p>${item.name} (x${item.qty}) - $${itemTotal}</p>`;
+
+    container.innerHTML += `
+      <div style="margin-bottom: 16px; border-bottom: 1px solid #ccc; padding-bottom: 12px;">
+        <strong>${item.style}</strong><br>
+        Size: ${item.size} | Color: ${item.color}<br>
+        Qty: ${item.qty} × $${item.price} = <strong>$${itemTotal}</strong><br>
+        <div style="margin-top: 6px;">
+          <img src="${item.frontImg}" alt="Front" style="width:60px; height:60px; object-fit:cover; border-radius:6px; margin-right: 8px;">
+${item.backDesign && item.backDesign !== "None"
+  ? `<img src="${item.backDesign}" alt="Back" style="width:60px; height:60px; object-fit:cover; border-radius:6px;">`
+  : ""
+}
+        </div>
+      </div>
+    `;
   });
+
   const tax = +(subtotal * 0.0825).toFixed(2);
   const total = +(subtotal + tax).toFixed(2);
-  container.innerHTML += `<p><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>`;
-  container.innerHTML += `<p><strong>Tax:</strong> $${tax.toFixed(2)}</p>`;
-  container.innerHTML += `<p><strong>Total:</strong> $${total.toFixed(2)}</p>`;
+
+  container.innerHTML += `
+    <p><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
+    <p><strong>Tax (8.25%):</strong> $${tax.toFixed(2)}</p>
+    <p><strong>Total:</strong> $${total.toFixed(2)}</p>
+  `;
 }
 
 function toggleDetails(method) {
@@ -442,7 +464,35 @@ if (honeypot !== "") {
   formData.append("transactionId", transactionId);
   formData.append("confirmationNumber", confirmation);
   formData.append("imageUrl", imageUrl);
-  formData.append("cart", JSON.stringify(cart));
+  const cartDetails = cart.map(item => {
+  const frontDesignName = typeof item.style === "string" ? item.style : "None";
+
+  let backDesignId = "None";
+  let backDesignUrl = "None";
+
+  if (item.backDesign && item.backDesign.includes(".png")) {
+    const match = item.backDesign.match(/\/(\d+)\.png$/);
+    if (match) {
+      backDesignId = match[1];
+      backDesignUrl = item.backDesign;
+    }
+  }
+
+  return {
+    style: frontDesignName,
+    size: item.size || "N/A",
+    qty: item.qty || 1,
+    color: item.color || "N/A",
+    price: item.price || 0,
+    frontDesign: frontDesignName,
+    backDesignId: backDesignId,
+    backDesign: backDesignUrl
+  };
+});
+
+formData.append("cart", JSON.stringify(cartDetails));
+
+
   formData.append("passKey", passKey);
 formData.append("address", honeypot);
 
@@ -454,7 +504,7 @@ formData.append("address", honeypot);
       body: formData
     });
 
-    localStorage.removeItem("daybreakCart");
+    localStorage.removeItem("daybreakShirtCart");
     document.getElementById("loaderOverlay").style.display = "none";
     document.getElementById("confirmCode").textContent = confirmation;
     document.getElementById("successMessage").style.display = "flex";
