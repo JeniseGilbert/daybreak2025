@@ -7,21 +7,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: url('https://imgur.com/AXQQvYy.jpg') no-repeat center bottom fixed;
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      opacity: 0;
-      animation: fadeIn 1.5s forwards;
-    }
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
+  overflow: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('https://raw.githubusercontent.com/JeniseGilbert/daybreak2025/main/assets/daybreak.png') no-repeat center center;
+  background-size: cover;
+  z-index: -1;
+}
+
+
+
 
     @keyframes fadeIn {
       to { opacity: 1; }
@@ -31,13 +45,31 @@
       to { opacity: 0; }
     }
 
-    .overlay {
-      background: rgba(0, 0, 0, 0.8);
-      border-radius: 20px;
-      padding: 40px 20px;
-      max-width: 90%;
-      transition: opacity 0.5s ease;
-    }
+   .overlay {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+  padding: 16px 24px;       /* ↓ tighter vertical space */
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 150px;      /* ↓ less bottom spacing */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+
+
+.overlay.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media screen and (max-width: 400px) {
+  .overlay {
+    padding: 20px;
+    max-width: 90%;
+  }
+}
 
     img.logo {
   width: 100%;
@@ -48,22 +80,22 @@
 
 
     h1 {
-      font-size: 2em;
-      margin-bottom: 10px;
+      font-size: 1.5em;
+      margin-bottom: 5px;
       color: #ffeb3b;
     }
 
     p {
-      font-size: 1.1em;
+      font-size: 1em;
       margin-bottom: 30px;
     }
 
     .btn {
-      padding: 14px 28px;
+      padding: 10px 20px;
       background-color: #00e676;
       color: #000;
       font-weight: bold;
-      font-size: 1em;
+      font-size: 0.9em;
       border: none;
       border-radius: 10px;
       cursor: pointer;
@@ -79,6 +111,32 @@
       height: 170px;
     }
   }
+  
+  .button-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.button-row .btn {
+  flex: 1;
+  min-width: 0; /* ensures flex items shrink */
+  padding: 12px;
+  font-size: 1em;
+}
+
+
+@media screen and (max-width: 400px) {
+  .button-row .btn {
+    font-size: 0.9em;
+    padding: 10px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -86,10 +144,23 @@
     <img src="https://imgur.com/YPspZxy.png" alt="Day Break Logo" class="logo" />
     <h1>Skip the Line</h1>
     <p>Order ahead and pick up your food fast. No wait. No hassle. Just vibes.</p>
-    <button class="btn" onclick="startTransition()">Order Now</button>
+    <div class="button-row">
+  <button class="btn" onclick="startTransition()">Order Food</button>
+  <button class="btn" onclick="window.location.href='tshirts.html'" style="background-color: #ffa726;">Order T-Shirts</button>
+</div>
+
+
   </div>
 
   <script>
+    
+    window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      document.getElementById('welcomeBox').classList.add('show');
+    }, 1000); // delay in milliseconds
+  });
+  
+  
     function startTransition() {
       document.body.style.animation = 'fadeOut 0.8s forwards';
       setTimeout(() => {
